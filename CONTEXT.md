@@ -4,11 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: início do projeto local
+Status: Fase 1 — Fundação concluída
 
-O projeto foi criado localmente com Next.js, TypeScript, Tailwind CSS e App Router.
-
-Ainda estamos na fase inicial de estruturação, documentação e preparação antes da implementação visual completa.
+A estrutura base do projeto foi implementada. O `app/` foi movido para `src/app/`, os tokens visuais da identidade foram aplicados no CSS global, e os componentes UI estruturais foram criados. O build passa sem erros.
 
 ## Identidade do projeto
 
@@ -29,9 +27,10 @@ Criar um site pessoal profissional para apresentar Marcos Ranauro como desenvolv
 
 ## Stack inicial
 
-- Next.js
+- Next.js 16.2.6
+- React 19
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS v4
 - App Router
 - Vercel
 - Git
@@ -72,25 +71,68 @@ Não entra nesta primeira versão:
 
 Direção: Premium editorial tech com interatividade futurista controlada.
 
-Referências escolhidas:
-
-- black & white tech editorial;
-- futurista / tech interativo.
-
 Proporção:
 
 - 70% editorial premium;
 - 30% futurista tech.
 
+## Estrutura de pastas atual
+
+```
+src/
+  app/
+    favicon.ico
+    globals.css       ← tema dark fixo + tokens visuais
+    layout.tsx        ← lang="pt-BR", metadados, fontes Geist
+    page.tsx          ← placeholder (seções entram na Fase 2)
+
+  components/
+    ui/
+      Button.tsx      ← variantes primary e secondary
+      Card.tsx        ← card premium dark com hover
+      Container.tsx   ← wrapper max-width 6xl responsivo
+      Section.tsx     ← wrapper de seção com padding padrão
+    layout/           ← vazio (Header e Footer entram na Fase 2)
+    sections/         ← vazio (seções entram na Fase 3)
+
+  data/               ← vazio (conteúdo entra na Fase 3)
+  lib/
+    utils.ts          ← função cn() para composição de classes
+
+docs/
+  architecture/arquitetura-inicial.md
+  development/setup-local.md
+  product/escopo.md
+  product/identidade-visual.md
+  product/visao-geral.md
+  quality/definition-of-done.md
+```
+
+## Tokens visuais definidos (globals.css)
+
+| Token Tailwind | Cor | Uso |
+|---|---|---|
+| `bg-background` | `#080A0F` | Fundo principal |
+| `bg-background-alt` | `#0B0F17` | Fundo secundário |
+| `bg-card` | `#10141F` | Cards e superfícies |
+| `border-border` | `#242B3A` | Bordas sutis |
+| `text-foreground` | `#F5F7FA` | Texto principal |
+| `text-muted` | `#A8B0C2` | Texto secundário |
+| `text-subtle` | `#6F7A8F` | Texto discreto |
+| `text-accent-blue` | `#38BDF8` | Destaque azul |
+| `text-accent-cyan` | `#22D3EE` | Destaque ciano |
+| `text-accent-purple` | `#8B5CF6` | Destaque roxo |
+
+## Configuração técnica relevante
+
+- `tsconfig.json`: alias `@/*` aponta para `./src/*`
+- `postcss.config.mjs`: usa `@tailwindcss/postcss` (Tailwind v4)
+- `globals.css`: usa `@import "tailwindcss"` e `@theme {}` (sintaxe v4)
+
 ## Próxima ação recomendada
 
-Preencher os documentos iniciais do projeto:
+Iniciar a Fase 2 — Estrutura da página:
 
-- `CLAUDE.md`
-- `CONTEXT.md`
-- `DECISOES.md`
-- `docs/product/visao-geral.md`
-- `docs/product/escopo.md`
-- `docs/product/identidade-visual.md`
-
-Depois disso, usar o prompt inicial no Claude Code para validar escopo, arquitetura e ordem de implementação antes de começar o layout.
+- `src/components/layout/Header.tsx`
+- `src/components/layout/Footer.tsx`
+- Atualizar `src/app/page.tsx` para montar as seções em ordem
