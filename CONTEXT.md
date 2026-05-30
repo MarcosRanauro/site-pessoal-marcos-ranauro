@@ -162,6 +162,14 @@ docs/
 - LinkedIn: `href="#"` (placeholder — preencher com URL real)
 - Separador visual entre os links sociais: `span` com `bg-border`
 
+## Deploy técnico inicial
+
+A Vercel foi conectada ao repositório GitHub.
+
+Status: funcionando.
+
+Observação: este deploy ainda é preview técnico. O domínio definitivo será configurado apenas no final da V1.
+
 ## Próxima ação recomendada
 
 Iniciar as seções restantes da Fase 3:
