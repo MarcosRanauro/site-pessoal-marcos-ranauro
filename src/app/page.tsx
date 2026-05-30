@@ -1,12 +1,12 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
+import { Sobre } from "@/components/sections/Sobre";
+import { Stack } from "@/components/sections/Stack";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 
 const placeholders = [
-  { id: "sobre",        label: "Sobre",        bg: "bg-background-alt" },
-  { id: "stack",        label: "Stack",        bg: "bg-background" },
   { id: "projetos",     label: "Projetos",     bg: "bg-background-alt" },
   { id: "servicos",     label: "Serviços",     bg: "bg-background" },
   { id: "processo",     label: "Processo",     bg: "bg-background-alt" },
@@ -37,6 +37,8 @@ export default function Home() {
 
       <main className="flex flex-1 flex-col">
         <Hero />
+        <Sobre />
+        <Stack />
 
         {placeholders.map((section) => (
           <Section
