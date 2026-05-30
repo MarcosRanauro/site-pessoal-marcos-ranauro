@@ -4,9 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 2 — Estrutura da página concluída (branch `feature/fase-2-estrutura-pagina`)
+Status: Fase 3a — Hero concluído (branch `feature/fase-3a-hero`)
 
-Header, Footer e page.tsx estão implementados. A estrutura da página one-page está montada com placeholders para todas as seções. O build passa sem erros.
+Seção Hero implementada com grid sutil, glow radial, badge de status, animações stagger via CSS e links sociais. Build passa sem erros.
 
 ## Identidade do projeto
 
@@ -41,7 +41,7 @@ Criar um site pessoal profissional para apresentar Marcos Ranauro como desenvolv
 A V1 será um site one-page com:
 
 - Header ✅
-- Hero *(placeholder)*
+- Hero ✅
 - Sobre *(placeholder)*
 - Stack *(placeholder)*
 - Projetos *(placeholder)*
@@ -95,7 +95,8 @@ src/
       Card.tsx          ← card premium dark com hover
       Container.tsx     ← wrapper max-width 6xl responsivo
       Section.tsx       ← wrapper de seção (py-24, sem px)
-    sections/           ← vazio (seções reais entram na Fase 3)
+    sections/
+      Hero.tsx          ← grid, glow, badge, stagger CSS, CTAs, social links
 
   data/                 ← vazio (conteúdo entra na Fase 3)
   lib/
@@ -150,15 +151,25 @@ docs/
 - Email: `marcosranauro85@gmail.com` (já configurado)
 - Layout responsivo: coluna no mobile, linha no desktop
 
+## Notas de implementação — Hero
+
+- Server Component (sem `"use client"` — apenas CSS e marcação)
+- Grid via classe `.hero-grid` no `globals.css` (não CSS inline)
+- Glow: div absoluta com `bg-accent-blue opacity-[0.06] blur-[120px]`
+- Badge: border sutil + `animate-pulse` no ponto verde (`bg-green-400`)
+- Animações: `animate-fade-in-up` com classes `.animate-delay-*` (0–500ms) em globals.css
+- GitHub: `https://github.com/MarcosRanauro` (real)
+- LinkedIn: `href="#"` (placeholder — preencher com URL real)
+- Separador visual entre os links sociais: `span` com `bg-border`
+
 ## Próxima ação recomendada
 
-Iniciar a Fase 3 — Seções:
+Iniciar as seções restantes da Fase 3:
 
-1. `src/components/sections/Hero.tsx` — nome, título, frase, CTAs, elemento visual
-2. `src/components/sections/About.tsx` — texto sobre Marcos
-3. `src/components/sections/Stack.tsx` + `src/data/stack.ts`
-4. `src/components/sections/Projects.tsx` + `src/data/projects.ts`
-5. `src/components/sections/Services.tsx` + `src/data/services.ts`
-6. `src/components/sections/Process.tsx`
-7. `src/components/sections/Differentials.tsx`
-8. `src/components/sections/Contact.tsx`
+1. `src/components/sections/About.tsx` — texto sobre Marcos
+2. `src/components/sections/Stack.tsx` + `src/data/stack.ts`
+3. `src/components/sections/Projects.tsx` + `src/data/projects.ts`
+4. `src/components/sections/Services.tsx` + `src/data/services.ts`
+5. `src/components/sections/Process.tsx`
+6. `src/components/sections/Differentials.tsx`
+7. `src/components/sections/Contact.tsx`
