@@ -4,9 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 3b — Sobre e Stack concluídos (branch `feature/fase-3b-sobre-stack`)
+Status: Fase 3c — Projetos concluído (branch `feature/fase-3c-projetos`)
 
-Seções Sobre (layout 2 colunas + stats) e Stack (grupos + chips) implementadas. Build passa sem erros.
+Seção Projetos implementada com cards tipados, badges de status, chips de stack e links. Build passa sem erros.
 
 ## Identidade do projeto
 
@@ -44,7 +44,7 @@ A V1 será um site one-page com:
 - Hero ✅
 - Sobre ✅
 - Stack ✅
-- Projetos *(placeholder)*
+- Projetos ✅
 - Serviços/Soluções *(placeholder)*
 - Processo *(placeholder)*
 - Diferenciais *(placeholder)*
@@ -98,10 +98,12 @@ src/
     sections/
       Hero.tsx          ← grid, glow, badge, stagger CSS, CTAs, social links
       Sobre.tsx         ← layout 2 colunas, stats responsivos, border-l decorativa
-      Stack.tsx         ← grupos com chips hover, accordion mobile
+      Stack.tsx         ← grupos com chips hover
+      Projetos.tsx      ← cards com badge status/destaque, chips, links GitHub + live
 
   data/
     stack.ts            ← 3 grupos: Frontend, Backend, Ferramentas & Infra
+    projetos.ts         ← tipo Projeto + StatusProjeto, 2 projetos
   lib/
     utils.ts            ← função cn() para composição de classes
 
@@ -177,7 +179,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 Iniciar as seções restantes da Fase 3:
 
-1. `src/components/sections/Projects.tsx` + `src/data/projects.ts`
+1. `src/components/sections/Servicos.tsx` + `src/data/servicos.ts`
 4. `src/components/sections/Services.tsx` + `src/data/services.ts`
 5. `src/components/sections/Process.tsx`
 6. `src/components/sections/Differentials.tsx`
