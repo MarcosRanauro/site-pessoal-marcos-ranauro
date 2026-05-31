@@ -1,10 +1,11 @@
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/utils";
 
-const stats = [
-  { value: "3+",   label: "Anos de experiência" },
-  { value: "20+",  label: "Projetos entregues" },
-  { value: "100%", label: "Compromisso com qualidade" },
+const stats: { value?: string; label: string }[] = [
+  { value: "3+",  label: "Anos de experiência" },
+  { value: "20+", label: "Projetos entregues" },
+  { label: "Compromisso com qualidade" },
 ];
 
 const formacao = [
@@ -56,10 +57,12 @@ export function Sobre() {
                   key={stat.label}
                   className="text-center md:py-7 md:text-left md:first:pt-0 md:last:pb-0"
                 >
-                  <p className="text-2xl font-bold text-accent-blue md:text-4xl">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-xs text-muted md:text-sm">
+                  {stat.value && (
+                    <p className="text-2xl font-bold text-accent-blue md:text-4xl">
+                      {stat.value}
+                    </p>
+                  )}
+                  <p className={cn("text-xs text-muted md:text-sm", stat.value && "mt-1")}>
                     {stat.label}
                   </p>
                 </div>

@@ -32,7 +32,7 @@ function IconeLink() {
 }
 
 function BadgeStatus({ status }: { status: StatusProjeto }) {
-  const ativo = status === "No ar";
+  const ativo = status === "No ar" || status === "Publicado";
   return (
     <span
       className={cn(

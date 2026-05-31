@@ -1,4 +1,4 @@
-export type StatusProjeto = "No ar" | "Em desenvolvimento";
+export type StatusProjeto = "No ar" | "Publicado" | "Em desenvolvimento";
 
 export type Projeto = {
   titulo: string;
@@ -28,7 +28,7 @@ export const projetos: Projeto[] = [
     stack: ["Next.js", "TypeScript", "Supabase", "Anthropic API", "Tailwind CSS"],
     github: "https://github.com/MarcosRanauro/outfit-saas",
     live: "https://outfit-saas.vercel.app",
-    status: "No ar",
+    status: "Publicado",
     destaque: true,
   },
 ];

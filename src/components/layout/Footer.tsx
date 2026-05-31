@@ -46,7 +46,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-sm text-subtle">© 2025 Marcos Ranauro</p>
+          <p className="text-sm text-subtle">© {new Date().getFullYear()} Marcos Ranauro</p>
         </div>
       </div>
     </footer>

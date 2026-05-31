@@ -4,9 +4,15 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 4 — Refinamento visual concluído (branch `feature/fase-4-refinamento-visual`)
+Status: Correções pré-Fase 5 concluídas (branch `feature/correcoes-pre-fase5`)
 
-Todas as seções da V1 estão implementadas. Ajustes visuais aplicados: Hero (tamanho do nome: `text-6xl md:text-7xl lg:text-8xl`), Sobre (padding dos cards de Formação: `p-5` → `p-6`), Diferenciais (gap interno dos cards: `gap-3` → `gap-4`). Build passa sem erros.
+Correções cirúrgicas aplicadas pós-revisão de deploy:
+- Footer: ano estático 2025 → dinâmico `new Date().getFullYear()`
+- Sobre: stat "100%" removido — "Compromisso com qualidade" exibido sem número; value opcional no tipo
+- Projetos: tipo `StatusProjeto` ampliado com `"Publicado"`; Outfit AI atualizado de `"No ar"` → `"Publicado"`; `BadgeStatus` trata "No ar" e "Publicado" com badge cyan
+- page.tsx: verificado — nenhuma duplicação de `<Processo />` encontrada no código-fonte
+
+Build passa sem erros.
 
 ## Identidade do projeto
 
