@@ -36,7 +36,7 @@ export function Diferenciais() {
           {diferenciais.map((item) => (
             <article
               key={item.titulo}
-              className="flex flex-col gap-3 rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:border-accent-blue hover:shadow-lg"
+              className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:border-accent-blue hover:shadow-lg"
             >
               <h3 className="text-base font-semibold text-foreground md:text-lg">
                 {item.titulo}

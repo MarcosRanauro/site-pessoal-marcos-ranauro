@@ -79,7 +79,7 @@ export function Sobre() {
             {formacao.map((item) => (
               <div
                 key={item.instituicao}
-                className="rounded-xl border border-border bg-card p-5"
+                className="rounded-xl border border-border bg-card p-6"
               >
                 <p className="font-semibold text-foreground">{item.instituicao}</p>
                 <p className="mt-1 text-sm text-accent-blue">{item.curso}</p>

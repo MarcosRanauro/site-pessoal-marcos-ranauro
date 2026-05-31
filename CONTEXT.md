@@ -4,9 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 3e — Todas as seções concluídas (branch `feature/fase-3e-processo-contato`)
+Status: Fase 4 — Refinamento visual concluído (branch `feature/fase-4-refinamento-visual`)
 
-Processo, Diferenciais e Contato implementados. page.tsx não tem mais placeholders — todas as seções da V1 estão no ar. Build passa sem erros.
+Todas as seções da V1 estão implementadas. Ajustes visuais aplicados: Hero (tamanho do nome: `text-6xl md:text-7xl lg:text-8xl`), Sobre (padding dos cards de Formação: `p-5` → `p-6`), Diferenciais (gap interno dos cards: `gap-3` → `gap-4`). Build passa sem erros.
 
 ## Identidade do projeto
 

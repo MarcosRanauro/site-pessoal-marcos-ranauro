@@ -19,7 +19,7 @@ export function Hero() {
         </div>
 
         {/* Nome */}
-        <h1 className="animate-fade-in-up animate-delay-100 text-5xl font-bold tracking-tight text-foreground md:text-7xl">
+        <h1 className="animate-fade-in-up animate-delay-100 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
           Marcos Ranauro
         </h1>
 
