@@ -1,5 +1,7 @@
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import { FadeInView } from "@/components/ui/FadeInView";
+import { Card3D } from "@/components/ui/Card3D";
 import { projetos, type Projeto, type StatusProjeto } from "@/data/projetos";
 import { cn } from "@/lib/utils";
 
@@ -55,9 +57,9 @@ function BadgeStatus({ status }: { status: StatusProjeto }) {
 
 function ProjetoCard({ projeto }: { projeto: Projeto }) {
   return (
-    <article
+    <Card3D
       className={cn(
-        "flex flex-col rounded-xl border bg-card p-6 transition-all duration-200 hover:border-accent-blue hover:shadow-lg",
+        "flex flex-col rounded-xl border bg-card p-6 transition-colors duration-200 hover:border-accent-blue hover:shadow-lg",
         projeto.destaque ? "border-accent-blue/30" : "border-border"
       )}
     >
@@ -117,7 +119,7 @@ function ProjetoCard({ projeto }: { projeto: Projeto }) {
           Ver projeto
         </a>
       </div>
-    </article>
+    </Card3D>
   );
 }
 
@@ -125,13 +127,17 @@ export function Projetos() {
   return (
     <Section id="projetos" className="bg-background-alt">
       <Container>
-        <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-          Projetos
-        </h2>
+        <FadeInView>
+          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
+            Projetos
+          </h2>
+        </FadeInView>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {projetos.map((projeto) => (
-            <ProjetoCard key={projeto.titulo} projeto={projeto} />
+          {projetos.map((projeto, i) => (
+            <FadeInView key={projeto.titulo} delay={i * 0.1}>
+              <ProjetoCard projeto={projeto} />
+            </FadeInView>
           ))}
         </div>
       </Container>

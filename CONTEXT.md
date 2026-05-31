@@ -4,13 +4,19 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Correções pré-Fase 5 concluídas (branch `feature/correcoes-pre-fase5`)
+Status: Fase 5 — Animações com Framer Motion concluída (branch `feature/fase-5-animacoes`)
 
-Correções cirúrgicas aplicadas pós-revisão de deploy:
-- Footer: ano estático 2025 → dinâmico `new Date().getFullYear()`
-- Sobre: stat "100%" removido — "Compromisso com qualidade" exibido sem número; value opcional no tipo
-- Projetos: tipo `StatusProjeto` ampliado com `"Publicado"`; Outfit AI atualizado de `"No ar"` → `"Publicado"`; `BadgeStatus` trata "No ar" e "Publicado" com badge cyan
-- page.tsx: verificado — nenhuma duplicação de `<Processo />` encontrada no código-fonte
+Fase 5 implementada com Framer Motion v12:
+- `framer-motion` instalado
+- `FadeInView.tsx` — scroll reveal reutilizável (opacity + y, once: true, delay prop, respeita prefers-reduced-motion)
+- `Card3D.tsx` — efeito 3D no hover com useMotionValue + useTransform + useSpring (rotação máx 6deg, perspectiva 1000px)
+- `CustomCursor.tsx` — cursor personalizado duplo (dot + ring) com spring; só ativa em desktop (≥1024px); expand em links/buttons
+- `Hero.tsx` — convertido para "use client", variants com staggerChildren 0.1s substituem as classes CSS de delay
+- Classes CSS `animate-fade-in-up` e `animate-delay-*` removidas do Hero (mantidas no globals.css para uso eventual)
+- FadeInView aplicado em: Sobre, Stack, Projetos, Servicos, Processo, Diferenciais, Contato
+- Card3D aplicado em: Projetos, Servicos, Diferenciais
+- `globals.css`: `cursor: none` via `@media (pointer: fine)` para body, a, button
+- `layout.tsx`: `<CustomCursor />` adicionado ao body
 
 Build passa sem erros.
 

@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import { FadeInView } from "@/components/ui/FadeInView";
 
 function IconeWhatsApp() {
   return (
@@ -72,44 +73,47 @@ export function Contato() {
       <Container>
         <div className="relative z-10 flex flex-col items-center text-center">
 
-          {/* Título */}
-          <h2 className="border-l-2 border-accent-blue pl-4 text-left text-3xl font-bold text-foreground md:text-4xl">
-            Vamos conversar
-          </h2>
+          <FadeInView>
+            <h2 className="border-l-2 border-accent-blue pl-4 text-left text-3xl font-bold text-foreground md:text-4xl">
+              Vamos conversar
+            </h2>
+          </FadeInView>
 
-          {/* Subtítulo */}
-          <p className="mt-4 max-w-md text-base text-muted">
-            Tem um projeto em mente? Me conta o que você precisa.
-          </p>
+          <FadeInView delay={0.1}>
+            <p className="mt-4 max-w-md text-base text-muted">
+              Tem um projeto em mente? Me conta o que você precisa.
+            </p>
+          </FadeInView>
 
-          {/* Canais de contato */}
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            {canais.map((canal) =>
-              canal.primario ? (
-                <a
-                  key={canal.label}
-                  href={canal.href}
-                  target={canal.href.startsWith("http") ? "_blank" : undefined}
-                  rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-accent-blue px-7 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-                >
-                  {canal.icone}
-                  {canal.label}
-                </a>
-              ) : (
-                <a
-                  key={canal.label}
-                  href={canal.href}
-                  target={canal.href.startsWith("http") ? "_blank" : undefined}
-                  rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground transition-all hover:border-accent-blue hover:text-accent-blue"
-                >
-                  {canal.icone}
-                  {canal.label}
-                </a>
-              )
-            )}
-          </div>
+          <FadeInView delay={0.2}>
+            <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+              {canais.map((canal) =>
+                canal.primario ? (
+                  <a
+                    key={canal.label}
+                    href={canal.href}
+                    target={canal.href.startsWith("http") ? "_blank" : undefined}
+                    rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full bg-accent-blue px-7 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+                  >
+                    {canal.icone}
+                    {canal.label}
+                  </a>
+                ) : (
+                  <a
+                    key={canal.label}
+                    href={canal.href}
+                    target={canal.href.startsWith("http") ? "_blank" : undefined}
+                    rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-border px-7 py-3 text-sm font-medium text-foreground transition-all hover:border-accent-blue hover:text-accent-blue"
+                  >
+                    {canal.icone}
+                    {canal.label}
+                  </a>
+                )
+              )}
+            </div>
+          </FadeInView>
 
         </div>
       </Container>

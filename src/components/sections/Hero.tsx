@@ -1,4 +1,19 @@
+"use client";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
+};
+
 export function Hero() {
+  const reduced = useReducedMotion();
+
   return (
     <section
       id="hero"
@@ -10,32 +25,48 @@ export function Hero() {
       </div>
 
       {/* Conteúdo */}
-      <div className="relative z-10 flex flex-col items-center gap-6 md:gap-8">
-
+      <motion.div
+        className="relative z-10 flex flex-col items-center gap-6 md:gap-8"
+        variants={container}
+        initial={reduced ? false : "hidden"}
+        animate="visible"
+      >
         {/* Badge de status */}
-        <div className="animate-fade-in-up animate-delay-0 inline-flex items-center gap-2.5 rounded-full border border-border px-4 py-1.5 text-sm text-muted">
+        <motion.div
+          variants={item}
+          className="inline-flex items-center gap-2.5 rounded-full border border-border px-4 py-1.5 text-sm text-muted"
+        >
           <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
           Disponível para projetos
-        </div>
+        </motion.div>
 
         {/* Nome */}
-        <h1 className="animate-fade-in-up animate-delay-100 text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
+        <motion.h1
+          variants={item}
+          className="text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl"
+        >
           Marcos Ranauro
-        </h1>
+        </motion.h1>
 
         {/* Título profissional */}
-        <p className="animate-fade-in-up animate-delay-200 text-base font-medium uppercase tracking-[0.3em] text-accent-blue md:text-lg">
+        <motion.p
+          variants={item}
+          className="text-base font-medium uppercase tracking-[0.3em] text-accent-blue md:text-lg"
+        >
           Fullstack Developer
-        </p>
+        </motion.p>
 
         {/* Frase de posicionamento */}
-        <p className="animate-fade-in-up animate-delay-300 max-w-xl text-base leading-relaxed text-muted md:max-w-2xl md:text-lg">
+        <motion.p
+          variants={item}
+          className="max-w-xl text-base leading-relaxed text-muted md:max-w-2xl md:text-lg"
+        >
           Crio experiências digitais modernas, performáticas e bem estruturadas
           — do planejamento ao deploy.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="animate-fade-in-up animate-delay-400 flex flex-col items-center gap-3 sm:flex-row">
+        <motion.div variants={item} className="flex flex-col items-center gap-3 sm:flex-row">
           <a
             href="#projetos"
             className="inline-flex items-center justify-center rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
@@ -48,10 +79,10 @@ export function Hero() {
           >
             Entrar em contato
           </a>
-        </div>
+        </motion.div>
 
         {/* Links sociais */}
-        <div className="animate-fade-in-up animate-delay-500 flex items-center gap-6 pt-2">
+        <motion.div variants={item} className="flex items-center gap-6 pt-2">
           <a
             href="https://github.com/MarcosRanauro"
             target="_blank"
@@ -77,8 +108,8 @@ export function Hero() {
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
