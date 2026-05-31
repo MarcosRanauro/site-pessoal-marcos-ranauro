@@ -3,8 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
 const stats: { value?: string; label: string }[] = [
-  { value: "3+",  label: "Anos de experiência" },
-  { value: "20+", label: "Projetos entregues" },
+  { value: "3",  label: "Anos de experiência" },
+  { value: "13", label: "Projetos entregues" },
   { label: "Compromisso com qualidade" },
 ];
 
