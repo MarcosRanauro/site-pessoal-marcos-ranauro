@@ -1,55 +1,83 @@
 @import "tailwindcss";
 
+/* ── Tipografia — conecta as variáveis expostas pelo next/font ─────────── */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-space-grotesk);
 }
 
+/* ── Paleta e tokens do design system ──────────────────────────────────── */
 @theme {
   /* Superfícies */
-  --color-background: #080A0F;
-  --color-background-alt: #0B0F17;
-  --color-card: #10141F;
-  --color-border: #242B3A;
+  --color-background:         #0A0A0A;
+  --color-surface:            #111111;
+  --color-surface-elevated:   #161616;
+
+  /* Aliases de compatibilidade (usados pelas seções até o redesign) */
+  --color-background-alt:     #111111;
+  --color-card:               #161616;
+
+  /* Bordas */
+  --color-border:             #222222;
+  --color-border-strong:      #2A2A2A;
 
   /* Tipografia */
-  --color-foreground: #F5F7FA;
-  --color-muted: #A8B0C2;
-  --color-subtle: #6F7A8F;
+  --color-foreground:         #FAFAFA;
+  --color-muted:              #A1A1A1;
+  --color-muted-foreground:   #6B6B6B;
 
-  /* Destaques */
-  --color-accent-blue: #38BDF8;
-  --color-accent-cyan: #22D3EE;
-  --color-accent-purple: #8B5CF6;
+  /* Alias de compatibilidade */
+  --color-subtle:             #6B6B6B;
 
-  /* Animações */
+  /* Acento lime — usar em < 5% da tela */
+  --color-accent:             #C6FF00;
+
+  /* Animações CSS (usadas pelo Header e badge do Hero) */
   --animate-fade-in-down: fade-in-down 0.5s ease-out both;
-  --animate-fade-in-up: fade-in-up 0.6s ease-out both;
+  --animate-fade-in-up:   fade-in-up 0.6s ease-out both;
 }
 
+/* ── Escala tipográfica ─────────────────────────────────────────────────── */
+:root {
+  /* Tamanhos */
+  --fs-display:  clamp(3.5rem, 7vw,   7rem);
+  --fs-h1:       clamp(2.5rem, 5vw,   5rem);
+  --fs-h2:       clamp(1.75rem, 3vw,  2.5rem);
+  --fs-h3:       clamp(1.125rem, 1.5vw, 1.25rem);
+  --fs-body-lg:  1.125rem;
+  --fs-body:     1rem;
+  --fs-label:    0.6875rem;
+  --fs-mono:     0.875rem;
+
+  /* Pesos */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold:   700;
+
+  /* Letter-spacing */
+  --ls-tight:  -0.02em;
+  --ls-normal:  0em;
+  --ls-label:   0.12em;
+  --ls-wide:    0.2em;
+
+  /* Ritmo vertical das seções */
+  --space-section:       clamp(5rem, 10vw, 8rem);
+  --space-section-inner: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ── Keyframes (mantidos para uso do Header e eventual uso pontual) ──────── */
 @keyframes fade-in-down {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Stagger de animação para Hero */
+/* Delays de animação CSS (usados pelo Header) */
 .animate-delay-0   { animation-delay: 0ms; }
 .animate-delay-100 { animation-delay: 100ms; }
 .animate-delay-200 { animation-delay: 200ms; }
@@ -57,14 +85,15 @@
 .animate-delay-400 { animation-delay: 400ms; }
 .animate-delay-500 { animation-delay: 500ms; }
 
-/* Grid sutil para Hero — linhas com ~3% de opacidade */
+/* ── Grid do Hero ───────────────────────────────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(198, 255, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 255, 0, 0.025) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
+/* ── Reset e base ───────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -77,12 +106,14 @@ html {
 }
 
 body {
-  background-color: #080A0F;
-  color: #F5F7FA;
+  background-color: #0A0A0A;
+  color: #FAFAFA;
+  font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Cursor customizado — oculta o padrão em dispositivos de precisão */
 @media (pointer: fine) {
   body,
   a,

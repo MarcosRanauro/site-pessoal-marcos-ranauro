@@ -4,9 +4,19 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Hero Scramble Effect concluído (branch `feature/hero-scramble-effect`)
+Status: Redesign — Fundação do novo Design System (branch `feature/redesign-direcao-visual`)
 
-Hero Scramble Effect implementado (Fase 5 já estava concluída):
+Redesign iniciado. Nova direção visual: "Editorial e expressivo — Engenharia como ofício."
+Paleta monocromática rigorosa com acento lime (#C6FF00) de uso < 5%.
+Tokens antigos (azul/ciano/roxo) removidos. Seções em estado transicional — serão redesenhadas nas próximas fases.
+
+Mudanças desta fase:
+- `layout.tsx`: Space Grotesk (display), Inter (body), Geist Mono — variáveis `--font-space-grotesk`, `--font-inter`, `--font-geist-mono`
+- `globals.css`: paleta completa reescrita; escala tipográfica em CSS custom properties; hero-grid atualizado para lime; cursor:none mantido
+- `Button.tsx`, `Card.tsx`, `CustomCursor.tsx`: atualizados para novos tokens
+- `docs/design-system.md`: criado — paleta, escala tipográfica, regras de uso do acento lime
+
+Hero Scramble Effect implementado (branch anterior):
 - `src/lib/useTextScramble.ts` — hook reutilizável: recebe texto + started + duration; usa rAF para scramble progressivo; hasStarted.current previne restart; respeita prefers-reduced-motion via `started=false`
 - `src/lib/useTypewriter.ts` — hook reutilizável: intervalo por caractere; hasStarted.current previne restart
 - `src/components/sections/Hero.tsx` — máquina de estados (step 0→5) coordenando a sequência: grid fade (1s) → badge pisca 3x (0.6s) → nome scramble (1.2s) → título scramble (0.8s) → frase typewriter (25ms/char) → CTAs fade (0.4s); prefers-reduced-motion pula direto para step 5

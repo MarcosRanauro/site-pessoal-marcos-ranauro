@@ -170,3 +170,37 @@ Essa direção equilibra elegância, autoridade e modernidade, sem cair em visua
 
 **Consequências práticas:**  
 A interface deve seguir a proporção 70% editorial premium e 30% futurista tech, com fundo escuro, tipografia forte, cards sofisticados e microinterações suaves.
+
+---
+
+## 2026-05-31 — Redesign: nova direção visual "Editorial expressivo"
+
+**Status:** Aceita
+
+**Contexto:**  
+Após revisão do deploy da V1, a direção visual "premium editorial tech com interatividade futurista" foi considerada genérica. O site precisava de mais caráter autoral e posicionamento mais claro.
+
+**Decisão:**  
+Adotar nova direção: "Editorial e expressivo, com execução técnica de dev sênior. Engenharia como ofício."
+
+Paleta monocromática rigorosa (#0A0A0A base) com acento lime (#C6FF00) usado em menos de 5% da tela. Tipografia com contraste dramático: Space Grotesk nos títulos, Inter no corpo.
+
+**Motivo:**  
+A paleta azul/ciano era comum em portfólios de dev. A monocromática com lime é mais ousada, editorial e difícil de imitar. O conceito "engenharia como ofício" comunica senioridade sem palavras.
+
+**Alternativas consideradas:**  
+- Manter a paleta azul/ciano (descartado — genérico)
+- Paleta roxa (descartado — associação SaaS)
+- Verde neon (descartado — excessivamente gamer)
+
+**Impacto positivo:**  
+- Visual mais autoral e memorável
+- Diferenciação clara de portfólios genéricos
+- Escala de cores mais controlável e sofisticada
+
+**Impacto negativo ou riscos:**  
+- Site ficará em estado transicional durante o redesign (seções com tokens antigos sem valor)
+- Requer redesign completo das seções (em fases seguintes)
+
+**Consequências práticas:**  
+Tokens antigos (accent-blue, accent-cyan, accent-purple) removidos. Seções serão redesenhadas fase a fase. Regra do acento: < 5% da tela, nunca em áreas grandes. Ver `docs/design-system.md` para referência completa.

@@ -41,14 +41,14 @@ export function CustomCursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-accent-blue"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-accent"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
-        animate={{ width: isHovering ? 8 : 12, height: isHovering ? 8 : 12, opacity: isHovering ? 0.7 : 1 }}
+        animate={{ width: isHovering ? 8 : 12, height: isHovering ? 8 : 12, opacity: isHovering ? 0.6 : 0.9 }}
         transition={{ duration: 0.15 }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full border border-accent-blue"
-        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%", opacity: 0.25 }}
+        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full border border-accent"
+        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%", opacity: 0.2 }}
         animate={{ width: isHovering ? 52 : 36, height: isHovering ? 52 : 36 }}
         transition={{ duration: 0.2 }}
       />
