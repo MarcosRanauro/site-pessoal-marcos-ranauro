@@ -1,72 +1,154 @@
 "use client";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useTextScramble } from "@/lib/useTextScramble";
+import { useTypewriter } from "@/lib/useTypewriter";
 
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+/*
+ * Sequência de animação:
+ * step 0 → grid fade-in (1s)
+ * step 1 → badge pisca 3x (0.6s)
+ * step 2 → nome scramble (1.2s) + delay 200ms
+ * step 3 → título scramble (0.8s)
+ * step 4 → frase typewriter (~25ms/char)
+ * step 5 → CTAs + social fade-in (0.4s) — completo
+ */
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
-};
+const NOME = "Marcos Ranauro";
+const TITULO = "Fullstack Developer";
+const FRASE =
+  "Crio experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.";
 
 export function Hero() {
   const reduced = useReducedMotion();
+  const [step, setStep] = useState(0);
+
+  // Se prefers-reduced-motion, pular direto para o estado final
+  useEffect(() => {
+    if (reduced) setStep(5);
+  }, [reduced]);
+
+  // ── Hooks de animação (chamados incondicionalmente) ──────────────────────
+  const { display: nameDisplay, done: nameDone } = useTextScramble(
+    NOME,
+    !reduced && step >= 2,
+    1200
+  );
+  const { display: titleDisplay, done: titleDone } = useTextScramble(
+    TITULO,
+    !reduced && step >= 3,
+    800
+  );
+  const { display: phraseDisplay, done: phraseDone } = useTypewriter(
+    FRASE,
+    !reduced && step >= 4,
+    25
+  );
+
+  // ── Avanço de etapas ────────────────────────────────────────────────────
+  useEffect(() => {
+    if (step === 2 && nameDone) {
+      const t = setTimeout(() => setStep(3), 200);
+      return () => clearTimeout(t);
+    }
+  }, [step, nameDone]);
+
+  useEffect(() => {
+    if (step === 3 && titleDone) setStep(4);
+  }, [step, titleDone]);
+
+  useEffect(() => {
+    if (step === 4 && phraseDone) setStep(5);
+  }, [step, phraseDone]);
+
+  // ── Texto a exibir ──────────────────────────────────────────────────────
+  const nameText = reduced
+    ? NOME
+    : step === 2
+    ? nameDisplay
+    : step > 2
+    ? NOME
+    : "";
+
+  const titleText = reduced
+    ? TITULO
+    : step === 3
+    ? titleDisplay
+    : step > 3
+    ? TITULO
+    : "";
+
+  const phraseText = reduced ? FRASE : step >= 4 ? phraseDisplay : "";
 
   return (
     <section
       id="hero"
-      className="hero-grid relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 pt-16 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 pt-16 text-center"
     >
+      {/* Grid — fade-in separado para simular "ambiente inicializando" */}
+      <motion.div
+        className="hero-grid pointer-events-none absolute inset-0"
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        onAnimationComplete={() => {
+          if (step === 0 && !reduced) setStep(1);
+        }}
+      />
+
       {/* Glow radial centralizado */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[640px] w-[640px] rounded-full bg-accent-blue opacity-[0.06] blur-[120px]" />
       </div>
 
       {/* Conteúdo */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center gap-6 md:gap-8"
-        variants={container}
-        initial={reduced ? false : "hidden"}
-        animate="visible"
-      >
-        {/* Badge de status */}
+      <div className="relative z-10 flex flex-col items-center gap-6 md:gap-8">
+
+        {/* Badge de status — pisca 3x ao aparecer */}
         <motion.div
-          variants={item}
           className="inline-flex items-center gap-2.5 rounded-full border border-border px-4 py-1.5 text-sm text-muted"
+          initial={reduced ? false : { opacity: 0 }}
+          animate={
+            reduced
+              ? undefined
+              : step >= 1
+              ? { opacity: [0, 1, 0, 1, 0, 1] }
+              : { opacity: 0 }
+          }
+          transition={{ duration: 0.6, times: [0, 0.2, 0.4, 0.6, 0.8, 1] }}
+          onAnimationComplete={() => {
+            if (step === 1 && !reduced) setStep(2);
+          }}
         >
           <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
           Disponível para projetos
         </motion.div>
 
-        {/* Nome */}
-        <motion.h1
-          variants={item}
-          className="text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl"
-        >
-          Marcos Ranauro
-        </motion.h1>
+        {/* Nome — text scramble */}
+        <h1 className="text-6xl font-bold tracking-tight text-foreground md:text-7xl lg:text-8xl">
+          {nameText || <>&nbsp;</>}
+        </h1>
 
-        {/* Título profissional */}
-        <motion.p
-          variants={item}
-          className="text-base font-medium uppercase tracking-[0.3em] text-accent-blue md:text-lg"
-        >
-          Fullstack Developer
-        </motion.p>
+        {/* Título — text scramble */}
+        <p className="min-h-[1.75rem] text-base font-medium uppercase tracking-[0.3em] text-accent-blue md:text-lg">
+          {titleText}
+        </p>
 
-        {/* Frase de posicionamento */}
-        <motion.p
-          variants={item}
-          className="max-w-xl text-base leading-relaxed text-muted md:max-w-2xl md:text-lg"
-        >
-          Crio experiências digitais modernas, performáticas e bem estruturadas
-          — do planejamento ao deploy.
-        </motion.p>
+        {/* Frase — typewriter */}
+        <p className="max-w-xl text-base leading-relaxed text-muted md:max-w-2xl md:text-lg">
+          {phraseText}
+          {step === 4 && (
+            <span className="ml-0.5 animate-pulse text-accent-blue">|</span>
+          )}
+        </p>
 
         {/* CTAs */}
-        <motion.div variants={item} className="flex flex-col items-center gap-3 sm:flex-row">
+        <motion.div
+          className="flex flex-col items-center gap-3 sm:flex-row"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: step >= 5 ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <a
             href="#projetos"
             className="inline-flex items-center justify-center rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
@@ -82,7 +164,12 @@ export function Hero() {
         </motion.div>
 
         {/* Links sociais */}
-        <motion.div variants={item} className="flex items-center gap-6 pt-2">
+        <motion.div
+          className="flex items-center gap-6 pt-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: step >= 5 ? 1 : 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
           <a
             href="https://github.com/MarcosRanauro"
             target="_blank"
@@ -109,7 +196,8 @@ export function Hero() {
             </svg>
           </a>
         </motion.div>
-      </motion.div>
+
+      </div>
     </section>
   );
 }

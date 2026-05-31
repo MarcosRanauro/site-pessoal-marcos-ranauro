@@ -4,7 +4,12 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 5 — Animações com Framer Motion concluída (branch `feature/fase-5-animacoes`)
+Status: Hero Scramble Effect concluído (branch `feature/hero-scramble-effect`)
+
+Hero Scramble Effect implementado (Fase 5 já estava concluída):
+- `src/lib/useTextScramble.ts` — hook reutilizável: recebe texto + started + duration; usa rAF para scramble progressivo; hasStarted.current previne restart; respeita prefers-reduced-motion via `started=false`
+- `src/lib/useTypewriter.ts` — hook reutilizável: intervalo por caractere; hasStarted.current previne restart
+- `src/components/sections/Hero.tsx` — máquina de estados (step 0→5) coordenando a sequência: grid fade (1s) → badge pisca 3x (0.6s) → nome scramble (1.2s) → título scramble (0.8s) → frase typewriter (25ms/char) → CTAs fade (0.4s); prefers-reduced-motion pula direto para step 5
 
 Fase 5 implementada com Framer Motion v12:
 - `framer-motion` instalado
