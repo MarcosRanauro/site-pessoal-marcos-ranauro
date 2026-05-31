@@ -4,11 +4,11 @@ import { Hero } from "@/components/sections/Hero";
 import { Sobre } from "@/components/sections/Sobre";
 import { Stack } from "@/components/sections/Stack";
 import { Projetos } from "@/components/sections/Projetos";
+import { Servicos } from "@/components/sections/Servicos";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 
 const placeholders = [
-  { id: "servicos",     label: "Serviços",     bg: "bg-background" },
   { id: "processo",     label: "Processo",     bg: "bg-background-alt" },
   { id: "diferenciais", label: "Diferenciais", bg: "bg-background" },
   { id: "contato",      label: "Contato",      bg: "bg-background-alt" },
@@ -40,6 +40,7 @@ export default function Home() {
         <Sobre />
         <Stack />
         <Projetos />
+        <Servicos />
 
         {placeholders.map((section) => (
           <Section
