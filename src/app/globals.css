@@ -41,6 +41,7 @@
 /* ── Escala tipográfica ─────────────────────────────────────────────────── */
 :root {
   /* Tamanhos */
+  --fs-hero-name: clamp(2.8rem, 10vw, 9rem);
   --fs-display:  clamp(3.5rem, 7vw,   7rem);
   --fs-h1:       clamp(2.5rem, 5vw,   5rem);
   --fs-h2:       clamp(1.75rem, 3vw,  2.5rem);

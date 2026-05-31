@@ -4,7 +4,18 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Redesign — Fundação do novo Design System (branch `feature/redesign-direcao-visual`)
+Status: Redesign — Hero editorial concluído (branch `feature/redesign-hero`)
+
+Hero redesenhado com composição editorial assimétrica:
+- Layout left-aligned, nome em duas linhas com `--fs-hero-name: clamp(2.8rem,10vw,9rem)`, Space Grotesk bold, line-height 0.90
+- Sidebar vertical de links (GitHub / LinkedIn) ancorada à esquerda — desktop only, `writing-mode: vertical-rl`, hover lime
+- Linha de metadados no topo: `FULLSTACK DEVELOPER — BASED IN BRAZIL — ● AVAILABLE 2026` (único lime visível no topo)
+- CTAs editoriais: underline lime animado no hover do primário + seta lime; secundário texto fantasma
+- Indicador de scroll: `SCROLL` mono + linha lime que pulsa via scaleY
+- Social links horizontais no mobile (abaixo dos CTAs)
+- Glow deslocado para canto superior direito (assimétrico)
+- Sequência scramble/typewriter mantida (hooks reutilizados), agora na nova tipografia
+- `--fs-hero-name` adicionado ao globals.css
 
 Redesign iniciado. Nova direção visual: "Editorial e expressivo — Engenharia como ofício."
 Paleta monocromática rigorosa com acento lime (#C6FF00) de uso < 5%.
