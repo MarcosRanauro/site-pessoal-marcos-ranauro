@@ -97,7 +97,7 @@ src/
       Section.tsx       ← wrapper de seção (py-24, sem px)
     sections/
       Hero.tsx          ← grid, glow, badge, stagger CSS, CTAs, social links
-      Sobre.tsx         ← layout 2 colunas, stats responsivos, border-l decorativa
+      Sobre.tsx         ← layout 2 colunas, stats responsivos, border-l decorativa, bloco Formação (Trybe + UNISUAM)
       Stack.tsx         ← grupos com chips hover
       Projetos.tsx      ← cards com badge status/destaque, chips, links GitHub + live
       Servicos.tsx      ← 5 cards número+título+descrição, 5º centralizado

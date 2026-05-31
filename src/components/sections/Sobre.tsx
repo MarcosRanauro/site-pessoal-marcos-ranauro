@@ -7,10 +7,27 @@ const stats = [
   { value: "100%", label: "Compromisso com qualidade" },
 ];
 
+const formacao = [
+  {
+    instituicao: "Trybe",
+    curso: "Formação Full Stack",
+    descricao:
+      "EAD com aulas ao vivo diárias, duração de aproximadamente 1 ano e meio. Cobre front-end, back-end, lógica, banco de dados, APIs e desenvolvimento de aplicações web.",
+  },
+  {
+    instituicao: "UNISUAM",
+    curso: "Análise e Desenvolvimento de Sistemas",
+    descricao:
+      "Formato modular, com certificações em Front-end, Back-end e Mobile.",
+  },
+];
+
 export function Sobre() {
   return (
     <Section id="sobre" className="bg-background-alt">
       <Container>
+
+        {/* Texto + Stats */}
         <div className="grid gap-16 md:grid-cols-2 md:gap-24">
 
           {/* Texto */}
@@ -51,6 +68,29 @@ export function Sobre() {
           </div>
 
         </div>
+
+        {/* Formação */}
+        <div className="mt-16 border-t border-border pt-16">
+          <h3 className="mb-8 border-l-2 border-accent-blue pl-4 text-xl font-semibold text-foreground md:text-2xl">
+            Formação
+          </h3>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {formacao.map((item) => (
+              <div
+                key={item.instituicao}
+                className="rounded-xl border border-border bg-card p-5"
+              >
+                <p className="font-semibold text-foreground">{item.instituicao}</p>
+                <p className="mt-1 text-sm text-accent-blue">{item.curso}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted">
+                  {item.descricao}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </Container>
     </Section>
   );
