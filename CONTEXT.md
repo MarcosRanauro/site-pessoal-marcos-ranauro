@@ -4,9 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Fase 3d — Serviços concluído (branch `feature/fase-3d-servicos`)
+Status: Fase 3e — Todas as seções concluídas (branch `feature/fase-3e-processo-contato`)
 
-Seção Serviços implementada com 5 cards (número, título, descrição). 5º card centralizado na última linha. Build passa sem erros.
+Processo, Diferenciais e Contato implementados. page.tsx não tem mais placeholders — todas as seções da V1 estão no ar. Build passa sem erros.
 
 ## Identidade do projeto
 
@@ -46,9 +46,9 @@ A V1 será um site one-page com:
 - Stack ✅
 - Projetos ✅
 - Serviços/Soluções ✅
-- Processo *(placeholder)*
-- Diferenciais *(placeholder)*
-- Contato *(placeholder)*
+- Processo ✅
+- Diferenciais ✅
+- Contato ✅
 - Footer ✅
 
 ## Fora do escopo da V1
@@ -101,6 +101,9 @@ src/
       Stack.tsx         ← grupos com chips hover
       Projetos.tsx      ← cards com badge status/destaque, chips, links GitHub + live
       Servicos.tsx      ← 5 cards número+título+descrição, 5º centralizado
+      Processo.tsx      ← timeline mobile + fluxo horizontal desktop com conectores
+      Diferenciais.tsx  ← grid 2x2 de cards sem número
+      Contato.tsx       ← glow radial, botão WhatsApp primário, 3 secundários
 
   data/
     stack.ts            ← 3 grupos: Frontend, Backend, Ferramentas & Infra
@@ -181,9 +184,13 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 Iniciar as seções restantes da Fase 3:
 
-1. `src/components/sections/Processo.tsx`
-2. `src/components/sections/Diferenciais.tsx`
-3. `src/components/sections/Contato.tsx`
+Fase 4 — Finalização:
+
+1. SEO: metadados completos, Open Graph, favicon real
+2. Responsividade final e revisão mobile
+3. Animações suaves nas seções (fade-in no scroll)
+4. Build sem erros + lint
+5. Deploy final na Vercel com domínio
 4. `src/components/sections/Services.tsx` + `src/data/services.ts`
 5. `src/components/sections/Process.tsx`
 6. `src/components/sections/Differentials.tsx`
