@@ -4,7 +4,24 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Cursor customizado removido, CursorGlow spotlight lime implementado (branch `feature/cursor-glow`)
+Status: Redesign editorial de Sobre e Stack concluído (branch `feature/redesign-sobre-stack`)
+
+Sobre.tsx redesenhada no padrão editorial premium:
+- Cabeçalho: `01 / Sobre` mono + título display `Sobre mim` (font-heading, scale 4xl→6xl)
+- Layout 5 colunas: texto (3 cols, max-w-xl, text-lg leading-relaxed) + stats (2 cols)
+- Stats em escala dramática: números `font-heading text-4xl/5xl bold foreground`; stat sem número ganha `—` em `opacity-[0.08]` como placeholder visual; labels `font-mono text-[9px] uppercase tracking-[0.2em] text-muted`
+- Mobile: stats em `grid-cols-3`; Desktop: lista vertical com `divide-y divide-border`
+- Formação como timeline vertical: linha `w-px bg-border`, marcador lime `h-2 w-2 rounded-full bg-accent` posicionado na linha, curso em mono uppercase, instituição em display, descrição em text-muted
+- Removido: imports Section, Container, cn; tokens antigos (accent-blue, accent-cyan) eliminados
+
+Stack.tsx redesenhada — abordagem tipográfica sem chips:
+- Cabeçalho: `02 / Stack` mono + título display `Stack Técnica`
+- 3 grupos em `md:grid-cols-3 md:gap-0` com `border-l border-border` entre colunas
+- Grupo label: `font-mono text-[9px] uppercase tracking-[0.3em] text-subtle`
+- Tecnologias: `font-mono text-base text-muted` em lista com `border-b border-border py-3`; hover: `hover:text-foreground` (sem caixas, sem chips arredondados)
+- Removido: chips rounded-full, tokens antigos
+
+Cursor customizado removido, CursorGlow spotlight lime implementado (branch `feature/cursor-glow`)
 
 CursorGlow spotlight implementado:
 - `src/components/ui/CustomCursor.tsx`: REMOVIDO — cursor dot+ring com delay eliminado
@@ -253,7 +270,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Merge das branches `feature/sidebar-nav-scrollspy` e `feature/cursor-glow` para `main`, seguido de revisão de responsividade global e deploy final.
+Redesign das seções restantes no padrão editorial: Serviços (03), Processo (04), Diferenciais (05), Contato (06). Depois: merge de todas as feature branches para `main` + revisão mobile + deploy final.
 
 Fase 4 — Finalização:
 

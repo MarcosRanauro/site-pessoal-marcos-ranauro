@@ -1,7 +1,4 @@
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { FadeInView } from "@/components/ui/FadeInView";
-import { cn } from "@/lib/utils";
 
 const stats: { value?: string; label: string }[] = [
   { value: "3",  label: "Anos de experiência" },
@@ -26,29 +23,34 @@ const formacao = [
 
 export function Sobre() {
   return (
-    <Section id="sobre" className="bg-background-alt">
-      <Container>
+    <section id="sobre" className="bg-surface py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-16 lg:mb-20">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            01 / Sobre
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Sobre mim
+          </h2>
+        </FadeInView>
 
         {/* Texto + Stats */}
-        <div className="grid gap-16 md:grid-cols-2 md:gap-24">
+        <div className="mb-20 grid gap-16 lg:mb-32 lg:grid-cols-5 lg:gap-24">
 
-          {/* Texto */}
-          <div className="flex flex-col gap-6">
+          {/* Texto principal */}
+          <div className="flex flex-col gap-6 lg:col-span-3">
             <FadeInView>
-              <h2 className="border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-                Sobre mim
-              </h2>
-            </FadeInView>
-            <FadeInView delay={0.1}>
-              <p className="leading-relaxed text-muted">
+              <p className="max-w-xl text-lg leading-relaxed text-muted">
                 Sou desenvolvedor fullstack com foco em criar produtos digitais modernos,
                 bem estruturados e fáceis de manter. Trabalho com JavaScript e TypeScript
                 do front ao back, sempre com atenção a performance, organização de código
                 e experiência do usuário.
               </p>
             </FadeInView>
-            <FadeInView delay={0.2}>
-              <p className="leading-relaxed text-subtle">
+            <FadeInView delay={0.1}>
+              <p className="max-w-xl leading-relaxed text-muted-foreground">
                 Gosto de projetos que exigem pensar além do código — arquitetura, fluxo,
                 usabilidade. Trabalho bem em equipe e também de forma independente,
                 entregando desde MVPs até sistemas mais robustos.
@@ -57,52 +59,79 @@ export function Sobre() {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center">
-            <FadeInView delay={0.15} className="grid w-full grid-cols-3 gap-4 md:flex md:flex-col md:gap-0 md:divide-y md:divide-border">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="text-center md:py-7 md:text-left md:first:pt-0 md:last:pb-0"
-                >
-                  {stat.value && (
-                    <p className="text-2xl font-bold text-accent-blue md:text-4xl">
-                      {stat.value}
+          <div className="lg:col-span-2">
+            <FadeInView delay={0.15}>
+              <div className="grid grid-cols-3 gap-6 lg:flex lg:flex-col lg:gap-0 lg:divide-y lg:divide-border">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="lg:py-8 lg:first:pt-0 lg:last:pb-0"
+                  >
+                    {stat.value ? (
+                      <p className="font-heading text-4xl font-bold leading-none text-foreground lg:text-5xl">
+                        {stat.value}
+                      </p>
+                    ) : (
+                      <p
+                        aria-hidden="true"
+                        className="select-none font-heading text-4xl font-bold leading-none text-foreground opacity-[0.08] lg:text-5xl"
+                      >
+                        —
+                      </p>
+                    )}
+                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
+                      {stat.label}
                     </p>
-                  )}
-                  <p className={cn("text-xs text-muted md:text-sm", stat.value && "mt-1")}>
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </FadeInView>
           </div>
 
         </div>
 
-        {/* Formação */}
-        <div className="mt-16 border-t border-border pt-16">
-          <FadeInView>
-            <h3 className="mb-8 border-l-2 border-accent-blue pl-4 text-xl font-semibold text-foreground md:text-2xl">
+        {/* Formação — timeline editorial */}
+        <div className="border-t border-border pt-16 lg:pt-20">
+          <FadeInView className="mb-12">
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+              Trajetória
+            </p>
+            <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground md:text-3xl">
               Formação
             </h3>
           </FadeInView>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {formacao.map((item, i) => (
-              <FadeInView key={item.instituicao} delay={i * 0.1}>
-                <div className="rounded-xl border border-border bg-card p-6">
-                  <p className="font-semibold text-foreground">{item.instituicao}</p>
-                  <p className="mt-1 text-sm text-accent-blue">{item.curso}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {item.descricao}
-                  </p>
-                </div>
-              </FadeInView>
-            ))}
+          {/* Timeline */}
+          <div className="relative pl-8">
+            {/* Linha vertical */}
+            <div className="absolute bottom-0 left-0 top-2 w-px bg-border" />
+
+            <div className="flex flex-col gap-12">
+              {formacao.map((item, i) => (
+                <FadeInView key={item.instituicao} delay={i * 0.12}>
+                  <div className="relative">
+                    {/* Marcador lime na linha */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -left-9 top-[0.3rem] h-2 w-2 rounded-full bg-accent"
+                    />
+                    <p className="mb-2 font-mono text-[9px] uppercase tracking-[0.25em] text-subtle">
+                      {item.curso}
+                    </p>
+                    <h4 className="mb-3 font-heading text-2xl font-bold text-foreground">
+                      {item.instituicao}
+                    </h4>
+                    <p className="text-sm leading-relaxed text-muted">
+                      {item.descricao}
+                    </p>
+                  </div>
+                </FadeInView>
+              ))}
+            </div>
           </div>
         </div>
 
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

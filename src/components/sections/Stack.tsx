@@ -1,42 +1,54 @@
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { FadeInView } from "@/components/ui/FadeInView";
 import { stackGroups } from "@/data/stack";
 
 export function Stack() {
   return (
-    <Section id="stack" className="bg-background">
-      <Container>
+    <section id="stack" className="bg-background py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
 
-        <FadeInView>
-          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-            Stack técnica
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-16 lg:mb-20">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            02 / Stack
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Stack Técnica
           </h2>
         </FadeInView>
 
-        <div className="grid gap-10 md:grid-cols-3">
+        {/* Grupos tipográficos */}
+        <div className="grid gap-12 md:grid-cols-3 md:gap-0">
           {stackGroups.map((group, i) => (
             <FadeInView key={group.group} delay={i * 0.1}>
-              <div>
-                <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-accent-cyan">
+              <div
+                className={
+                  i > 0
+                    ? "md:border-l md:border-border md:pl-10"
+                    : "md:pr-10"
+                }
+              >
+                {/* Label do grupo */}
+                <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
                   {group.group}
                 </p>
-                <div className="flex flex-wrap gap-2">
+
+                {/* Tecnologias como lista tipográfica */}
+                <ul>
                   {group.items.map((item) => (
-                    <span
+                    <li
                       key={item}
-                      className="cursor-default rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted transition-colors hover:border-accent-blue hover:text-accent-blue"
+                      className="border-b border-border py-3 font-mono text-base text-muted transition-colors last:border-0 hover:text-foreground"
                     >
                       {item}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </FadeInView>
           ))}
         </div>
 
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }
