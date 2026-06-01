@@ -1,146 +1,153 @@
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
+import Image from "next/image";
 import { FadeInView } from "@/components/ui/FadeInView";
-import { Card3D } from "@/components/ui/Card3D";
-import { projetos, type Projeto, type StatusProjeto } from "@/data/projetos";
-import { cn } from "@/lib/utils";
+import { projetos, type Projeto } from "@/data/projetos";
 
-function IconeGithub() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-    </svg>
-  );
-}
-
-function IconeLink() {
+function ArrowSm() {
   return (
     <svg
-      width="13"
-      height="13"
-      viewBox="0 0 24 24"
+      width="11"
+      height="11"
+      viewBox="0 0 11 11"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-      <polyline points="15 3 21 3 21 9" />
-      <line x1="10" y1="14" x2="21" y2="3" />
+      <path d="M1.5 5.5h8M6 2l3.5 3.5L6 9" />
     </svg>
   );
 }
 
-function BadgeStatus({ status }: { status: StatusProjeto }) {
-  const ativo = status === "No ar" || status === "Publicado";
+function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
+  const numero = String(index + 1).padStart(2, "0");
+  const isEven = index % 2 === 0;
+  const isPublicado = projeto.status === "Publicado" || projeto.status === "No ar";
+
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
-        ativo
-          ? "border-accent-cyan/30 bg-accent-cyan/10 text-accent-cyan"
-          : "border-yellow-400/30 bg-yellow-400/10 text-yellow-400"
-      )}
-    >
-      <span
-        className={cn(
-          "h-1.5 w-1.5 rounded-full",
-          ativo ? "bg-accent-cyan" : "bg-yellow-400"
-        )}
-      />
-      {status}
-    </span>
-  );
-}
+    <FadeInView>
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:items-center lg:gap-16 xl:gap-20">
 
-function ProjetoCard({ projeto }: { projeto: Projeto }) {
-  return (
-    <Card3D
-      className={cn(
-        "flex flex-col rounded-xl border bg-card p-6 transition-colors duration-200 hover:border-accent-blue hover:shadow-lg",
-        projeto.destaque ? "border-accent-blue/30" : "border-border"
-      )}
-    >
-      {/* Topo: status + destaque */}
-      <div className="mb-4 flex items-center justify-between gap-2">
-        <BadgeStatus status={projeto.status} />
-        {projeto.destaque && (
-          <span className="rounded-full border border-accent-purple/30 bg-accent-purple/10 px-2.5 py-0.5 text-xs text-accent-purple">
-            Destaque
-          </span>
-        )}
-      </div>
+        {/* Imagem — protagonista */}
+        <div
+          className={`group relative overflow-hidden rounded-sm border border-border lg:col-span-3 ${
+            isEven ? "lg:order-1" : "lg:order-2"
+          }`}
+        >
+          <div className="relative aspect-[16/10]">
+            <Image
+              src={projeto.imagem}
+              alt={`Screenshot do projeto ${projeto.titulo}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-cover object-top transition-all duration-[600ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.2)_grayscale(0.45)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)_grayscale(0)] group-hover:scale-[1.02]"
+            />
+          </div>
+        </div>
 
-      {/* Título */}
-      <h3 className="mb-2 text-lg font-semibold text-foreground">
-        {projeto.titulo}
-      </h3>
-
-      {/* Descrição */}
-      <p className="mb-5 flex-1 text-sm leading-relaxed text-muted">
-        {projeto.descricao}
-      </p>
-
-      {/* Chips de stack */}
-      <div className="mb-5 flex flex-wrap gap-2">
-        {projeto.stack.map((tech) => (
+        {/* Conteúdo */}
+        <div
+          className={`flex flex-col lg:col-span-2 ${
+            isEven ? "lg:order-2" : "lg:order-1"
+          }`}
+        >
+          {/* Número — watermark editorial */}
           <span
-            key={tech}
-            className="rounded-full border border-border bg-background px-3 py-0.5 text-xs text-subtle"
+            aria-hidden="true"
+            className="mb-1 select-none font-mono font-bold leading-none text-foreground opacity-[0.06] text-[clamp(4rem,8vw,6rem)]"
           >
-            {tech}
+            {numero}
           </span>
-        ))}
-      </div>
 
-      {/* Separador */}
-      <div className="mb-4 h-px bg-border" />
+          {/* Status */}
+          <div className="mb-3 flex items-center gap-2">
+            {isPublicado && (
+              <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
+            )}
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle">
+              {projeto.status}
+            </span>
+          </div>
 
-      {/* Links */}
-      <div className="flex items-center gap-5">
-        <a
-          href={projeto.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground"
-        >
-          <IconeGithub />
-          Ver código
-        </a>
-        <a
-          href={projeto.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground"
-        >
-          <IconeLink />
-          Ver projeto
-        </a>
+          {/* Contexto / cliente */}
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+            {projeto.contexto}
+          </p>
+
+          {/* Título */}
+          <h3 className="mb-4 font-heading text-3xl font-bold leading-tight tracking-tight text-foreground lg:text-4xl">
+            {projeto.titulo}
+          </h3>
+
+          {/* Descrição */}
+          <p className="mb-6 text-sm leading-relaxed text-muted">
+            {projeto.descricao}
+          </p>
+
+          {/* Stack — labels editoriais */}
+          <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.15em] text-subtle">
+            {projeto.stack.join(" · ")}
+          </p>
+
+          {/* Links */}
+          <div className="flex flex-wrap items-center gap-6">
+            <a
+              href={projeto.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            >
+              <span className="relative">
+                Ver projeto
+                <span className="absolute -bottom-px left-0 h-px w-0 bg-accent transition-[width] duration-300 group-hover/link:w-full" />
+              </span>
+              <span className="transition-colors group-hover/link:text-accent">
+                <ArrowSm />
+              </span>
+            </a>
+
+            <a
+              href={projeto.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-subtle transition-colors hover:text-muted"
+            >
+              Ver código
+              <span className="transition-colors group-hover/link:text-accent">
+                <ArrowSm />
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
-    </Card3D>
+    </FadeInView>
   );
 }
 
 export function Projetos() {
   return (
-    <Section id="projetos" className="bg-background-alt">
-      <Container>
-        <FadeInView>
-          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-            Projetos
+    <section id="projetos" className="bg-background py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-20 lg:mb-32">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            02 / Projetos
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Trabalhos<br className="hidden sm:block" />
+            {" "}Selecionados
           </h2>
         </FadeInView>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        {/* Blocos de projeto com espaçamento generoso */}
+        <div className="flex flex-col gap-24 lg:gap-40">
           {projetos.map((projeto, i) => (
-            <FadeInView key={projeto.titulo} delay={i * 0.1}>
-              <ProjetoCard projeto={projeto} />
-            </FadeInView>
+            <ProjetoBloco key={projeto.titulo} projeto={projeto} index={i} />
           ))}
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

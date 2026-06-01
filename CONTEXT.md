@@ -4,7 +4,15 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: SocialSidebar global implementada (branch `feature/sidebar-persistente`)
+Status: Seção Projetos redesenhada como galeria editorial (branch `feature/redesign-projetos-galeria`)
+
+Seção Projetos reconstruída como galeria editorial visual:
+- `src/data/projetos.ts`: tipo `Projeto` recebeu campos `imagem: string` e `contexto: string`; Outfit AI reordenado para primeiro; descrições atualizadas conforme identidade do produto
+- `src/components/sections/Projetos.tsx`: reescrito completamente — layout editorial alternado (zigue-zague) com `grid-cols-5` (3fr imagem / 2fr conteúdo), sem `Section`/`Container` wrappers para controle total do ritmo vertical
+- Imagem com `next/image fill`, `object-top`, filtros CSS em repouso (`brightness(0.85) grayscale(0.3)`) e transição suave para estado vivo no hover (`brightness(1) grayscale(0) + scale(1.02)`)
+- Conteúdo: número watermark (mono, `opacity-[0.06]`, `clamp` de fonte), badge lime dot apenas no "Publicado", contexto mono uppercase, título Space Grotesk display, stack como labels separados por `·`, links com underline lime animado + seta lime no hover
+- `FadeInView` por bloco de projeto para scroll reveal; `prefers-reduced-motion` gerenciado pelo hook existente
+- Lime restrito: dot do status "Publicado" + seta/underline dos links no hover (máx 2 pontos por projeto)
 
 SocialSidebar global implementada:
 - `src/components/layout/SocialSidebar.tsx` — componente `fixed` left, desktop only (`hidden lg:flex`)
@@ -230,7 +238,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Merge da `feature/sidebar-persistente` para `main` + `feature/hero-grid-gradient` (se aprovada), depois:
+Merge das branches `feature/hero-grid-gradient`, `feature/sidebar-persistente` e `feature/redesign-projetos-galeria` para `main`. + `feature/hero-grid-gradient` (se aprovada), depois:
 
 Fase 4 — Finalização:
 
