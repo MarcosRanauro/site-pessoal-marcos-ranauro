@@ -89,9 +89,24 @@
 /* ── Grid do Hero ───────────────────────────────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(198, 255, 0, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198, 255, 0, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(198, 255, 0, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 255, 0, 0.13) 1px, transparent 1px);
   background-size: 64px 64px;
+  /* Degradê horizontal: grid invisível na esquerda, presente na direita (~13% efetivo) */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 25%,
+    rgba(0, 0, 0, 0.60) 60%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.18) 25%,
+    rgba(0, 0, 0, 0.60) 60%,
+    black 100%
+  );
 }
 
 /* ── Reset e base ───────────────────────────────────────────────────────── */
