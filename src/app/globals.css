@@ -117,11 +117,13 @@
 }
 
 html {
+  cursor: auto;
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
 body {
+  cursor: auto;
   background-color: #0A0A0A;
   color: #FAFAFA;
   font-family: var(--font-inter);
@@ -129,11 +131,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cursor customizado — oculta o padrão em dispositivos de precisão */
-@media (pointer: fine) {
-  body,
-  a,
-  button {
-    cursor: none;
-  }
-}

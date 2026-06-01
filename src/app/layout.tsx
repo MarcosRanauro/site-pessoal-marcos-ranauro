@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/ui/CustomCursor";
+import { CursorGlow } from "@/components/ui/CursorGlow";
 import { SocialSidebar } from "@/components/layout/SocialSidebar";
 
 const spaceGrotesk = Space_Grotesk({
@@ -38,7 +38,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans xl:pr-44">
-        <CustomCursor />
+        <CursorGlow />
         <SocialSidebar />
         {children}
       </body>

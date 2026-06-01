@@ -4,7 +4,13 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: SocialSidebar evoluída para nav com scroll-spy (branch `feature/sidebar-nav-scrollspy`)
+Status: Cursor customizado removido, CursorGlow spotlight lime implementado (branch `feature/cursor-glow`)
+
+CursorGlow spotlight implementado:
+- `src/components/ui/CustomCursor.tsx`: REMOVIDO — cursor dot+ring com delay eliminado
+- `src/app/globals.css`: regra `cursor: none` removida — cursor nativo do sistema restaurado
+- `src/components/ui/CursorGlow.tsx`: novo componente — glow radial `#C6FF00` a 7% de opacidade, 500px de diâmetro, `mix-blend-mode: screen`, `pointer-events: none`, z-index 1; segue o mouse via rAF sem delay perceptível; só ativa em `(hover: hover) and (pointer: fine)`; ausente se `prefers-reduced-motion`; SSR safe
+- `src/app/layout.tsx`: `<CursorGlow />` no lugar de `<CustomCursor />`
 
 SocialSidebar evoluída para nav com scroll-spy:
 - `src/lib/useScrollSpy.ts`: hook novo — IntersectionObserver com `rootMargin: "-30% 0px -50% 0px"` (detecção na faixa 30%–50% do viewport); IDs estáveis passados como `string[]`; cleanup com `observer.disconnect()`; SSR safe (só roda em useEffect)
@@ -247,7 +253,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Merge de todas as feature branches abertas para `main` e revisão de responsividade global antes do deploy final. + `feature/hero-grid-gradient` (se aprovada), depois:
+Merge das branches `feature/sidebar-nav-scrollspy` e `feature/cursor-glow` para `main`, seguido de revisão de responsividade global e deploy final.
 
 Fase 4 — Finalização:
 
