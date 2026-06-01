@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${spaceGrotesk.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans xl:pr-44">
         <CustomCursor />
         <SocialSidebar />
         {children}

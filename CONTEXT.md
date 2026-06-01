@@ -4,7 +4,14 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Seção Projetos redesenhada como galeria editorial (branch `feature/redesign-projetos-galeria`)
+Status: SocialSidebar evoluída para nav com scroll-spy (branch `feature/sidebar-nav-scrollspy`)
+
+SocialSidebar evoluída para nav com scroll-spy:
+- `src/lib/useScrollSpy.ts`: hook novo — IntersectionObserver com `rootMargin: "-30% 0px -50% 0px"` (detecção na faixa 30%–50% do viewport); IDs estáveis passados como `string[]`; cleanup com `observer.disconnect()`; SSR safe (só roda em useEffect)
+- `src/components/layout/SocialSidebar.tsx`: dois grupos — social (topo, texto vertical `writing-mode:vertical-rl`, w-14, animações mantidas) + nav de seções (apenas xl+, texto horizontal mono 9px uppercase, traço direita — ativo: `w-12 bg-accent`, inativo: `w-6 bg-border group-hover:w-8`); stagger de entrada para os 7 itens do nav; `reduced motion`: animações de entrada puladas, scroll-spy continua funcionando
+- `src/app/layout.tsx`: `xl:pr-44` adicionado ao body — empurra o conteúdo (max-w-6xl centrado em 1280-176=1104px) para não sobrepor o sidebar expandido; fixed elements (CustomCursor, SocialSidebar) não são afetados pelo padding
+- Sidebar: `w-14 lg:flex xl:w-44` — estreita em lg (social only), larga em xl (social + nav)
+- IDs do nav batem exatamente com os IDs reais das seções: sobre, stack, projetos, servicos, processo, diferenciais, contato
 
 Seção Projetos reconstruída como galeria editorial visual:
 - `src/data/projetos.ts`: tipo `Projeto` recebeu campos `imagem: string` e `contexto: string`; Outfit AI reordenado para primeiro; descrições atualizadas conforme identidade do produto
@@ -145,7 +152,9 @@ src/
     layout/
       Header.tsx          ← sticky, scroll-aware, mobile menu, animate-fade-in-down
       Footer.tsx          ← identidade, links sociais, copyright
-      SocialSidebar.tsx   ← fixed left, desktop only, stagger + linha animada, hover lime
+      SocialSidebar.tsx   ← fixed right, social (lg+) + nav scroll-spy (xl+), hover lime
+  lib/
+    useScrollSpy.ts       ← IntersectionObserver hook, retorna id da seção ativa
     ui/
       Button.tsx        ← variantes primary e secondary
       Card.tsx          ← card premium dark com hover
@@ -238,7 +247,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Merge das branches `feature/hero-grid-gradient`, `feature/sidebar-persistente` e `feature/redesign-projetos-galeria` para `main`. + `feature/hero-grid-gradient` (se aprovada), depois:
+Merge de todas as feature branches abertas para `main` e revisão de responsividade global antes do deploy final. + `feature/hero-grid-gradient` (se aprovada), depois:
 
 Fase 4 — Finalização:
 
