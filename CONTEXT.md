@@ -4,7 +4,16 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Redesign — Hero editorial concluído (branch `feature/redesign-hero`)
+Status: SocialSidebar global implementada (branch `feature/sidebar-persistente`)
+
+SocialSidebar global implementada:
+- `src/components/layout/SocialSidebar.tsx` — componente `fixed` left, desktop only (`hidden lg:flex`)
+- Linhas superior e inferior animam via `scaleY 0→1` com `transformOrigin: top` (~0.8s, ease custom)
+- Links entram em stagger: GitHub delay 0.45s, LinkedIn delay 0.60s (opacity 0→1, x -10→0)
+- Hover: `x: 4px` via spring Framer Motion + `hover:text-accent` via Tailwind (apenas no hover)
+- `prefers-reduced-motion`: `initial={false}` em todos os motion — sidebar aparece estática sem animação
+- `layout.tsx`: `<SocialSidebar />` adicionado ao body, global em todas as seções
+- `Hero.tsx`: `<motion.aside>` da sidebar local removido; links mobile (`lg:hidden`) mantidos; padding `lg:pl-28` preservado
 
 Hero redesenhado com composição editorial assimétrica:
 - Layout left-aligned, nome em duas linhas com `--fs-hero-name: clamp(2.8rem,10vw,9rem)`, Space Grotesk bold, line-height 0.90
@@ -126,8 +135,9 @@ src/
 
   components/
     layout/
-      Header.tsx        ← sticky, scroll-aware, mobile menu, animate-fade-in-down
-      Footer.tsx        ← identidade, links sociais, copyright
+      Header.tsx          ← sticky, scroll-aware, mobile menu, animate-fade-in-down
+      Footer.tsx          ← identidade, links sociais, copyright
+      SocialSidebar.tsx   ← fixed left, desktop only, stagger + linha animada, hover lime
     ui/
       Button.tsx        ← variantes primary e secondary
       Card.tsx          ← card premium dark com hover
@@ -220,7 +230,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Iniciar as seções restantes da Fase 3:
+Merge da `feature/sidebar-persistente` para `main` + `feature/hero-grid-gradient` (se aprovada), depois:
 
 Fase 4 — Finalização:
 

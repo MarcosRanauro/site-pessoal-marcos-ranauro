@@ -89,37 +89,6 @@ export function Hero() {
       {/* Glow deslocado para o canto superior direito — assimétrico */}
       <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent opacity-[0.04] blur-[120px]" />
 
-      {/* ── Sidebar esquerda — desktop only ─────────────────────────────── */}
-      <motion.aside
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 top-0 z-10 hidden w-14 flex-col items-center lg:flex xl:w-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showFinal ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="mt-20 w-px flex-1 bg-border" />
-        <div className="flex flex-col items-center gap-4 py-8">
-          <a
-            href="https://github.com/MarcosRanauro"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent [writing-mode:vertical-rl]"
-          >
-            GitHub
-          </a>
-          <span className="h-3 w-px bg-border" />
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent [writing-mode:vertical-rl]"
-          >
-            LinkedIn
-          </a>
-        </div>
-        <div className="mb-10 w-px flex-1 bg-border" />
-      </motion.aside>
-
       {/* ── Área de conteúdo principal ────────────────────────────────── */}
       <div className="relative z-10 flex min-h-screen flex-col px-6 pt-16 pb-10 sm:px-10 lg:pl-28 lg:pr-16 xl:pl-36 xl:pr-24">
 
