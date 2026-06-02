@@ -60,7 +60,7 @@ export function SocialSidebar() {
           <span aria-hidden="true" className="h-3 w-px bg-border" />
 
           <motion.a
-            href="#"
+            href="https://www.linkedin.com/in/marcosranauro/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent [writing-mode:vertical-rl]"

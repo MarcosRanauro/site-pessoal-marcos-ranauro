@@ -193,7 +193,7 @@ export function Hero() {
             </a>
             <span className="h-3 w-px bg-border" />
             <a
-              href="#"
+              href="https://www.linkedin.com/in/marcosranauro/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent"

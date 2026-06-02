@@ -133,7 +133,7 @@ export function Projetos() {
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-20 lg:mb-32">
           <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
-            02 / Projetos
+            03 / Projetos
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             Trabalhos<br className="hidden sm:block" />
