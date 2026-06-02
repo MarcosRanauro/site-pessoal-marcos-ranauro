@@ -4,7 +4,29 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Redesign editorial de Sobre e Stack concluído (branch `feature/redesign-sobre-stack`)
+Status: Redesign editorial de Serviços, Processo e Diferenciais concluído (branch `feature/redesign-servicos-processo-diferenciais`)
+
+Servicos.tsx redesenhada — catálogo em lista editorial:
+- Cabeçalho: `04 / Serviços` + display "Soluções que posso desenvolver"
+- Itens como linhas `border-t py-8 lg:py-10`, composição flex: número (mono 10px, `text-subtle → text-accent` no hover) + título display 2xl/3xl + descrição + seta lime (`opacity-0 → opacity-100` no hover)
+- Hover por linha com `group` — um ponto lime visível de cada vez (seta + número)
+- Removido: Card3D, Section, Container, cn, tokens antigos
+
+Processo.tsx redesenhada — fluxo sequencial:
+- Cabeçalho: `05 / Processo` + display "Como trabalho" (bg-surface)
+- Desktop: linha horizontal `h-px bg-border` + ticks verticais descendentes `h-4 w-px` em grid 5 colunas + conteúdo em `grid-cols-5` com stagger FadeInView
+- Mobile: sequência vertical — número mono esquerda + linha conectora `w-px bg-border flex-1` + conteúdo direita
+- Sem lime (distingue visualmente de Sobre que tem dots lime na timeline)
+- Removido: Fragment, Section, Container, tokens antigos
+
+Diferenciais.tsx redesenhada — grade 2×2 com separadores em cruz:
+- Cabeçalho: `06 / Diferenciais` + display "Por que trabalhar comigo" (bg-background)
+- Grid `md:grid-cols-2` com borders calculados por posição: item 0 (top-left) border-b + md:border-r; item 1 (top-right) border-b; item 2 (bottom-left) border-b mobile + md:border-b-0 + md:border-r; item 3 sem bordas
+- Cada célula: índice mono 9px + título display 2xl + descrição muted + padding assimétrico (`md:pr-12` / `md:pl-12`)
+- Sem lime — composição geométrica é o diferenciador
+- Removido: Card3D, Section, Container, tokens antigos
+
+Redesign editorial de Sobre e Stack concluído (branch `feature/redesign-sobre-stack`)
 
 Sobre.tsx redesenhada no padrão editorial premium:
 - Cabeçalho: `01 / Sobre` mono + título display `Sobre mim` (font-heading, scale 4xl→6xl)
@@ -270,7 +292,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Redesign das seções restantes no padrão editorial: Serviços (03), Processo (04), Diferenciais (05), Contato (06). Depois: merge de todas as feature branches para `main` + revisão mobile + deploy final.
+Redesign da seção Contato (07) + revisão da numeração de Projetos (atualmente "02", deveria ser "03"). Depois: merge de todas as feature branches para `main` + revisão mobile + deploy final.
 
 Fase 4 — Finalização:
 

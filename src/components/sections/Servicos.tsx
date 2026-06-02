@@ -1,50 +1,61 @@
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { FadeInView } from "@/components/ui/FadeInView";
-import { Card3D } from "@/components/ui/Card3D";
 import { servicos } from "@/data/servicos";
-import { cn } from "@/lib/utils";
 
 export function Servicos() {
-  const total = servicos.length;
-
   return (
-    <Section id="servicos" className="bg-background">
-      <Container>
-        <FadeInView>
-          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-            Soluções que posso desenvolver
+    <section id="servicos" className="bg-background py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-16 lg:mb-20">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            04 / Serviços
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Soluções que posso
+            <br className="hidden sm:block" /> desenvolver
           </h2>
         </FadeInView>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {servicos.map((servico, index) => {
-            const isOddLast = index === total - 1 && total % 2 !== 0;
+        {/* Lista editorial — cada serviço como linha */}
+        <div>
+          {servicos.map((servico, i) => (
+            <FadeInView key={servico.numero} delay={i * 0.08}>
+              <div className="group border-t border-border py-8 lg:py-10">
+                <div className="flex items-start gap-6 lg:gap-10">
 
-            return (
-              <FadeInView
-                key={servico.numero}
-                delay={index * 0.08}
-                className={cn(isOddLast && "md:col-span-2 md:mx-auto md:w-full md:max-w-lg")}
-              >
-                <Card3D
-                  className="flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-colors duration-200 hover:border-accent-blue hover:shadow-lg"
-                >
-                  <span className="font-mono text-sm text-accent-blue">
+                  {/* Número — vira lime no hover */}
+                  <span className="shrink-0 pt-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors group-hover:text-accent">
                     {servico.numero}
                   </span>
-                  <h3 className="text-base font-semibold text-foreground md:text-lg">
-                    {servico.titulo}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted">
-                    {servico.descricao}
-                  </p>
-                </Card3D>
-              </FadeInView>
-            );
-          })}
+
+                  {/* Conteúdo */}
+                  <div className="flex-1">
+                    <h3 className="mb-3 font-heading text-2xl font-bold text-foreground lg:text-3xl">
+                      {servico.titulo}
+                    </h3>
+                    <p className="max-w-xl text-sm leading-relaxed text-muted">
+                      {servico.descricao}
+                    </p>
+                  </div>
+
+                  {/* Seta lime — aparece no hover */}
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 pt-1.5 text-accent opacity-0 transition-opacity group-hover:opacity-100"
+                  >
+                    →
+                  </span>
+
+                </div>
+              </div>
+            </FadeInView>
+          ))}
+          {/* Borda inferior fechando a lista */}
+          <div className="border-t border-border" />
         </div>
-      </Container>
-    </Section>
+
+      </div>
+    </section>
   );
 }

@@ -1,7 +1,4 @@
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { FadeInView } from "@/components/ui/FadeInView";
-import { Card3D } from "@/components/ui/Card3D";
 
 const diferenciais = [
   {
@@ -26,31 +23,65 @@ const diferenciais = [
   },
 ];
 
+// Separadores em cruz formando a grade 2×2:
+// item 0 (top-left):    border-b + border-r no desktop
+// item 1 (top-right):   border-b
+// item 2 (bottom-left): border-b no mobile; border-r no desktop, sem border-b
+// item 3 (bottom-right): sem bordas
+function gridBorderClass(index: number): string {
+  switch (index) {
+    case 0: return "border-b border-border md:border-r";
+    case 1: return "border-b border-border";
+    case 2: return "border-b border-border md:border-b-0 md:border-r";
+    default: return "";
+  }
+}
+
 export function Diferenciais() {
   return (
-    <Section id="diferenciais" className="bg-background">
-      <Container>
-        <FadeInView>
-          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
-            Por que trabalhar comigo
+    <section id="diferenciais" className="bg-background py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-16 lg:mb-20">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            06 / Diferenciais
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Por que trabalhar
+            <br className="hidden sm:block" /> comigo
           </h2>
         </FadeInView>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        {/* Grade 2×2 com separadores editoriais em cruz */}
+        <div className="grid md:grid-cols-2">
           {diferenciais.map((item, i) => (
-            <FadeInView key={item.titulo} delay={i * 0.1}>
-              <Card3D className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-colors duration-200 hover:border-accent-blue hover:shadow-lg">
-                <h3 className="text-base font-semibold text-foreground md:text-lg">
+            <FadeInView
+              key={item.titulo}
+              delay={i * 0.1}
+              className={gridBorderClass(i)}
+            >
+              <div
+                className={[
+                  "py-10 md:py-12",
+                  i % 2 === 0 ? "md:pr-12" : "md:pl-12",
+                ].join(" ")}
+              >
+                <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+                  0{i + 1}
+                </p>
+                <h3 className="mb-4 font-heading text-2xl font-bold text-foreground">
                   {item.titulo}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted">
                   {item.descricao}
                 </p>
-              </Card3D>
+              </div>
             </FadeInView>
           ))}
         </div>
-      </Container>
-    </Section>
+
+      </div>
+    </section>
   );
 }

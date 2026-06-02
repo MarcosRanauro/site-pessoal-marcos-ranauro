@@ -1,6 +1,3 @@
-import { Fragment } from "react";
-import { Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { FadeInView } from "@/components/ui/FadeInView";
 
 const etapas = [
@@ -38,32 +35,39 @@ const etapas = [
 
 export function Processo() {
   return (
-    <Section id="processo" className="bg-background-alt">
-      <Container>
-        <FadeInView>
-          <h2 className="mb-12 border-l-2 border-accent-blue pl-4 text-3xl font-bold text-foreground md:text-4xl">
+    <section id="processo" className="bg-surface py-24 lg:py-36">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+
+        {/* Cabeçalho editorial */}
+        <FadeInView className="mb-16 lg:mb-20">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            05 / Processo
+          </p>
+          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             Como trabalho
           </h2>
         </FadeInView>
 
-        {/* Mobile: timeline vertical */}
-        <div className="flex flex-col md:hidden">
-          {etapas.map((etapa, index) => (
-            <FadeInView key={etapa.numero} delay={index * 0.08}>
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent-blue/30 bg-card font-mono text-xs text-accent-blue">
+        {/* Mobile: sequência vertical numerada */}
+        <div className="md:hidden">
+          {etapas.map((etapa, i) => (
+            <FadeInView key={etapa.numero} delay={i * 0.08}>
+              <div className="flex gap-6">
+                {/* Número + linha conectora */}
+                <div className="flex shrink-0 flex-col items-center">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-subtle">
                     {etapa.numero}
-                  </div>
-                  {index < etapas.length - 1 && (
-                    <div className="my-1 w-px flex-1 bg-border" />
+                  </span>
+                  {i < etapas.length - 1 && (
+                    <div className="mt-3 w-px flex-1 bg-border" style={{ minHeight: "3rem" }} />
                   )}
                 </div>
-                <div className="pb-8 pt-1">
-                  <h3 className="text-base font-semibold text-foreground">
+                {/* Conteúdo */}
+                <div className="pb-10">
+                  <h3 className="mb-2 font-heading text-xl font-bold text-foreground">
                     {etapa.titulo}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <p className="text-sm leading-relaxed text-muted">
                     {etapa.descricao}
                   </p>
                 </div>
@@ -72,49 +76,45 @@ export function Processo() {
           ))}
         </div>
 
-        {/* Desktop: fluxo horizontal */}
-        <FadeInView delay={0.1}>
-          <div className="hidden items-start md:flex">
-            {etapas.map((etapa, index) => (
-              <Fragment key={etapa.numero}>
-                <div className="flex flex-1 flex-col items-center gap-3 px-3 text-center">
-                  <span className="font-mono text-sm text-accent-blue">
-                    {etapa.numero}
-                  </span>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {etapa.titulo}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-muted">
-                    {etapa.descricao}
-                  </p>
-                </div>
+        {/* Desktop: fluxo horizontal com linha conectora */}
+        <div className="hidden md:block">
 
-                {index < etapas.length - 1 && (
-                  <div className="mt-4 flex shrink-0 items-center">
-                    <div className="h-px w-4 bg-border" />
-                    <svg
-                      width="6"
-                      height="10"
-                      viewBox="0 0 6 10"
-                      fill="none"
-                      className="-ml-px text-border"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1 1l4 4-4 4"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </Fragment>
+          {/* Linha horizontal + ticks verticais descendentes */}
+          <FadeInView>
+            <div className="h-px w-full bg-border" />
+            <div className="grid grid-cols-5">
+              {etapas.map((etapa) => (
+                <div key={etapa.numero} className="flex justify-start">
+                  <div className="h-4 w-px bg-border" />
+                </div>
+              ))}
+            </div>
+          </FadeInView>
+
+          {/* Conteúdo das etapas */}
+          <div className="mt-6 grid grid-cols-5">
+            {etapas.map((etapa, i) => (
+              <FadeInView
+                key={etapa.numero}
+                delay={i * 0.08}
+                className={i < etapas.length - 1 ? "pr-6" : ""}
+              >
+                <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+                  {etapa.numero}
+                </p>
+                <h3 className="mb-2 font-heading text-base font-bold text-foreground">
+                  {etapa.titulo}
+                </h3>
+                <p className="text-xs leading-relaxed text-muted">
+                  {etapa.descricao}
+                </p>
+              </FadeInView>
             ))}
           </div>
-        </FadeInView>
-      </Container>
-    </Section>
+
+        </div>
+
+      </div>
+    </section>
   );
 }
