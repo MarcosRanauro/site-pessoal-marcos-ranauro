@@ -1,3 +1,5 @@
+import { focusRing } from "@/lib/utils";
+
 interface LogoProps {
   className?: string;
 }
@@ -7,7 +9,7 @@ export function Logo({ className }: LogoProps) {
     <a
       href="#"
       aria-label="Marcos Ranauro — voltar ao topo"
-      className="inline-block text-foreground"
+      className={`inline-block text-foreground rounded-sm ${focusRing}`}
     >
       <svg
         viewBox="0 0 172 116"

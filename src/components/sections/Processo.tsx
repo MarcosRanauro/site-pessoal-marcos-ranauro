@@ -40,7 +40,7 @@ export function Processo() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             05 / Processo
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -55,7 +55,7 @@ export function Processo() {
               <div className="flex gap-6">
                 {/* Número + linha conectora */}
                 <div className="flex shrink-0 flex-col items-center">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-subtle">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
                     {etapa.numero}
                   </span>
                   {i < etapas.length - 1 && (
@@ -99,7 +99,7 @@ export function Processo() {
                 delay={i * 0.08}
                 className={i < etapas.length - 1 ? "pr-6" : ""}
               >
-                <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+                <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
                   {etapa.numero}
                 </p>
                 <h3 className="mb-2 font-heading text-base font-bold text-foreground">

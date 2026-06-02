@@ -8,7 +8,7 @@ export function Stack() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             02 / Stack
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -28,7 +28,7 @@ export function Stack() {
                 }
               >
                 {/* Label do grupo */}
-                <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+                <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
                   {group.group}
                 </p>
 

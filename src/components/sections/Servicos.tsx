@@ -8,7 +8,7 @@ export function Servicos() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             04 / Serviços
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -25,7 +25,7 @@ export function Servicos() {
                 <div className="flex items-start gap-6 lg:gap-10">
 
                   {/* Número — vira lime no hover */}
-                  <span className="shrink-0 pt-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors group-hover:text-accent">
+                  <span className="shrink-0 pt-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors group-hover:text-accent">
                     {servico.numero}
                   </span>
 

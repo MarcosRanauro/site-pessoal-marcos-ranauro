@@ -1,4 +1,5 @@
 import { FadeInView } from "@/components/ui/FadeInView";
+import { focusRing } from "@/lib/utils";
 
 type Canal = {
   label: string;
@@ -52,7 +53,7 @@ export function Contato() {
           {/* Esquerda — cabeçalho editorial + convite */}
           <div className="lg:col-span-2">
             <FadeInView>
-              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
                 07 / Contato
               </p>
               <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -76,10 +77,10 @@ export function Contato() {
                   href={canal.href}
                   target={canal.external ? "_blank" : undefined}
                   rel={canal.external ? "noopener noreferrer" : undefined}
-                  className="group flex items-center justify-between border-t border-border py-6 transition-colors"
+                  className={`group flex items-center justify-between border-t border-border py-6 transition-colors ${focusRing}`}
                 >
                   <div>
-                    <p className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle transition-colors group-hover:text-muted-foreground">
+                    <p className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
                       {canal.label}
                     </p>
                     <p className="font-mono text-sm text-muted transition-colors group-hover:text-foreground">

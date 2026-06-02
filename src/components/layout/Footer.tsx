@@ -1,4 +1,5 @@
 import { Logo } from "@/components/ui/Logo";
+import { focusRing } from "@/lib/utils";
 
 const footerNavLinks = [
   { href: "#sobre",        label: "Sobre" },
@@ -21,7 +22,7 @@ export function Footer() {
           {/* Esquerda: logo como assinatura + localização */}
           <div className="flex flex-col gap-5">
             <Logo className="h-11 w-auto" />
-            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-subtle">
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
               Nova Iguaçu — RJ, Brasil
             </p>
           </div>
@@ -33,7 +34,7 @@ export function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-muted"
+                  className={`font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-foreground ${focusRing}`}
                 >
                   {link.label}
                 </a>
@@ -44,10 +45,10 @@ export function Footer() {
 
         {/* Linha inferior — copyright + assinatura */}
         <div className="flex flex-col gap-2 border-t border-border py-6 md:flex-row md:items-center md:justify-between">
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-subtle">
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
             © {new Date().getFullYear()} Marcos Ranauro
           </p>
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-subtle">
+          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
             Desenhado e desenvolvido por Marcos Ranauro
           </p>
         </div>

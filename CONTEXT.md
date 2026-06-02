@@ -4,7 +4,7 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — código limpo — pronto para deploy de produção
+Status: V1 feature-complete — acessibilidade corrigida — pronto para deploy de produção
 
 Projeto na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
 
@@ -17,6 +17,11 @@ Correções e limpezas pós-redesign aplicadas:
 - Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
 - Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
 - Inline style removido de Processo.tsx (substituído por `min-h-12`)
+
+Acessibilidade (WCAG AA) aplicada (branch `fix/acessibilidade`):
+- Contraste de labels pequenos (≤11px) elevado: `text-subtle` (#6B6B6B, ~3.7:1) → `text-muted` (#A1A1A1, ~8:1) em todos os labels mono de numeração de seções, categorias, stack labels, status de projeto, localização e copyright do footer, indicador "Scroll"
+- Focus-visible lime consistente em todos os elementos interativos: `focusRing` exportado de `src/lib/utils.ts`, aplicado em Logo, Header (CTA + hamburger + nav mobile), Hero (CTAs + social links mobile), Projetos (links de projeto e código), Contato (links de canal), Footer (nav links), SocialSidebar (social links + nav de seções)
+- No SocialSidebar nav: hover atualizado de `text-subtle→text-muted` para `text-muted→text-foreground` (hierarquia de contraste mantida)
 
 SEO e metadata configurados (`src/app/layout.tsx`):
 - `metadataBase`: `https://marcosranauro.com.br`

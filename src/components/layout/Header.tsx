@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { cn, focusRing } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
 
 const mobileNavLinks = [
@@ -42,7 +42,7 @@ export function Header() {
           {/* Desktop (≥lg): apenas o CTA */}
           <a
             href="#contato"
-            className="hidden items-center justify-center rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground transition-all hover:border-border-strong lg:inline-flex"
+            className={cn("hidden items-center justify-center rounded-full border border-border px-5 py-2 text-sm font-medium text-foreground transition-all hover:border-border-strong lg:inline-flex", focusRing)}
           >
             Fale comigo
           </a>
@@ -52,7 +52,7 @@ export function Header() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuOpen}
-            className="text-muted transition-colors hover:text-foreground lg:hidden"
+            className={cn("text-muted transition-colors hover:text-foreground lg:hidden", focusRing)}
           >
             {menuOpen ? (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -74,7 +74,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-foreground"
+                className={cn("block py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-foreground", focusRing)}
               >
                 {link.label}
               </a>
@@ -82,7 +82,7 @@ export function Header() {
             <a
               href="#contato"
               onClick={() => setMenuOpen(false)}
-              className="mt-4 block rounded-full border border-border px-5 py-3 text-center text-sm font-medium text-foreground transition-all hover:border-border-strong"
+              className={cn("mt-4 block rounded-full border border-border px-5 py-3 text-center text-sm font-medium text-foreground transition-all hover:border-border-strong", focusRing)}
             >
               Fale comigo
             </a>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTextScramble } from "@/lib/useTextScramble";
 import { useTypewriter } from "@/lib/useTypewriter";
+import { focusRing } from "@/lib/utils";
 
 /*
  * Sequência de montagem:
@@ -97,7 +98,7 @@ export function Hero() {
 
           {/* Linha de metadados */}
           <motion.p
-            className="mb-10 font-mono text-[11px] uppercase tracking-[0.2em] text-subtle"
+            className="mb-10 font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
             initial={reduced ? false : { opacity: 0, y: -8 }}
             animate={step >= 1 || reduced ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -145,7 +146,7 @@ export function Hero() {
             {/* Primário — underline lime no hover */}
             <a
               href="#projetos"
-              className="group inline-flex items-center gap-2 font-medium text-foreground"
+              className={`group inline-flex items-center gap-2 font-medium text-foreground ${focusRing}`}
             >
               <span className="relative">
                 Ver projetos
@@ -170,7 +171,7 @@ export function Hero() {
             {/* Secundário */}
             <a
               href="#contato"
-              className="font-medium text-subtle transition-colors hover:text-foreground"
+              className={`font-medium text-subtle transition-colors hover:text-foreground ${focusRing}`}
             >
               Entrar em contato
             </a>
@@ -187,7 +188,7 @@ export function Hero() {
               href="https://github.com/MarcosRanauro"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent"
+              className={`font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent ${focusRing}`}
             >
               GitHub
             </a>
@@ -196,7 +197,7 @@ export function Hero() {
               href="https://www.linkedin.com/in/marcosranauro/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent"
+              className={`font-mono text-[11px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent ${focusRing}`}
             >
               LinkedIn
             </a>
@@ -211,7 +212,7 @@ export function Hero() {
           animate={{ opacity: showFinal ? 1 : 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
             Scroll
           </span>
           <div className="relative h-10 w-px overflow-hidden bg-border">

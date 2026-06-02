@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn, focusRing } from "@/lib/utils";
 import { useScrollSpy } from "@/lib/useScrollSpy";
 
 const NAV = [
@@ -44,7 +44,7 @@ export function SocialSidebar() {
             href="https://github.com/MarcosRanauro"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent [writing-mode:vertical-rl]"
+            className={cn("font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent [writing-mode:vertical-rl]", focusRing)}
             initial={reduced ? false : { opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
@@ -63,7 +63,7 @@ export function SocialSidebar() {
             href="https://www.linkedin.com/in/marcosranauro/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle transition-colors hover:text-accent [writing-mode:vertical-rl]"
+            className={cn("font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent [writing-mode:vertical-rl]", focusRing)}
             initial={reduced ? false : { opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
@@ -98,7 +98,7 @@ export function SocialSidebar() {
             <motion.a
               key={section.id}
               href={`#${section.id}`}
-              className="group/nav flex items-center gap-2 py-1.5"
+              className={cn("group/nav flex items-center gap-2 py-1.5", focusRing)}
               initial={reduced ? false : { opacity: 0, x: 8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.65 + i * 0.07, ease: "easeOut" }}
@@ -108,7 +108,7 @@ export function SocialSidebar() {
                   "font-mono text-[9px] uppercase tracking-[0.15em] transition-colors duration-300",
                   isActive
                     ? "text-foreground"
-                    : "text-subtle group-hover/nav:text-muted"
+                    : "text-muted group-hover/nav:text-foreground"
                 )}
               >
                 {section.label}

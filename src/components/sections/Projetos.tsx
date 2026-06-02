@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FadeInView } from "@/components/ui/FadeInView";
 import { projetos, type Projeto } from "@/data/projetos";
+import { focusRing } from "@/lib/utils";
 
 function ArrowSm() {
   return (
@@ -65,7 +66,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
             {isPublicado && (
               <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" aria-hidden="true" />
             )}
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
               {projeto.status}
             </span>
           </div>
@@ -86,7 +87,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
           </p>
 
           {/* Stack — labels editoriais */}
-          <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.15em] text-subtle">
+          <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
             {projeto.stack.join(" · ")}
           </p>
 
@@ -96,7 +97,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
               href={projeto.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+              className={`group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground ${focusRing}`}
             >
               <span className="relative">
                 Ver projeto
@@ -111,7 +112,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
               href={projeto.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-subtle transition-colors hover:text-muted"
+              className={`group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground ${focusRing}`}
             >
               Ver código
               <span className="transition-colors group-hover/link:text-accent">
@@ -132,7 +133,7 @@ export function Projetos() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-20 lg:mb-32">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             03 / Projetos
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">

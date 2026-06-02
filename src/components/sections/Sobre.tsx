@@ -28,7 +28,7 @@ export function Sobre() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             01 / Sobre
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -93,7 +93,7 @@ export function Sobre() {
         {/* Formação — timeline editorial */}
         <div className="border-t border-border pt-16 lg:pt-20">
           <FadeInView className="mb-12">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
               Trajetória
             </p>
             <h3 className="font-heading text-2xl font-bold tracking-tight text-foreground md:text-3xl">
@@ -115,7 +115,7 @@ export function Sobre() {
                       aria-hidden="true"
                       className="absolute -left-9 top-[0.3rem] h-2 w-2 rounded-full bg-accent"
                     />
-                    <p className="mb-2 font-mono text-[9px] uppercase tracking-[0.25em] text-subtle">
+                    <p className="mb-2 font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
                       {item.curso}
                     </p>
                     <h4 className="mb-3 font-heading text-2xl font-bold text-foreground">

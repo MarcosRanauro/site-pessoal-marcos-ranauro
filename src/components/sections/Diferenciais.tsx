@@ -44,7 +44,7 @@ export function Diferenciais() {
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-subtle">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
             06 / Diferenciais
           </p>
           <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
@@ -67,7 +67,7 @@ export function Diferenciais() {
                   i % 2 === 0 ? "md:pr-12" : "md:pl-12",
                 ].join(" ")}
               >
-                <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.3em] text-subtle">
+                <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
                   0{i + 1}
                 </p>
                 <h3 className="mb-4 font-heading text-2xl font-bold text-foreground">
