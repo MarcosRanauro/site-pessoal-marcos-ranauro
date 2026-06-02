@@ -4,7 +4,27 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Redesign editorial completo — todas as seções concluídas (branch `feature/redesign-contato`)
+Status: Header minimalista + Logo MR_ implementados (branch `feature/header-minimalista-logo`)
+
+Header.tsx simplificado:
+- Desktop (≥lg/1024px): Logo + botão "Fale comigo" → `#contato` apenas (nav links removidos — sidebar já cumpre esse papel)
+- Mobile (<lg): Logo + hamburger; menu expande com as 7 seções completas (Sobre, Stack, Projetos, Serviços, Processo, Diferenciais, Contato) em mono uppercase + CTA "Fale comigo"
+- Breakpoints migrados de `md:` para `lg:` (alinhado com a sidebar)
+- Scroll-aware mantido (border + bg/80 + backdrop-blur-md ao rolar)
+- Removido: navLinks de desktop, tokens antigos (accent-blue)
+
+Logo.tsx criado (server component, sem "use client"):
+- Monograma "MR" em Space Grotesk bold foreground + cursor "_" em accent lime
+- Cursor pisca com `animate-blink` (1.1s ease-in-out infinite) — CSS puro via `@keyframes blink`
+- `prefers-reduced-motion`: `animation: none` via `@media` em globals.css — cursor estático mas visível
+- Reutilizável no Footer
+
+globals.css:
+- `--animate-blink` adicionado ao `@theme`
+- `@keyframes blink { 0%,100% opacity:1; 50% opacity:0 }` adicionado
+- `@media (prefers-reduced-motion: reduce) { .animate-blink { animation: none } }` adicionado
+
+Redesign editorial completo — todas as seções concluídas (branch `feature/redesign-contato`)
 
 Contato.tsx redesenhada — fechamento editorial assimétrico:
 - Cabeçalho: `07 / Contato` mono + "Vamos / conversar" em display grande (2 cols, lg:col-span-2)
@@ -302,7 +322,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Consolidação: merge de todas as feature branches para `main`. Depois: revisão de responsividade mobile em todas as seções, ajuste da numeração de Projetos ("02" → "03"), revisão do Header/Footer, e deploy final na Vercel com domínio.
+Atualizar o Footer com a Logo reutilizável. Depois: consolidação via merge de todas as feature branches para `main`, revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), e deploy final na Vercel.
 
 Fase 4 — Finalização:
 

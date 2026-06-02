@@ -108,7 +108,7 @@ export function SocialSidebar() {
                   "font-mono text-[9px] uppercase tracking-[0.15em] transition-colors duration-300",
                   isActive
                     ? "text-foreground"
-                    : "text-subtle group-hover/nav:text-muted-foreground"
+                    : "text-subtle group-hover/nav:text-muted"
                 )}
               >
                 {section.label}
