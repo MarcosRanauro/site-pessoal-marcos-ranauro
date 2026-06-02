@@ -4,7 +4,33 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Footer minimalista redesenhado (branch `feature/redesign-footer`)
+Status: V1 feature-complete — SEO/OG/sitemap/robots configurados — pronto para deploy
+
+Projeto na branch `main` com todas as features mergeadas. Última etapa antes do deploy concluída.
+
+SEO e metadata configurados (`src/app/layout.tsx`):
+- `metadataBase`: `https://marcosranauro.com.br`
+- `openGraph`: type website, locale pt_BR, og:image `/og-image.png` (1200×630)
+- `twitter`: card summary_large_image, imagem `/og-image.png`
+- `keywords`, `authors`, `creator`, `alternates.canonical`
+- `robots`: index: true, follow: true
+
+Assets de SEO/favicon presentes em `src/app/`:
+- `favicon.ico` — ícone da aba do browser
+- `icon.svg` — favicon vetorial moderno
+- `apple-icon.png` — ícone para iOS
+- `og-image.png` em `public/` — preview de compartilhamento
+
+Rotas geradas pelo Next.js:
+- `/sitemap.xml` — via `src/app/sitemap.ts`
+- `/robots.txt` — via `src/app/robots.ts`
+- `/apple-icon.png` e `/icon.svg` — geradas automaticamente pelo App Router
+
+Correções aplicadas (branch `fix/links-e-numeracao`):
+- LinkedIn: links `href="#"` corrigidos para `https://www.linkedin.com/in/marcosranauro/` em SocialSidebar.tsx e Hero.tsx
+- Projetos: numeração `02 / Projetos` corrigida para `03 / Projetos`
+
+Footer minimalista redesenhado (branch `feature/redesign-footer`)
 
 Footer.tsx redesenhado — fecho sóbrio e institucional:
 - Background: `bg-background` (#0A0A0A) — contrasta com Contato (bg-surface)
@@ -343,7 +369,15 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Consolidação: merge de todas as feature branches para `main`. Depois: revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), metadados SEO (Open Graph, favicon real), e deploy final na Vercel com domínio.
+**Deploy final na Vercel com domínio `marcosranauro.com.br`.**
+
+Checklist pré-deploy:
+- [ ] Conectar domínio `marcosranauro.com.br` no painel da Vercel
+- [ ] Verificar DNS (A record ou CNAME para Vercel)
+- [ ] Confirmar que HTTPS está ativo após propagação
+- [ ] Testar compartilhamento no WhatsApp/LinkedIn para validar og:image
+- [ ] Testar em mobile (iOS Safari + Android Chrome) — seções, navegação, logo
+- [ ] Validar com opengraph.xyz ou similar
 
 Fase 4 — Finalização:
 

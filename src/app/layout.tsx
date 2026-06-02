@@ -22,9 +22,52 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marcosranauro.com.br"),
   title: "Marcos Ranauro — Fullstack Developer",
   description:
-    "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas.",
+    "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+  keywords: [
+    "Marcos Ranauro",
+    "Fullstack Developer",
+    "Desenvolvedor Web",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Desenvolvedor Rio de Janeiro",
+  ],
+  authors: [{ name: "Marcos Ranauro" }],
+  creator: "Marcos Ranauro",
+  alternates: {
+    canonical: "https://marcosranauro.com.br",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://marcosranauro.com.br",
+    siteName: "Marcos Ranauro",
+    title: "Marcos Ranauro — Fullstack Developer",
+    description:
+      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Marcos Ranauro — Fullstack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marcos Ranauro — Fullstack Developer",
+    description:
+      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
