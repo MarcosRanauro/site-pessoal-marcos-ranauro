@@ -7,11 +7,13 @@ export function Logo({ className }: LogoProps) {
     <a
       href="#"
       aria-label="Marcos Ranauro — voltar ao topo"
-      className="inline-block text-foreground"
+      className="inline-block self-start text-foreground"
     >
       <svg
-        viewBox="0 0 160 110"
-        fill="none"
+        viewBox="0 0 172 116"
+        width="172"
+        height="116"
+        overflow="visible"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-label="Marcos Ranauro"
@@ -32,7 +34,7 @@ export function Logo({ className }: LogoProps) {
           <path d="M 110 66 L 140 96" />
         </g>
         {/* Ponto lime que respira */}
-        <circle cx="150" cy="96" r="5.5" className="logo-dot" />
+        <circle cx="150" cy="96" r="5.5" fill="var(--color-accent)" className="logo-dot" />
       </svg>
     </a>
   );

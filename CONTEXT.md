@@ -4,7 +4,19 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Logo MR monograma SVG em ligadura implementada (branch `feature/logo-mr-ligadura`)
+Status: Footer minimalista redesenhado (branch `feature/redesign-footer`)
+
+Footer.tsx redesenhado — fecho sóbrio e institucional:
+- Background: `bg-background` (#0A0A0A) — contrasta com Contato (bg-surface)
+- `border-t border-border` no topo — linha divisória sutil
+- Bloco principal: Logo `h-11 w-auto` (ligeiramente maior que header) à esquerda + "Nova Iguaçu — RJ, Brasil" mono abaixo + nav 2 colunas à direita
+- Nav compacta: 7 seções em `font-mono text-[10px] uppercase tracking-[0.2em] text-subtle hover:text-muted`; grid-cols-2 (4+3 itens)
+- Linha inferior: copyright `© {ano dinâmico}` (esquerda) + "Desenhado e desenvolvido por Marcos Ranauro" (direita) em mono subtle
+- Responsivo: flex-col no mobile, flex-row md+ com justify-between
+- Server component (sem "use client") — Logo também é server component
+- Removido: SVG icons sociais, e-mail antigo, texto "Fullstack Developer"
+
+Logo MR monograma SVG em ligadura implementada (branch `feature/logo-mr-ligadura`)
 
 Logo.tsx reconstruída como monograma SVG vetorial:
 - Ligadura MR: M (20,96→20,20→52,70→84,20→84,96) + R bojo (84,20→112,20→curva→90,66) + perna (110,66→140,96) compartilhando a haste central em x=84
@@ -331,7 +343,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Atualizar o Footer com a Logo reutilizável (`<Logo className="h-7 w-auto opacity-60" />`). Depois: consolidação via merge de todas as feature branches para `main`, revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), e deploy final na Vercel.
+Consolidação: merge de todas as feature branches para `main`. Depois: revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), metadados SEO (Open Graph, favicon real), e deploy final na Vercel com domínio.
 
 Fase 4 — Finalização:
 

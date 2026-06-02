@@ -85,7 +85,6 @@
 
 /* Ponto lime da logo — respiração */
 .logo-dot {
-  fill: var(--color-accent);
   animation: logo-breathe 1.9s ease-in-out infinite;
   transform-box: fill-box;
   transform-origin: center;
