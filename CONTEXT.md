@@ -4,7 +4,16 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Header minimalista + Logo MR_ implementados (branch `feature/header-minimalista-logo`)
+Status: Logo MR monograma SVG em ligadura implementada (branch `feature/logo-mr-ligadura`)
+
+Logo.tsx reconstruída como monograma SVG vetorial:
+- Ligadura MR: M (20,96→20,20→52,70→84,20→84,96) + R bojo (84,20→112,20→curva→90,66) + perna (110,66→140,96) compartilhando a haste central em x=84
+- viewBox="0 0 160 110", stroke currentColor strokeWidth=9 (renderiza ~3px no tamanho de exibição h-9)
+- Ponto lime: `<circle className="logo-dot">` — fill via `var(--color-accent)` em CSS, animação `logo-breathe` 2.2s ease-in-out infinite (scale 1→1.18, opacity 1→0.72); `transform-box: fill-box; transform-origin: center` para escalar a partir do próprio centro
+- `prefers-reduced-motion`: `.logo-dot { animation: none }` via @media em globals.css — ponto visível, estático
+- Prop `className?` para reutilizar no footer com tamanho/cor diferentes; default `h-9 w-auto`
+- Server component (sem "use client") — animação é CSS puro
+- globals.css: `@keyframes blink` e `--animate-blink` REMOVIDOS (CSS órfão limpo); `@keyframes logo-breathe` e `.logo-dot` adicionados
 
 Header.tsx simplificado:
 - Desktop (≥lg/1024px): Logo + botão "Fale comigo" → `#contato` apenas (nav links removidos — sidebar já cumpre esse papel)
@@ -322,7 +331,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Atualizar o Footer com a Logo reutilizável. Depois: consolidação via merge de todas as feature branches para `main`, revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), e deploy final na Vercel.
+Atualizar o Footer com a Logo reutilizável (`<Logo className="h-7 w-auto opacity-60" />`). Depois: consolidação via merge de todas as feature branches para `main`, revisão mobile global, ajuste da numeração de Projetos ("02" → "03"), e deploy final na Vercel.
 
 Fase 4 — Finalização:
 
