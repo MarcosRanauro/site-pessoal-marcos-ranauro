@@ -59,7 +59,7 @@ export function Processo() {
                     {etapa.numero}
                   </span>
                   {i < etapas.length - 1 && (
-                    <div className="mt-3 w-px flex-1 bg-border" style={{ minHeight: "3rem" }} />
+                    <div className="mt-3 w-px flex-1 bg-border min-h-12" />
                   )}
                 </div>
                 {/* Conteúdo */}

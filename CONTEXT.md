@@ -4,9 +4,19 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — SEO/OG/sitemap/robots configurados — pronto para deploy
+Status: V1 feature-complete — código limpo — pronto para deploy de produção
 
-Projeto na branch `main` com todas as features mergeadas. Última etapa antes do deploy concluída.
+Projeto na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
+
+Redesign editorial premium completo: design system monocromático + lime, Hero, todas as 7 seções (Sobre, Stack, Projetos, Serviços, Processo, Diferenciais, Contato), sidebar com scroll-spy, cursor glow, header minimalista com logo MR SVG, footer editorial.
+
+Correções e limpezas pós-redesign aplicadas:
+- LinkedIn com URL real em SocialSidebar e Hero
+- Numeração de seções corrigida (03 / Projetos)
+- SEO completo: metadata, Open Graph, Twitter Card, sitemap.xml, robots.txt, favicon próprio (MR)
+- Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
+- Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
+- Inline style removido de Processo.tsx (substituído por `min-h-12`)
 
 SEO e metadata configurados (`src/app/layout.tsx`):
 - `metadataBase`: `https://marcosranauro.com.br`
@@ -275,13 +285,10 @@ src/
       Header.tsx          ← sticky, scroll-aware, mobile menu, animate-fade-in-down
       Footer.tsx          ← identidade, links sociais, copyright
       SocialSidebar.tsx   ← fixed right, social (lg+) + nav scroll-spy (xl+), hover lime
-  lib/
-    useScrollSpy.ts       ← IntersectionObserver hook, retorna id da seção ativa
     ui/
-      Button.tsx        ← variantes primary e secondary
-      Card.tsx          ← card premium dark com hover
-      Container.tsx     ← wrapper max-width 6xl responsivo
-      Section.tsx       ← wrapper de seção (py-24, sem px)
+      Logo.tsx            ← monograma MR SVG, ponto lime pulsante, server component
+      CursorGlow.tsx      ← spotlight lime 500px, mix-blend-mode screen, rAF, SSR safe
+      FadeInView.tsx      ← scroll reveal reutilizável (opacity+y, once, delay, reduced-motion)
     sections/
       Hero.tsx          ← grid, glow, badge, stagger CSS, CTAs, social links
       Sobre.tsx         ← layout 2 colunas, stats responsivos, border-l decorativa, bloco Formação (Trybe + UNISUAM)
@@ -298,6 +305,9 @@ src/
     servicos.ts         ← tipo Servico, 5 serviços
   lib/
     utils.ts            ← função cn() para composição de classes
+    useScrollSpy.ts     ← IntersectionObserver hook, retorna id da seção ativa
+    useTextScramble.ts  ← scramble progressivo via rAF, respeita reduced-motion
+    useTypewriter.ts    ← typewriter por caractere com intervalo
 
 docs/
   architecture/arquitetura-inicial.md
@@ -369,15 +379,15 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-**Deploy final na Vercel com domínio `marcosranauro.com.br`.**
+**Revisão de responsividade em dispositivo real + deploy de produção na Vercel com domínio `marcosranauro.com.br`.**
 
 Checklist pré-deploy:
+- [ ] Testar em mobile real (iOS Safari + Android Chrome) — seções, navegação, logo, sidebar
+- [ ] Testar compartilhamento no WhatsApp/LinkedIn para validar og:image
+- [ ] Validar com opengraph.xyz ou similar
 - [ ] Conectar domínio `marcosranauro.com.br` no painel da Vercel
 - [ ] Verificar DNS (A record ou CNAME para Vercel)
 - [ ] Confirmar que HTTPS está ativo após propagação
-- [ ] Testar compartilhamento no WhatsApp/LinkedIn para validar og:image
-- [ ] Testar em mobile (iOS Safari + Android Chrome) — seções, navegação, logo
-- [ ] Validar com opengraph.xyz ou similar
 
 Fase 4 — Finalização:
 
