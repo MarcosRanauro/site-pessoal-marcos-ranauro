@@ -4,7 +4,17 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: Redesign editorial de Serviços, Processo e Diferenciais concluído (branch `feature/redesign-servicos-processo-diferenciais`)
+Status: Redesign editorial completo — todas as seções concluídas (branch `feature/redesign-contato`)
+
+Contato.tsx redesenhada — fechamento editorial assimétrico:
+- Cabeçalho: `07 / Contato` mono + "Vamos / conversar" em display grande (2 cols, lg:col-span-2)
+- Canais de contato como lista editorial (3 cols, lg:col-span-3): label mono 9px + valor mono sm + seta lime no hover
+- Links reais: WhatsApp `wa.me/5521964242134`, E-mail `mailto:contato@marcosranauro.com.br`, LinkedIn `linkedin.com/in/marcosranauro/`, GitHub `github.com/MarcosRanauro` — todos com `target="_blank" rel="noopener noreferrer"` onde aplicável
+- Glow lime ambiente: `bg-accent opacity-[0.04] blur-[120px]` no canto superior direito — muito sutil
+- Background: `bg-surface` (#111111) — alterna de Diferenciais (bg-background)
+- Removido: Section, Container, SVG icons, tokens antigos (accent-blue), layout de botões
+
+Redesign editorial de Serviços, Processo e Diferenciais concluído (branch `feature/redesign-servicos-processo-diferenciais`)
 
 Servicos.tsx redesenhada — catálogo em lista editorial:
 - Cabeçalho: `04 / Serviços` + display "Soluções que posso desenvolver"
@@ -292,7 +302,7 @@ Observação: este deploy ainda é preview técnico. O domínio definitivo será
 
 ## Próxima ação recomendada
 
-Redesign da seção Contato (07) + revisão da numeração de Projetos (atualmente "02", deveria ser "03"). Depois: merge de todas as feature branches para `main` + revisão mobile + deploy final.
+Consolidação: merge de todas as feature branches para `main`. Depois: revisão de responsividade mobile em todas as seções, ajuste da numeração de Projetos ("02" → "03"), revisão do Header/Footer, e deploy final na Vercel com domínio.
 
 Fase 4 — Finalização:
 
