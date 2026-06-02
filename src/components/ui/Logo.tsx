@@ -7,7 +7,7 @@ export function Logo({ className }: LogoProps) {
     <a
       href="#"
       aria-label="Marcos Ranauro — voltar ao topo"
-      className="inline-block self-start text-foreground"
+      className="inline-block text-foreground"
     >
       <svg
         viewBox="0 0 172 116"
