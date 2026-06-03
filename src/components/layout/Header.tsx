@@ -68,7 +68,10 @@ export function Header() {
 
         {/* Mobile nav — todas as seções */}
         {menuOpen && (
-          <nav className="border-t border-border py-4 lg:hidden">
+          <nav className={cn(
+            "border-t border-border py-4 lg:hidden transition-all duration-300",
+            !scrolled && "bg-background/92 backdrop-blur-2xl"
+          )}>
             {mobileNavLinks.map((link) => (
               <a
                 key={link.href}
