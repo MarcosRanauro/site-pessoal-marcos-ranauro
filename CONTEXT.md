@@ -4,7 +4,7 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — acessibilidade corrigida — pronto para deploy de produção
+Status: V1 feature-complete — faixa de imagens na seção Sobre adicionada — pronto para deploy de produção
 
 Projeto na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
 
@@ -17,6 +17,13 @@ Correções e limpezas pós-redesign aplicadas:
 - Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
 - Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
 - Inline style removido de Processo.tsx (substituído por `min-h-12`)
+
+Faixa de imagens na seção Sobre (branch `feature/sobre-faixa-imagens`):
+- 3 imagens pessoais (`public/sobre/`) inseridas entre o bloco de texto/stats e a timeline de formação em `Sobre.tsx`
+- Grid 3 colunas no desktop/tablet (sm+); mobile mostra apenas a imagem 1 (ampla) em full width
+- Hover sutil apenas em dispositivos com pointer fino: brightness 0.9→1 + scale 1.02, transição 400ms — touch/mobile estático
+- Scroll reveal com FadeInView staggerado (0s, 0.1s, 0.2s) por imagem
+- next/image com fill + sizes corretos + aspect-[4/5], borda `border-border` e `rounded-sm`
 
 Acessibilidade (WCAG AA) aplicada (branch `fix/acessibilidade`):
 - Contraste de labels pequenos (≤11px) elevado: `text-subtle` (#6B6B6B, ~3.7:1) → `text-muted` (#A1A1A1, ~8:1) em todos os labels mono de numeração de seções, categorias, stack labels, status de projeto, localização e copyright do footer, indicador "Scroll"

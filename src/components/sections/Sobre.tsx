@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeInView } from "@/components/ui/FadeInView";
 
 const stats: { value?: string; label: string }[] = [
@@ -88,6 +89,103 @@ export function Sobre() {
             </FadeInView>
           </div>
 
+        </div>
+
+        {/* Faixa de imagens — composição C: assimétrica, peso à esquerda, zigue-zague */}
+        <div className="mb-16 lg:mb-20">
+
+          {/* Mobile: empilhado com variação de largura — assimetria leve */}
+          <div className="flex flex-col gap-3 sm:hidden">
+            <FadeInView>
+              <div className="group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-1-ampla.webp"
+                    alt="Ambiente de trabalho de Marcos Ranauro"
+                    fill
+                    sizes="calc(100vw - 3rem)"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+            <FadeInView delay={0.1}>
+              <div className="ml-auto w-4/5 group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-2-costas.webp"
+                    alt="Marcos Ranauro trabalhando em código"
+                    fill
+                    sizes="calc((100vw - 3rem) * 0.8)"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+            <FadeInView delay={0.15}>
+              <div className="w-11/12 group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-3-fechada.webp"
+                    alt="Setup de desenvolvimento de Marcos Ranauro"
+                    fill
+                    sizes="calc((100vw - 3rem) * 0.92)"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+          </div>
+
+          {/* Desktop/tablet (sm+): composição C rebalanceada — central protagonista, laterais assimétricas */}
+          <div className="hidden sm:grid items-start gap-6 lg:gap-8 grid-cols-[28fr_44fr_24fr]">
+
+            {/* Esquerda — secundária, offset moderado */}
+            <FadeInView delay={0.12} className="mt-12 lg:mt-16">
+              <div className="group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-1-ampla.webp"
+                    alt="Ambiente de trabalho de Marcos Ranauro"
+                    fill
+                    sizes="(max-width: 1280px) 28vw, 290px"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+
+            {/* Centro — PROTAGONISTA, maior, âncora no topo, entra primeiro */}
+            <FadeInView delay={0}>
+              <div className="group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-2-costas.webp"
+                    alt="Marcos Ranauro trabalhando em código"
+                    fill
+                    sizes="(max-width: 1280px) 44vw, 455px"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+
+            {/* Direita — terciária, menor lateral, queda dramática */}
+            <FadeInView delay={0.22} className="mt-24 lg:mt-32">
+              <div className="group relative overflow-hidden rounded-sm border border-border">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/sobre/sobre-3-fechada.webp"
+                    alt="Setup de desenvolvimento de Marcos Ranauro"
+                    fill
+                    sizes="(max-width: 1280px) 24vw, 250px"
+                    className="object-cover transition-[transform,filter] duration-[400ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:[filter:brightness(0.9)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:[filter:brightness(1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </FadeInView>
+
+          </div>
         </div>
 
         {/* Formação — timeline editorial */}
