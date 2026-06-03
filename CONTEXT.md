@@ -4,7 +4,7 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — faixa de imagens na seção Sobre adicionada — pronto para deploy de produção
+Status: V1 feature-complete — monograma animado no footer — pronto para deploy de produção
 
 Projeto na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
 
@@ -17,6 +17,14 @@ Correções e limpezas pós-redesign aplicadas:
 - Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
 - Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
 - Inline style removido de Processo.tsx (substituído por `min-h-12`)
+
+Monograma MR animado no footer (branch `feature/footer-monograma-animado`):
+- `src/components/layout/FooterMonogram.tsx` — novo client component com 2 camadas de animação
+- Stroke draw (pathLength 0→1) via `motion.path` na entrada da viewport (IntersectionObserver, once:true); M desenhado primeiro (1.4s), R bojo staggerado (delay 0.42s, dur 0.98s), R perna finaliza (delay 1.19s, dur 0.42s); ponto lime surge por último com spring (delay 1.55s)
+- Cursor tracking: ponto segue o mouse com `useMotionValue` + `useSpring` (stiffness 80, damping 18), clamped à bounding box do SVG; retorna com spring ao sair do hover; só ativo em dispositivos com hover real
+- `src/components/layout/Footer.tsx` — Layout reorganizado em 3 zonas: localização (esquerda) | FooterMonogram h-40 (centro) | nav (direita); `<Logo />` removida do footer (substituída pelo monograma grande); Logo do header inalterada
+- `prefers-reduced-motion`: caminhos já desenhados e ponto já visível, sem animações
+- Touch/sem hover: ponto na posição original, sem cursor tracking
 
 Faixa de imagens na seção Sobre (branch `feature/sobre-faixa-imagens`):
 - 3 imagens pessoais (`public/sobre/`) inseridas entre o bloco de texto/stats e a timeline de formação em `Sobre.tsx`
