@@ -4,9 +4,11 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — monograma animado no footer — pronto para deploy de produção
+Status: V1 feature-complete — sidebar com trilho de progresso + bolinha lime deslizante
 
-Projeto na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
+Branch `feature/sidebar-marcador-progresso` — evolução da SocialSidebar com trilho de progresso e bolinha lime deslizante.
+
+Projeto base na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
 
 Redesign editorial premium completo: design system monocromático + lime, Hero, todas as 7 seções (Sobre, Stack, Projetos, Serviços, Processo, Diferenciais, Contato), sidebar com scroll-spy, cursor glow, header minimalista com logo MR SVG, footer editorial.
 
@@ -17,6 +19,18 @@ Correções e limpezas pós-redesign aplicadas:
 - Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
 - Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
 - Inline style removido de Processo.tsx (substituído por `min-h-12`)
+
+Sidebar — trilho de progresso + bolinha lime (branch `feature/sidebar-marcador-progresso`):
+- `src/components/layout/SocialSidebar.tsx` — substituídos os traços horizontais por sistema trilho + bolinha
+- Trilho vertical (1px) à esquerda dos labels do nav, de cima a baixo do container; fundo em `bg-border/60` (cinza sutil)
+- Preenchimento do trilho: `rgba(250,250,250,0.18)` (foreground sutil, NÃO lime) que cresce conforme scroll via `scaleY + transformOrigin:top`; atualizado via rAF + cleanup correto
+- Bolinha lime (10px, `bg-accent`, glow `rgba(198,255,0,0.22)`) posicionada no trilho alinhada à seção ativa; desliza com `useSpring` (stiffness 280, damping 28, mass 0.7)
+- Bolinha usa `top: effectiveDotY` (MotionValue direto ou via spring) + `x:-50% y:-50%` para centrar sobre o trilho; posição calculada via `getBoundingClientRect()` do item ativo vs container
+- `prefers-reduced-motion`: sem spring (usa `dotY` direto — salta para posição), sem animações de entrada; trilho mostra progresso estático
+- Texto das seções: ativo `text-foreground`, inativo `text-muted`, hover `text-foreground` — comportamento mantido
+- Links sociais (GitHub/LinkedIn): inalterados
+- Mobile: sem alterações (sidebar não aparece abaixo de lg)
+- Build TypeScript: OK
 
 Monograma MR animado no footer (branch `feature/footer-monograma-animado`):
 - `src/components/layout/FooterMonogram.tsx` — novo client component com 2 camadas de animação
