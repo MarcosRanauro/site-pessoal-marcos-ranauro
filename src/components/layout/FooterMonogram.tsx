@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import {
   motion,
   useMotionValue,
@@ -13,23 +13,37 @@ const ORIGIN_CY = 96;
 const VIEWBOX_W = 172;
 const VIEWBOX_H = 116;
 const CLAMP = 12; // SVG units — ponto não escapa para fora do monograma
+const HOVER_MEDIA_QUERY = "(hover: hover) and (pointer: fine)";
+
+function subscribeToHoverMedia(callback: () => void) {
+  const mq = window.matchMedia(HOVER_MEDIA_QUERY);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getHoverMediaSnapshot() {
+  return window.matchMedia(HOVER_MEDIA_QUERY).matches;
+}
+
+function getHoverMediaServerSnapshot() {
+  return false;
+}
 
 export function FooterMonogram() {
   const reduced = useReducedMotion();
   const svgRef = useRef<SVGSVGElement>(null);
   const [inView, setInView] = useState(false);
-  const [canHover, setCanHover] = useState(false);
+  const canHover = useSyncExternalStore(
+    subscribeToHoverMedia,
+    getHoverMediaSnapshot,
+    getHoverMediaServerSnapshot,
+  );
 
   // Motion values para posição do ponto — animam fora do ciclo de render
   const cxVal = useMotionValue(ORIGIN_CX);
   const cyVal = useMotionValue(ORIGIN_CY);
   const springCx = useSpring(cxVal, { stiffness: 80, damping: 18 });
   const springCy = useSpring(cyVal, { stiffness: 80, damping: 18 });
-
-  // Detectar dispositivo com hover real (SSR safe)
-  useEffect(() => {
-    setCanHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
-  }, []);
 
   // IntersectionObserver — dispara uma vez ao entrar na viewport
   useEffect(() => {

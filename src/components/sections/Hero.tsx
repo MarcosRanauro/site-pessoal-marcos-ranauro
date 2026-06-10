@@ -24,10 +24,6 @@ export function Hero() {
   const reduced = useReducedMotion();
   const [step, setStep] = useState(0);
 
-  useEffect(() => {
-    if (reduced) setStep(5);
-  }, [reduced]);
-
   const { display: nameDisplay, done: nameDone } = useTextScramble(
     NOME,
     !reduced && step >= 2,
@@ -52,11 +48,17 @@ export function Hero() {
   }, [step, nameDone]);
 
   useEffect(() => {
-    if (step === 3 && titleDone) setStep(4);
+    if (step === 3 && titleDone) {
+      const t = setTimeout(() => setStep(4), 0);
+      return () => clearTimeout(t);
+    }
   }, [step, titleDone]);
 
   useEffect(() => {
-    if (step === 4 && phraseDone) setStep(5);
+    if (step === 4 && phraseDone) {
+      const t = setTimeout(() => setStep(5), 0);
+      return () => clearTimeout(t);
+    }
   }, [step, phraseDone]);
 
   // Textos finais a exibir
