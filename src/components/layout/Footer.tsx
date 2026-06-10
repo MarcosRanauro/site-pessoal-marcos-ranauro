@@ -1,15 +1,6 @@
 import { focusRing } from "@/lib/utils";
 import { FooterMonogram } from "@/components/layout/FooterMonogram";
-
-const footerNavLinks = [
-  { href: "#sobre",        label: "Sobre" },
-  { href: "#stack",        label: "Stack" },
-  { href: "#projetos",     label: "Projetos" },
-  { href: "#servicos",     label: "Serviços" },
-  { href: "#processo",     label: "Processo" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#contato",      label: "Contato" },
-];
+import { NAV_LINKS } from "@/data/navigation";
 
 export function Footer() {
   return (
@@ -34,7 +25,7 @@ export function Footer() {
           {/* Direita: navegação compacta — abaixo do monograma no mobile */}
           <nav className="order-3 w-full md:order-3 md:w-auto" aria-label="Navegação do rodapé">
             <div className="grid grid-cols-2 gap-x-12 gap-y-3 md:justify-items-end">
-              {footerNavLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}

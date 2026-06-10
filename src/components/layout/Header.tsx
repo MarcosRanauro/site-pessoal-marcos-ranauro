@@ -3,16 +3,7 @@
 import { useState, useEffect } from "react";
 import { cn, focusRing } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
-
-const mobileNavLinks = [
-  { href: "#sobre",        label: "Sobre" },
-  { href: "#stack",        label: "Stack" },
-  { href: "#projetos",     label: "Projetos" },
-  { href: "#servicos",     label: "Serviços" },
-  { href: "#processo",     label: "Processo" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#contato",      label: "Contato" },
-];
+import { NAV_LINKS } from "@/data/navigation";
 
 export function Header() {
   const [scrolled, setScrolled]   = useState(false);
@@ -72,7 +63,7 @@ export function Header() {
             "border-t border-border py-4 lg:hidden transition-all duration-300",
             !scrolled && "bg-background/92 backdrop-blur-2xl"
           )}>
-            {mobileNavLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}

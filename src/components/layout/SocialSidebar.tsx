@@ -5,18 +5,9 @@ import { motion, useReducedMotion, useMotionValue, useSpring } from "framer-moti
 import { cn, focusRing } from "@/lib/utils";
 import { useScrollSpy } from "@/lib/useScrollSpy";
 import { useAccent } from "@/lib/AccentContext";
+import { NAV_LINKS } from "@/data/navigation";
 
-const NAV = [
-  { id: "sobre",        label: "Sobre" },
-  { id: "stack",        label: "Stack" },
-  { id: "projetos",     label: "Projetos" },
-  { id: "servicos",     label: "Serviços" },
-  { id: "processo",     label: "Processo" },
-  { id: "diferenciais", label: "Diferenciais" },
-  { id: "contato",      label: "Contato" },
-] as const;
-
-const SECTION_IDS = NAV.map((s) => s.id);
+const SECTION_IDS = NAV_LINKS.map((s) => s.id);
 
 export function SocialSidebar() {
   const reduced = useReducedMotion();
@@ -56,7 +47,7 @@ export function SocialSidebar() {
 
   // Atualiza posição da bolinha quando a seção ativa muda
   const updateDot = useCallback(() => {
-    const idx = NAV.findIndex((s) => s.id === activeId);
+    const idx = NAV_LINKS.findIndex((s) => s.id === activeId);
     if (idx === -1 || !navRef.current) return;
     const item = itemRefs.current[idx];
     if (!item) return;
@@ -175,13 +166,13 @@ export function SocialSidebar() {
           </div>
 
           {/* Links de seção — pl-4 abre espaço para o trilho */}
-          {NAV.map((section, i) => {
+          {NAV_LINKS.map((section, i) => {
             const isActive = activeId === section.id;
             return (
               <motion.a
                 key={section.id}
                 ref={(el) => { itemRefs.current[i] = el; }}
-                href={`#${section.id}`}
+                href={section.href}
                 className={cn(
                   "group/nav flex w-full items-center justify-end py-1.5 pl-4",
                   focusRing,
