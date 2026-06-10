@@ -4,6 +4,7 @@ import { useEffect, useRef, useCallback } from "react";
 import { motion, useReducedMotion, useMotionValue, useSpring } from "framer-motion";
 import { cn, focusRing } from "@/lib/utils";
 import { useScrollSpy } from "@/lib/useScrollSpy";
+import { useAccent } from "@/lib/AccentContext";
 
 const NAV = [
   { id: "sobre",        label: "Sobre" },
@@ -20,6 +21,7 @@ const SECTION_IDS = NAV.map((s) => s.id);
 export function SocialSidebar() {
   const reduced = useReducedMotion();
   const activeId = useScrollSpy(SECTION_IDS);
+  const { accent, toggle } = useAccent();
 
   const navRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -150,7 +152,7 @@ export function SocialSidebar() {
             {/* Fundo do trilho (cinza muito sutil) */}
             <div className="absolute inset-0 bg-border/60" />
 
-            {/* Preenchimento de progresso (foreground sutil — NÃO lime) */}
+            {/* Preenchimento de progresso (foreground sutil — NÃO acento) */}
             <motion.div
               className="absolute inset-x-0 top-0 h-full origin-top"
               style={{
@@ -159,14 +161,13 @@ export function SocialSidebar() {
               }}
             />
 
-            {/* Bolinha lime — desliza sobre o trilho na seção ativa */}
+            {/* Bolinha acento — desliza sobre o trilho na seção ativa */}
             <motion.div
-              className="absolute left-1/2 h-2.5 w-2.5 rounded-full bg-accent"
+              className="absolute left-1/2 h-2.5 w-2.5 rounded-full bg-accent bolinha-accent-glow"
               style={{
                 top: effectiveDotY,
                 x: "-50%",
                 y: "-50%",
-                boxShadow: "0 0 6px 1px rgba(198,255,0,0.22)",
               }}
               animate={{ opacity: activeId !== null ? 1 : 0 }}
               transition={{ duration: 0.25 }}
@@ -202,6 +203,41 @@ export function SocialSidebar() {
               </motion.a>
             );
           })}
+        </div>
+
+        {/* ── Easter egg: HOT / FRESH accent toggle ───────────────────── */}
+        <div className="mt-6 flex justify-end">
+          <button
+            aria-label="Alternar cor de destaque"
+            onClick={toggle}
+            className={cn(
+              "flex items-center gap-1.5 opacity-50 transition-opacity duration-200 hover:opacity-100",
+              focusRing,
+            )}
+          >
+            <span
+              className={cn(
+                "font-mono text-[8px] uppercase tracking-[0.2em] transition-colors duration-300",
+                accent === "hot" ? "text-accent" : "text-muted-foreground/50",
+              )}
+            >
+              Hot
+            </span>
+            <span
+              aria-hidden="true"
+              className="font-mono text-[8px] text-muted-foreground/25"
+            >
+              /
+            </span>
+            <span
+              className={cn(
+                "font-mono text-[8px] uppercase tracking-[0.2em] transition-colors duration-300",
+                accent === "fresh" ? "text-accent" : "text-muted-foreground/50",
+              )}
+            >
+              Fresh
+            </span>
+          </button>
         </div>
       </nav>
 

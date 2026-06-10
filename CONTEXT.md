@@ -4,9 +4,9 @@ Este arquivo registra o estado vivo do projeto.
 
 ## Estado atual
 
-Status: V1 feature-complete — sidebar com trilho de progresso + bolinha lime deslizante
+Status: V1 feature-complete — easter egg HOT/FRESH accent toggle + token de acento unificado
 
-Branch `feature/sidebar-marcador-progresso` — evolução da SocialSidebar com trilho de progresso e bolinha lime deslizante.
+Branch `feature/toggle-hot-fresh` — easter egg de troca de acento HOT (âmbar) / FRESH (lime) na sidebar, com token único e transição CSS suave.
 
 Projeto base na branch `main` com todas as features do redesign editorial premium mergeadas e limpeza de código aplicada.
 
@@ -19,6 +19,17 @@ Correções e limpezas pós-redesign aplicadas:
 - Alinhamento vertical da logo no header corrigido (removido `self-start` no `<a>` da Logo)
 - Componentes UI órfãos deletados: Button.tsx, Card.tsx, Card3D.tsx, Container.tsx, Section.tsx
 - Inline style removido de Processo.tsx (substituído por `min-h-12`)
+
+Easter egg HOT / FRESH accent toggle (branch `feature/toggle-hot-fresh`):
+- `src/lib/AccentContext.tsx` — novo: `AccentProvider` + `useAccent()` hook; estado "fresh" | "hot", padrão fresh; sem persistência (resetado a cada reload); toggle seta `document.documentElement.style.setProperty('--color-accent', ...)` — client only, SSR safe
+- `src/app/globals.css` — `@property --color-accent { syntax: "<color>"; inherits: true; initial-value: #C6FF00 }` registra o token como cor tipada para CSS transitions; `transition: --color-accent 0.5s ease` em `:root` dentro de `@media (prefers-reduced-motion: no-preference)`; hero grid migrado de rgba hardcoded para `color-mix(in srgb, var(--color-accent) 13%, transparent)`; adicionadas classes `.cursor-glow-bg` e `.bolinha-accent-glow` usando `color-mix()` (não mais hardcoded)
+- `src/components/ui/CursorGlow.tsx` — `background` removido do inline style; substituído por `className="cursor-glow-bg"` (CSS usa token)
+- `src/components/layout/SocialSidebar.tsx` — importa `useAccent`; `boxShadow` hardcoded da bolinha removido, substituído por `className="bolinha-accent-glow"`; botão "HOT / FRESH" adicionado no rodapé do nav xl+: opacity-50 base → hover opacity-100; label ativo em `text-accent` (transiciona com o token), inativo em `text-muted-foreground/50`; acessível por teclado com `aria-label`
+- `src/app/layout.tsx` — `<AccentProvider>` envolve `<CursorGlow />`, `<SocialSidebar />` e `{children}`
+- Hardcodes eliminados: globals.css (hero-grid rgba), SocialSidebar.tsx (box-shadow rgba), CursorGlow.tsx (radial-gradient rgba × 2) — todos migrados para `color-mix()` com o token
+- `prefers-reduced-motion`: sem transição (troca de cor instantânea); bolinha segue sem spring conforme antes
+- Mobile não afetado (sidebar é desktop-only)
+- Build TypeScript: OK
 
 Sidebar — trilho de progresso + bolinha lime (branch `feature/sidebar-marcador-progresso`):
 - `src/components/layout/SocialSidebar.tsx` — substituídos os traços horizontais por sistema trilho + bolinha

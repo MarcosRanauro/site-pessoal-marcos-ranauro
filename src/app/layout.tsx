@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { SocialSidebar } from "@/components/layout/SocialSidebar";
+import { AccentProvider } from "@/lib/AccentContext";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -81,9 +82,11 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans xl:pr-44">
-        <CursorGlow />
-        <SocialSidebar />
-        {children}
+        <AccentProvider>
+          <CursorGlow />
+          <SocialSidebar />
+          {children}
+        </AccentProvider>
       </body>
     </html>
   );

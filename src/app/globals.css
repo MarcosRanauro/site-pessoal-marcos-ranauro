@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* ── Registro tipado do acento — habilita transition em CSS custom property ── */
+@property --color-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #C6FF00;
+}
+
 /* ── Tipografia — conecta as variáveis expostas pelo next/font ─────────── */
 @theme inline {
   --font-sans: var(--font-inter);
@@ -105,8 +112,8 @@
 /* ── Grid do Hero ───────────────────────────────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(rgba(198, 255, 0, 0.13) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198, 255, 0, 0.13) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-accent) 13%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 13%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
   /* Degradê horizontal: grid invisível na esquerda, presente na direita (~13% efetivo) */
   -webkit-mask-image: linear-gradient(
@@ -123,6 +130,28 @@
     rgba(0, 0, 0, 0.60) 60%,
     black 100%
   );
+}
+
+/* ── Transição suave do acento (respeita prefers-reduced-motion) ─────────── */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    transition: --color-accent 0.5s ease;
+  }
+}
+
+/* ── Glow do cursor — usa color-mix para respeitar o token de acento ──────── */
+.cursor-glow-bg {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 7%,  transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 3%,  transparent) 40%,
+    transparent 70%
+  );
+}
+
+/* ── Glow da bolinha da sidebar — usa color-mix para respeitar o token ────── */
+.bolinha-accent-glow {
+  box-shadow: 0 0 6px 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
 }
 
 /* ── Reset e base ───────────────────────────────────────────────────────── */

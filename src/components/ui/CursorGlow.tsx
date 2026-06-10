@@ -41,6 +41,7 @@ export function CursorGlow() {
     <div
       ref={glowRef}
       aria-hidden="true"
+      className="cursor-glow-bg"
       style={{
         position: "fixed",
         top: 0,
@@ -50,8 +51,6 @@ export function CursorGlow() {
         marginTop: -250,
         marginLeft: -250,
         borderRadius: "50%",
-        background:
-          "radial-gradient(circle, rgba(198,255,0,0.07) 0%, rgba(198,255,0,0.03) 40%, transparent 70%)",
         transform: "translate(-1000px, -1000px)",
         pointerEvents: "none",
         zIndex: 1,
