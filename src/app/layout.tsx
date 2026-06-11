@@ -4,6 +4,7 @@ import "./globals.css";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { SocialSidebar } from "@/components/layout/SocialSidebar";
 import { AccentProvider } from "@/lib/AccentContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -86,6 +87,7 @@ export default function RootLayout({
           <CursorGlow />
           <SocialSidebar />
           {children}
+          <Analytics />
         </AccentProvider>
       </body>
     </html>
