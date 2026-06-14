@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { FadeInView } from "@/components/ui/FadeInView";
 
-const stats: { value?: string; label: string }[] = [
-  { value: "3",  label: "Anos de experiência" },
-  { value: "13", label: "Projetos entregues" },
-  { label: "Compromisso com qualidade" },
+const stats: { value: string; label: string }[] = [
+  { value: "2",     label: "Produtos em produção" },
+  { value: "100%",  label: "Do briefing ao deploy" },
+  { value: "Solo",  label: "Design, código e deploy" },
 ];
 
 const formacao = [
@@ -68,18 +68,9 @@ export function Sobre() {
                     key={stat.label}
                     className="lg:py-8 lg:first:pt-0 lg:last:pb-0"
                   >
-                    {stat.value ? (
-                      <p className="font-heading text-4xl font-bold leading-none text-foreground lg:text-5xl">
-                        {stat.value}
-                      </p>
-                    ) : (
-                      <p
-                        aria-hidden="true"
-                        className="select-none font-heading text-4xl font-bold leading-none text-foreground opacity-[0.08] lg:text-5xl"
-                      >
-                        —
-                      </p>
-                    )}
+                    <p className="font-heading text-4xl font-bold leading-none text-foreground lg:text-5xl">
+                      {stat.value}
+                    </p>
                     <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
                       {stat.label}
                     </p>

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://marcosranauro.com.br"),
   title: "Marcos Ranauro — Fullstack Developer",
   description:
-    "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+    "Sites e produtos digitais sob medida — do briefing ao deploy, pronto pro cliente usar. Fullstack developer freelance.",
   keywords: [
     "Marcos Ranauro",
     "Fullstack Developer",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Marcos Ranauro",
     title: "Marcos Ranauro — Fullstack Developer",
     description:
-      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+      "Sites e produtos digitais sob medida — do briefing ao deploy, pronto pro cliente usar. Fullstack developer freelance.",
     images: [
       {
         url: "/og-image.png",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Marcos Ranauro — Fullstack Developer",
     description:
-      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+      "Sites e produtos digitais sob medida — do briefing ao deploy, pronto pro cliente usar. Fullstack developer freelance.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -82,7 +82,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${spaceGrotesk.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans xl:pr-44">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans lg:pr-44">
         <AccentProvider>
           <CursorGlow />
           <SocialSidebar />

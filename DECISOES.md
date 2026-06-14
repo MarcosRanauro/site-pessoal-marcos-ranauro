@@ -4,6 +4,46 @@ Este documento registra decisões importantes do projeto.
 
 ---
 
+## 2026-06-14 — Posicionamento freelance end-to-end no hero e metadata
+
+**Status:** Aceita
+
+**Contexto:**  
+Após auditoria do site em produção, a copy genérica do hero e da metadata (“experiências digitais modernas, performáticas…”) não diferenciava Marcos no mercado freelance. Além disso, a sequência animada do hero (~6s) escondia nome e posicionamento no primeiro paint, prejudicando conversão, LCP e SEO.
+
+**Decisão:**  
+Adotar posicionamento **freelance end-to-end** como mensagem principal do site:
+
+- **Linha de impacto:** “Do zero ao no ar.”
+- **Subframe:** “Sites e produtos digitais sob medida — design, código e deploy. Você tem a ideia, eu entrego pronto pro cliente usar.”
+- **Metadata** (description, Open Graph, Twitter) alinhada ao mesmo posicionamento.
+- **Stats do Sobre** recalibrados para prova concreta: 2 produtos em produção, 100% do briefing ao deploy, entrega solo (design + código + deploy).
+- **Hero:** conteúdo legível no SSR desde o primeiro paint; animações (scramble no nome) como enhancement, não gate temporal.
+- **Navegação:** nav de seções na sidebar disponível a partir de `lg` (1024px+).
+
+**Motivo:**  
+Comunicar claramente o que o cliente compra (produto pronto, ponta a ponta) em menos de 5 segundos, reforçar autoridade com stats verificáveis e eliminar fricção entre intenção de contratação e leitura do site.
+
+**Alternativas consideradas:**  
+- Manter copy genérica de “fullstack developer” (descartado — não converte)
+- Manter sequência animada longa no hero (descartado — gate temporal)
+- Nav de seções no Header em vez da sidebar (descartado — sidebar editorial já existente; expandida a partir de `lg`)
+
+**Impacto positivo:**  
+- Posicionamento claro para clientes e recrutadores
+- Melhor LCP e SEO (h1 preenchido no HTML inicial)
+- Navegação desktop completa entre 1024px e 1280px
+- Stats mais defensáveis sob escrutínio
+
+**Impacto negativo ou riscos:**  
+- `og-image.png` ainda com texto antigo — precisa ser regenerada manualmente
+- Posicionamento freelance pode afastar vagas CLT puramente corporativas (trade-off aceito)
+
+**Consequências práticas:**  
+Copy do hero, metadata e stats devem permanecer alinhados ao posicionamento end-to-end. Novas seções ou CTAs devem reforçar “do briefing ao deploy”, não voltar à linguagem genérica de portfólio dev.
+
+---
+
 ## 2026-05-30 — Usar Next.js com TypeScript
 
 **Status:** Aceita

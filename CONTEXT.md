@@ -6,7 +6,7 @@ Estado atual do projeto. Decisões em `DECISOES.md`. Escopo em `/docs`.
 
 | Item | Valor |
 |------|-------|
-| Status | V1 completa, em produção |
+| Status | V1 em produção — Etapa 1 de melhorias aplicada |
 | Branch principal | `main` |
 | Deploy | [marcosranauro.com.br](https://marcosranauro.com.br) — Vercel, auto-deploy no push em `main` |
 | Build | Passando (`npm run build`) |
@@ -14,15 +14,17 @@ Estado atual do projeto. Decisões em `DECISOES.md`. Escopo em `/docs`.
 
 Site one-page estático. Conteúdo em `src/data/`. Sem backend, banco ou env vars obrigatórias.
 
+**Posicionamento (desde Etapa 1):** freelance end-to-end — sites e produtos digitais sob medida, do briefing ao deploy.
+
 ## 2. O que está funcionando
 
-**Layout:** `Header` (sticky, scroll-aware, menu mobile) · `Footer` (monograma, nav) · `SocialSidebar` (scroll-spy, trilho, bolinha spring, easter egg HOT/FRESH) · `navigation.ts` (fonte única de links)
+**Layout:** `Header` (sticky, scroll-aware, menu mobile) · `Footer` (monograma, nav) · `SocialSidebar` (nav de seções + scroll-spy a partir de `lg`, trilho, bolinha spring, easter egg HOT/FRESH) · `navigation.ts` (fonte única de links)
 
-**Seções:** `Hero` (step 0→5, scramble, typewriter) · `Sobre` · `Stack` · `Projetos` · `Servicos` · `Processo` · `Diferenciais` · `Contato`
+**Seções:** `Hero` (conteúdo SSR imediato, scramble opcional no nome, copy freelance) · `Sobre` (stats recalibrados) · `Stack` · `Projetos` · `Servicos` · `Processo` · `Diferenciais` · `Contato`
 
 **Interatividade:** `CursorGlow` (spotlight lime, rAF) · `FooterMonogram` (stroke draw, cursor tracking) · `AccentContext` (HOT `#FF6B35` / FRESH `#C6FF00`, sem persistência) · `FadeInView` (scroll reveal)
 
-**SEO / infra:** metadata + OG + Twitter Card · `sitemap.ts` · `robots.ts` · favicon MR · `og-image.png` · security headers em `next.config.ts`
+**SEO / infra:** metadata + OG + Twitter Card (copy freelance) · `sitemap.ts` · `robots.ts` · favicon MR · `og-image.png` · security headers em `next.config.ts`
 
 ## 3. Stack
 
@@ -66,6 +68,7 @@ Fontes: Space Grotesk (headings), Inter (body), Geist Mono (labels). Acento din�
 - Tailwind v4: `@import "tailwindcss"` + `@theme {}`
 - `scroll-padding-top: 80px` (header fixo h-16)
 - `@property --color-accent` — transição CSS tipada
+- `body`: `lg:pr-44` (reserva espaço para sidebar com nav de seções)
 - `next.config.ts`: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-DNS-Prefetch-Control`
 - CSP não configurada (Framer Motion + easter egg usam estilos inline)
 
@@ -76,11 +79,20 @@ Fontes: Space Grotesk (headings), Inter (body), Geist Mono (labels). Acento din�
 - Testes e CI — nenhum
 - Prettier — opcional
 - JSON-LD / Person schema
+- Regenerar `og-image.png` com copy freelance (arquivo estático ainda com texto antigo)
 
 ## 8. O que não mexer sem cuidado
 
-- Máquina de estados do `Hero` (step 0→5, timing)
 - `SocialSidebar` + `useScrollSpy`
 - `AccentContext` + `@property --color-accent`
 - `FooterMonogram` (stroke draw + cursor tracking)
 - Metadados SEO em `layout.tsx`
+
+## 9. Etapa 1 (2026-06-14) — concluída
+
+- Hero: conteúdo no SSR (sem gate de 6s); scramble breve no nome como enhancement
+- Copy freelance: "Do zero ao no ar." + subframe de posicionamento
+- Nav de seções na sidebar a partir de `lg` (1024px+)
+- Scroll indicator respeita `prefers-reduced-motion`
+- URL Outfit AI → `miaoutfitai.com.br`
+- Stats Sobre recalibrados (2 produtos / 100% / Solo)

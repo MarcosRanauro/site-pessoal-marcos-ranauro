@@ -19,7 +19,7 @@ export const projetos: Projeto[] = [
       "SaaS de moda com inteligência artificial. A stylist Mia gera looks personalizados com base no clima real, ocasião e estilo do usuário.",
     stack: ["Next.js", "TypeScript", "Supabase", "Anthropic API", "Tailwind CSS"],
     github: "https://github.com/MarcosRanauro/outfit-saas",
-    live: "https://outfit-saas.vercel.app",
+    live: "https://miaoutfitai.com.br",
     status: "Publicado",
     destaque: true,
     imagem: "/projeto-mia-outfit-ai.webp",
