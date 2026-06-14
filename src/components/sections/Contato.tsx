@@ -41,8 +41,7 @@ export function Contato() {
   return (
     <Section
       id="contato"
-      className="relative overflow-hidden bg-surface"
-      containerClassName="relative z-10"
+      className="bg-surface"
       adornment={
         <div
           aria-hidden="true"

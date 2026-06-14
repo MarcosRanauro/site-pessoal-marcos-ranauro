@@ -5,7 +5,7 @@ interface SectionProps {
   id: string;
   className?: string;
   containerClassName?: string;
-  /** Elementos absolutos/fora do fluxo (ex.: glow decorativo) */
+  /** Elementos decorativos absolutos — contidos em inset-0 overflow-hidden */
   adornment?: ReactNode;
   children: ReactNode;
 }
@@ -21,14 +21,23 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-[var(--space-section)] lg:py-[var(--space-section-lg)]",
+        "section-spacing",
+        adornment ? "relative" : undefined,
         className,
       )}
     >
-      {adornment}
+      {adornment && (
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          {adornment}
+        </div>
+      )}
       <div
         className={cn(
-          "mx-auto max-w-6xl px-6 sm:px-10 lg:px-16",
+          "relative mx-auto max-w-6xl px-6 sm:px-10 lg:px-16",
+          adornment ? "z-10" : undefined,
           containerClassName,
         )}
       >

@@ -50,8 +50,8 @@ public/         og-image.png, projeto-*.webp, sobre/*.webp
 
 | Token | Valor | Uso |
 |-------|-------|-----|
-| `--space-section` | `6rem` | padding vertical seção (py-24) |
-| `--space-section-lg` | `9rem` | padding vertical lg (py-36) |
+| `--space-section` | `6rem` (96px) | padding-top + padding-bottom via `.section-spacing` |
+| `--space-section-lg` | `9rem` (144px) | padding vertical em `lg+` |
 | `--fs-section-title-sm/md/lg` | 2.25 / 3 / 3.75rem | títulos h2 de seção |
 | `--fs-label` | `0.6875rem` (11px) | micro-labels mono |
 

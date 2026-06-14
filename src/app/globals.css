@@ -43,6 +43,10 @@
   /* Animações CSS (usadas pelo Header e badge do Hero) */
   --animate-fade-in-down: fade-in-down 0.5s ease-out both;
   --animate-fade-in-up:   fade-in-up 0.6s ease-out both;
+
+  /* Spacing de seção — utilitários Tailwind nativos (py-section, lg:py-section-lg) */
+  --spacing-section:    6rem;
+  --spacing-section-lg: 9rem;
 }
 
 /* ── Escala tipográfica ─────────────────────────────────────────────────── */
@@ -193,6 +197,23 @@
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: var(--color-muted);
+}
+
+/**
+ * Padding vertical de seção — espelha py-24 lg:py-36.
+ * Classe explícita (não depende de arbitrary values do Tailwind).
+ * Entre duas seções adjacentes: 6rem + 6rem = 12rem (mobile), 9rem + 9rem = 18rem (lg).
+ */
+.section-spacing {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: var(--space-section-lg);
+    padding-bottom: var(--space-section-lg);
+  }
 }
 
 /* ── Reset e base ───────────────────────────────────────────────────────── */
