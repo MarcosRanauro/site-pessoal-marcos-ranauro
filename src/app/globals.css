@@ -55,7 +55,7 @@
   --fs-h3:       clamp(1.125rem, 1.5vw, 1.25rem);
   --fs-body-lg:  1.125rem;
   --fs-body:     1rem;
-  --fs-label:    0.6875rem;
+  --fs-label:    0.6875rem; /* 11px — mínimo para micro-labels */
   --fs-mono:     0.875rem;
 
   /* Pesos */
@@ -69,9 +69,15 @@
   --ls-label:   0.12em;
   --ls-wide:    0.2em;
 
-  /* Ritmo vertical das seções */
-  --space-section:       clamp(5rem, 10vw, 8rem);
+  /* Ritmo vertical das seções — espelha py-24 lg:py-36 */
+  --space-section:       6rem;
+  --space-section-lg:    9rem;
   --space-section-inner: clamp(2.5rem, 5vw, 4rem);
+
+  /* Títulos de seção — espelha text-4xl md:text-5xl lg:text-6xl */
+  --fs-section-title-sm: 2.25rem;
+  --fs-section-title-md: 3rem;
+  --fs-section-title-lg: 3.75rem;
 }
 
 /* ── Keyframes ──────────────────────────────────────────────────────────── */
@@ -152,6 +158,41 @@
 /* ── Glow da bolinha da sidebar — usa color-mix para respeitar o token ────── */
 .bolinha-accent-glow {
   box-shadow: 0 0 6px 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+/* ── Utilitários tipográficos do design system ─────────────────────────── */
+
+.text-section-title {
+  font-size: var(--fs-section-title-sm);
+}
+
+@media (min-width: 768px) {
+  .text-section-title {
+    font-size: var(--fs-section-title-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-section-title {
+    font-size: var(--fs-section-title-lg);
+  }
+}
+
+/** Micro-label funcional — 11px, muted (#A1A1A1) para contraste AA */
+.type-label {
+  font-family: var(--font-geist-mono);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/** Eyebrow de seção — numeração "01 / Sobre" */
+.type-section-eyebrow {
+  font-family: var(--font-geist-mono);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-muted);
 }
 
 /* ── Reset e base ───────────────────────────────────────────────────────── */

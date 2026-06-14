@@ -84,7 +84,7 @@ export function SocialSidebar() {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent [writing-mode:vertical-rl]",
+              "type-label tracking-[0.2em] transition-colors hover:text-accent [writing-mode:vertical-rl]",
               focusRing,
             )}
             initial={reduced ? false : { opacity: 0, x: -10 }}
@@ -104,7 +104,7 @@ export function SocialSidebar() {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent [writing-mode:vertical-rl]",
+              "type-label tracking-[0.2em] transition-colors hover:text-accent [writing-mode:vertical-rl]",
               focusRing,
             )}
             initial={reduced ? false : { opacity: 0, x: -10 }}
@@ -183,7 +183,7 @@ export function SocialSidebar() {
               >
                 <span
                   className={cn(
-                    "font-mono text-[9px] uppercase tracking-[0.15em] transition-colors duration-300",
+                    "type-label tracking-[0.15em] transition-colors duration-300",
                     isActive
                       ? "text-foreground"
                       : "text-muted group-hover/nav:text-foreground",
@@ -208,22 +208,22 @@ export function SocialSidebar() {
           >
             <span
               className={cn(
-                "font-mono text-[8px] uppercase tracking-[0.2em] transition-colors duration-300",
-                accent === "hot" ? "text-accent" : "text-muted-foreground/50",
+                "type-label tracking-[0.2em] transition-colors duration-300",
+                accent === "hot" ? "text-accent" : "text-muted/60",
               )}
             >
               Hot
             </span>
             <span
               aria-hidden="true"
-              className="font-mono text-[8px] text-muted-foreground/25"
+              className="type-label text-muted/40"
             >
               /
             </span>
             <span
               className={cn(
-                "font-mono text-[8px] uppercase tracking-[0.2em] transition-colors duration-300",
-                accent === "fresh" ? "text-accent" : "text-muted-foreground/50",
+                "type-label tracking-[0.2em] transition-colors duration-300",
+                accent === "fresh" ? "text-accent" : "text-muted/60",
               )}
             >
               Fresh

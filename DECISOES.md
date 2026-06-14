@@ -4,6 +4,48 @@ Este documento registra decisões importantes do projeto.
 
 ---
 
+## 2026-06-14 — Componentes Section e SectionHeader + tokens governando layout
+
+**Status:** Aceita
+
+**Contexto:**  
+As seções repetiam padrões hardcoded (`py-24 lg:py-36`, `max-w-6xl`, cabeçalhos com `text-4xl md:text-5xl lg:text-6xl`) em 7+ arquivos, enquanto tokens como `--space-section` e `--fs-h1` existiam em `globals.css` sem uso. O design system estava documentado, mas não executado no código.
+
+**Decisão:**  
+Criar abstrações mínimas em `src/components/ui/`:
+
+- **`Section`**: wrapper `<section>` com padding vertical via tokens (`--space-section` / `--space-section-lg`) e container padrão (`max-w-6xl` + padding horizontal). Suporta `adornment` para elementos decorativos absolutos (ex.: glow em Contato).
+- **`SectionHeader`**: cabeçalho editorial (numeração, eyebrow, título h2) usando classes utilitárias `.type-section-eyebrow` e `.text-section-title` ligadas aos tokens.
+
+Recalibrar tokens para espelhar a aparência existente:
+- `--space-section`: `6rem` (py-24)
+- `--space-section-lg`: `9rem` (lg:py-36)
+- `--fs-section-title-sm/md/lg`: 2.25rem / 3rem / 3.75rem (text-4xl / md:text-5xl / lg:text-6xl)
+- `--fs-label`: 11px (0.6875rem) via `.type-label` para micro-labels acessíveis
+
+Migrar Sobre, Stack, Projetos, Serviços, Processo, Diferenciais e Contato para os novos componentes.
+
+**Motivo:**  
+Uma única fonte de verdade para ritmo vertical e tipografia de seção, reduzindo drift visual e duplicação, sem over-engineering (sem biblioteca de Card/Button genéricos nesta fase).
+
+**Alternativas consideradas:**  
+- Manter copy-paste em cada seção (descartado — drift inevitável)
+- Criar biblioteca completa Section/Container/Button/Card de uma vez (descartado — escopo grande demais para esta etapa)
+
+**Impacto positivo:**  
+- Design system passa a governar o código
+- Alterações futuras de spacing/títulos em um só lugar
+- Base para evoluções do design system sem tocar 7 arquivos
+
+**Impacto negativo ou riscos:**  
+- Eyebrow sobe de 10px para 11px (via token) — delta mínimo, intencional para a11y
+- Hero permanece fora de Section (layout próprio de viewport)
+
+**Consequências práticas:**  
+Novas seções devem usar `Section` + `SectionHeader`. Ajustes de ritmo vertical passam pelos tokens em `globals.css`. Não reintroduzir `py-24 lg:py-36` hardcoded nas seções.
+
+---
+
 ## 2026-05-30 — Usar Next.js com TypeScript
 
 **Status:** Aceita

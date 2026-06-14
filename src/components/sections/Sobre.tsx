@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { FadeInView } from "@/components/ui/FadeInView";
+import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const stats: { value?: string; label: string }[] = [
   { value: "3",  label: "Anos de experiência" },
@@ -24,17 +26,11 @@ const formacao = [
 
 export function Sobre() {
   return (
-    <section id="sobre" className="bg-surface py-24 lg:py-36">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+    <Section id="sobre" className="bg-surface">
 
         {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
-            01 / Sobre
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Sobre mim
-          </h2>
+          <SectionHeader numero="01" label="Sobre" titulo="Sobre mim" />
         </FadeInView>
 
         {/* Texto + Stats */}
@@ -229,7 +225,6 @@ export function Sobre() {
           </div>
         </div>
 
-      </div>
-    </section>
+    </Section>
   );
 }

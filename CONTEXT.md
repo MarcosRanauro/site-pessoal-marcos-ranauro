@@ -6,9 +6,9 @@ Estado atual do projeto. Decisões em `DECISOES.md`. Escopo em `/docs`.
 
 | Item | Valor |
 |------|-------|
-| Status | V1 completa, em produção |
-| Branch principal | `main` |
-| Deploy | [marcosranauro.com.br](https://marcosranauro.com.br) — Vercel, auto-deploy no push em `main` |
+| Status | V1 em produção — Etapa 3 (sistema + a11y) aplicada |
+| Branch ativa | `feat/etapa-3-sistema-a11y` |
+| Deploy | [marcosranauro.com.br](https://marcosranauro.com.br) — Vercel |
 | Build | Passando (`npm run build`) |
 | Lint | 0 erros (`npm run lint`) |
 
@@ -16,13 +16,17 @@ Site one-page estático. Conteúdo em `src/data/`. Sem backend, banco ou env var
 
 ## 2. O que está funcionando
 
-**Layout:** `Header` (sticky, scroll-aware, menu mobile) · `Footer` (monograma, nav) · `SocialSidebar` (scroll-spy, trilho, bolinha spring, easter egg HOT/FRESH) · `navigation.ts` (fonte única de links)
+**Layout:** `Header` (hamburger 44×44px) · `Footer` · `SocialSidebar` · skip link · `navigation.ts`
 
-**Seções:** `Hero` (step 0→5, scramble, typewriter) · `Sobre` · `Stack` · `Projetos` · `Servicos` · `Processo` · `Diferenciais` · `Contato`
+**UI / design system executado:** `Section` · `SectionHeader` · `.type-label` · `.type-section-eyebrow` · `.text-section-title` · tokens `--space-section`, `--fs-section-title-*`, `--fs-label`
 
-**Interatividade:** `CursorGlow` (spotlight lime, rAF) · `FooterMonogram` (stroke draw, cursor tracking) · `AccentContext` (HOT `#FF6B35` / FRESH `#C6FF00`, sem persistência) · `FadeInView` (scroll reveal)
+**Projetos (Etapa 2):** 3 cases — Outfit AI, Site Monique Ranauro (`producao`), Advoc.AI (`desenvolvimento`, `/projeto-advoc-ai.webp`, sem links)
 
-**SEO / infra:** metadata + OG + Twitter Card · `sitemap.ts` · `robots.ts` · favicon MR · `og-image.png` · security headers em `next.config.ts`
+**Seções:** todas migradas para `Section` + `SectionHeader` (exceto Hero)
+
+**A11y:** skip link → `#conteudo` · micro-labels ≥11px em muted (#A1A1A1) · Logo `href="#hero"` · JSON-LD Person + WebSite
+
+**SEO / infra:** metadata · OG/Twitter · `sitemap.ts` · `robots.ts` · `JsonLd` · security headers
 
 ## 3. Stack
 
@@ -32,55 +36,46 @@ Next.js 16.2.6 · React 19 · TypeScript strict · Tailwind CSS v4 · Framer Mot
 
 ```
 src/
-  app/          layout, page, globals.css, sitemap, robots, favicons
+  app/          layout, page, globals.css, sitemap, robots
   components/
     layout/     Header, Footer, FooterMonogram, SocialSidebar
     sections/   Hero, Sobre, Stack, Projetos, Servicos, Processo, Diferenciais, Contato
-    ui/         Logo, CursorGlow, FadeInView
+    ui/         Section, SectionHeader, JsonLd, Logo, CursorGlow, FadeInView
   data/         navigation, projetos, servicos, stack
-  lib/          AccentContext, utils, useScrollSpy, useTextScramble, useTypewriter
+  lib/          AccentContext, utils, hooks
 public/         og-image.png, projeto-*.webp, sobre/*.webp
 ```
 
-## 5. Design system
+## 5. Tokens principais (globals.css)
 
-Premium editorial monocromático + lime (< 5% da tela).
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--space-section` | `6rem` | padding vertical seção (py-24) |
+| `--space-section-lg` | `9rem` | padding vertical lg (py-36) |
+| `--fs-section-title-sm/md/lg` | 2.25 / 3 / 3.75rem | títulos h2 de seção |
+| `--fs-label` | `0.6875rem` (11px) | micro-labels mono |
 
-| Token | Hex |
-|-------|-----|
-| `background` | `#0A0A0A` |
-| `surface` | `#111111` |
-| `surface-elevated` | `#161616` |
-| `foreground` | `#FAFAFA` |
-| `muted` | `#A1A1A1` |
-| `subtle` / `muted-foreground` | `#6B6B6B` |
-| `border` | `#222222` |
-| `border-strong` | `#2A2A2A` |
-| `accent` | `#C6FF00` |
+Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title`
 
-Fontes: Space Grotesk (headings), Inter (body), Geist Mono (labels). Acento dinâmico via `@property --color-accent` + `AccentContext`. Detalhes: `docs/design-system.md`.
-
-## 6. Configuração técnica
-
-- `tsconfig.json`: `@/*` → `./src/*`
-- Tailwind v4: `@import "tailwindcss"` + `@theme {}`
-- `scroll-padding-top: 80px` (header fixo h-16)
-- `@property --color-accent` — transição CSS tipada
-- `next.config.ts`: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-DNS-Prefetch-Control`
-- CSP não configurada (Framer Motion + easter egg usam estilos inline)
-
-## 7. Pendências abertas
+## 6. Pendências abertas
 
 - CSP — fase dedicada
-- PWA / manifest — ícones removidos; decidir na V2
-- Testes e CI — nenhum
-- Prettier — opcional
-- JSON-LD / Person schema
+- PWA / manifest
+- Testes e CI
+- Regenerar `og-image.png` com copy freelance
+- Button/Card genéricos (design system fase futura)
+
+## 7. Histórico de etapas
+
+**Etapa 1:** Hero SSR, copy freelance, nav lg+, reduced motion, stats Sobre.
+
+**Etapa 2:** Projetos enriquecidos (3 cases, profundidade editorial).
+
+**Etapa 3 (2026-06-14):** Section/SectionHeader, tokens calibrados, JSON-LD, skip link, labels a11y, touch targets, Logo #hero.
 
 ## 8. O que não mexer sem cuidado
 
-- Máquina de estados do `Hero` (step 0→5, timing)
 - `SocialSidebar` + `useScrollSpy`
 - `AccentContext` + `@property --color-accent`
-- `FooterMonogram` (stroke draw + cursor tracking)
-- Metadados SEO em `layout.tsx`
+- `FooterMonogram`
+- Tokens em `globals.css` (fonte de verdade do ritmo visual)
