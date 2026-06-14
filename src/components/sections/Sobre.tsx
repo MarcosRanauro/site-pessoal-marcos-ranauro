@@ -4,9 +4,9 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const stats: { value?: string; label: string }[] = [
-  { value: "3",  label: "Anos de experiência" },
-  { value: "13", label: "Projetos entregues" },
-  { label: "Compromisso com qualidade" },
+  { value: "2",    label: "Produtos em produção" },
+  { value: "100%", label: "Do briefing ao deploy" },
+  { value: "Solo", label: "Design, código e deploy" },
 ];
 
 const formacao = [

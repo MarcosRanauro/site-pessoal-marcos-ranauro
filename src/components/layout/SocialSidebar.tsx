@@ -66,10 +66,10 @@ export function SocialSidebar() {
   return (
     <aside
       aria-label="Navegação lateral"
-      className="fixed bottom-0 right-0 top-0 z-30 hidden w-14 flex-col items-end lg:flex xl:w-44"
+      className="fixed bottom-0 right-0 top-0 z-30 hidden flex-col items-end lg:flex lg:w-44"
     >
       {/* ── Grupo social — topo ─────────────────────────────────────────── */}
-      <div className="flex w-14 flex-col items-center pt-20">
+      <div className="flex w-full flex-col items-end pt-20 pr-4">
         <motion.div
           className="w-px bg-border"
           style={{ height: "56px", transformOrigin: "top" }}
@@ -78,7 +78,7 @@ export function SocialSidebar() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         />
 
-        <div className="flex flex-col items-center gap-3 py-6">
+        <div className="flex flex-col items-end gap-3 py-6">
           <motion.a
             href="https://github.com/MarcosRanauro"
             target="_blank"
@@ -127,10 +127,10 @@ export function SocialSidebar() {
         />
       </div>
 
-      {/* ── Nav de seções — apenas xl+ ──────────────────────────────────── */}
+      {/* ── Nav de seções — lg+ ─────────────────────────────────────────── */}
       <nav
         aria-label="Seções da página"
-        className="hidden xl:flex w-full flex-1 flex-col justify-center px-4 pb-10 pt-4"
+        className="hidden lg:flex w-full flex-1 flex-col justify-center px-4 pb-10 pt-4"
       >
         {/* Container relativo: trilho absoluto + itens */}
         <div ref={navRef} className="relative flex w-full flex-col items-end gap-0.5">
@@ -231,15 +231,6 @@ export function SocialSidebar() {
           </button>
         </div>
       </nav>
-
-      {/* Linha inferior — lg sem xl (sidebar estreita sem nav) */}
-      <motion.div
-        className="mb-10 w-px flex-1 bg-border xl:hidden"
-        style={{ transformOrigin: "top" }}
-        initial={reduced ? false : { scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      />
     </aside>
   );
 }
