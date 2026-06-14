@@ -1,22 +1,16 @@
 import { FadeInView } from "@/components/ui/FadeInView";
+import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { stackGroups } from "@/data/stack";
 
 export function Stack() {
   return (
-    <section id="stack" className="bg-background py-24 lg:py-36">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+    <Section id="stack" className="bg-background">
 
-        {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
-            02 / Stack
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Stack Técnica
-          </h2>
+          <SectionHeader numero="02" label="Stack" titulo="Stack Técnica" />
         </FadeInView>
 
-        {/* Grupos tipográficos */}
         <div className="grid gap-12 md:grid-cols-3 md:gap-0">
           {stackGroups.map((group, i) => (
             <FadeInView key={group.group} delay={i * 0.1}>
@@ -27,12 +21,10 @@ export function Stack() {
                     : "md:pr-10"
                 }
               >
-                {/* Label do grupo */}
-                <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
+                <p className="type-label mb-6 tracking-[0.3em]">
                   {group.group}
                 </p>
 
-                {/* Tecnologias como lista tipográfica */}
                 <ul>
                   {group.items.map((item) => (
                     <li
@@ -48,7 +40,6 @@ export function Stack() {
           ))}
         </div>
 
-      </div>
-    </section>
+    </Section>
   );
 }

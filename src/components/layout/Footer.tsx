@@ -12,7 +12,7 @@ export function Footer() {
 
           {/* Esquerda: localização — abaixo do monograma no mobile */}
           <div className="order-2 w-full md:order-1 md:w-44">
-            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted md:text-left text-center">
+            <p className="type-label tracking-[0.25em] md:text-left text-center">
               Nova Iguaçu — RJ, Brasil
             </p>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-foreground ${focusRing}`}
+                  className={`type-label tracking-[0.2em] transition-colors hover:text-foreground ${focusRing}`}
                 >
                   {link.label}
                 </a>
@@ -40,10 +40,10 @@ export function Footer() {
 
         {/* Linha inferior — copyright + assinatura */}
         <div className="flex flex-col gap-2 border-t border-border py-6 md:flex-row md:items-center md:justify-between">
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
+          <p className="type-label tracking-[0.2em]">
             © {new Date().getFullYear()} Marcos Ranauro
           </p>
-          <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">
+          <p className="type-label tracking-[0.2em]">
             Desenhado e desenvolvido por Marcos Ranauro
           </p>
         </div>

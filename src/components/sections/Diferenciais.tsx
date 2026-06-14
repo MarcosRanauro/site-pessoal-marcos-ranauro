@@ -1,4 +1,6 @@
 import { FadeInView } from "@/components/ui/FadeInView";
+import { Section } from "@/components/ui/Section";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const diferenciais = [
   {
@@ -23,11 +25,6 @@ const diferenciais = [
   },
 ];
 
-// Separadores em cruz formando a grade 2×2:
-// item 0 (top-left):    border-b + border-r no desktop
-// item 1 (top-right):   border-b
-// item 2 (bottom-left): border-b no mobile; border-r no desktop, sem border-b
-// item 3 (bottom-right): sem bordas
 function gridBorderClass(index: number): string {
   switch (index) {
     case 0: return "border-b border-border md:border-r";
@@ -39,21 +36,21 @@ function gridBorderClass(index: number): string {
 
 export function Diferenciais() {
   return (
-    <section id="diferenciais" className="bg-background py-24 lg:py-36">
-      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+    <Section id="diferenciais" className="bg-background">
 
-        {/* Cabeçalho editorial */}
         <FadeInView className="mb-16 lg:mb-20">
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
-            06 / Diferenciais
-          </p>
-          <h2 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Por que trabalhar
-            <br className="hidden sm:block" /> comigo
-          </h2>
+          <SectionHeader
+            numero="06"
+            label="Diferenciais"
+            titulo={
+              <>
+                Por que trabalhar
+                <br className="hidden sm:block" /> comigo
+              </>
+            }
+          />
         </FadeInView>
 
-        {/* Grade 2×2 com separadores editoriais em cruz */}
         <div className="grid md:grid-cols-2">
           {diferenciais.map((item, i) => (
             <FadeInView
@@ -67,7 +64,7 @@ export function Diferenciais() {
                   i % 2 === 0 ? "md:pr-12" : "md:pl-12",
                 ].join(" ")}
               >
-                <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
+                <p className="type-label mb-4 tracking-[0.3em]">
                   0{i + 1}
                 </p>
                 <h3 className="mb-4 font-heading text-2xl font-bold text-foreground">
@@ -81,7 +78,6 @@ export function Diferenciais() {
           ))}
         </div>
 
-      </div>
-    </section>
+    </Section>
   );
 }

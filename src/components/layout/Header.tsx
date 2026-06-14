@@ -43,7 +43,11 @@ export function Header() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuOpen}
-            className={cn("text-muted transition-colors hover:text-foreground lg:hidden", focusRing)}
+            className={cn(
+              "flex min-h-11 min-w-11 items-center justify-center lg:hidden",
+              "text-muted transition-colors hover:text-foreground",
+              focusRing,
+            )}
           >
             {menuOpen ? (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">

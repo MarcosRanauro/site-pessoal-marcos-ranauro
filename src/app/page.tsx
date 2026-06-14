@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Header />
 
-      <main className="flex flex-1 flex-col">
+      <main id="conteudo" className="flex flex-1 flex-col">
         <Hero />
         <Sobre />
         <Stack />
