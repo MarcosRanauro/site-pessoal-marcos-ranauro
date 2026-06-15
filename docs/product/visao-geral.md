@@ -81,8 +81,8 @@ A direção visual aprovada é:
 
 Proporção visual:
 
-- 70% editorial premium;
-- 30% futurista tech.
+- 90% editorial monocromático / black & white premium;
+- 10% tech interativo (acento lime com parcimônia extrema).
 
 ---
 

@@ -122,8 +122,8 @@
 /* ── Grid do Hero ───────────────────────────────────────────────────────── */
 .hero-grid {
   background-image:
-    linear-gradient(color-mix(in srgb, var(--color-accent) 13%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 13%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-foreground) 6%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
   /* Degradê horizontal: grid invisível na esquerda, presente na direita (~13% efetivo) */
   -webkit-mask-image: linear-gradient(

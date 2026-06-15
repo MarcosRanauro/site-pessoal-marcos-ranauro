@@ -19,8 +19,8 @@ A base será uma mistura de:
 
 A proporção visual recomendada é:
 
-- 70% editorial premium;
-- 30% futurista tech.
+- 90% editorial monocromático / black & white premium;
+- 10% tech interativo (acento lime com parcimônia extrema — máx. 1–2 ocorrências simultâneas por viewport).
 
 O site deve parecer premium primeiro e tecnológico depois.
 
