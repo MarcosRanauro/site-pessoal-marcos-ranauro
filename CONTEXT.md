@@ -6,8 +6,8 @@ Estado atual do projeto. Decisões em `DECISOES.md`. Escopo em `/docs`.
 
 | Item | Valor |
 |------|-------|
-| Status | V1 em produção — Etapa 3 (sistema + a11y) aplicada |
-| Branch ativa | `feat/etapa-3-sistema-a11y` |
+| Status | V1 em produção — polish final aplicado |
+| Branch ativa | `feat/polish-real` |
 | Deploy | [marcosranauro.com.br](https://marcosranauro.com.br) — Vercel |
 | Build | Passando (`npm run build`) |
 | Lint | 0 erros (`npm run lint`) |
@@ -16,9 +16,9 @@ Site one-page estático. Conteúdo em `src/data/`. Sem backend, banco ou env var
 
 ## 2. O que está funcionando
 
-**Layout:** `Header` (hamburger 44×44px) · `Footer` · `SocialSidebar` · skip link · `navigation.ts`
+**Layout:** `Header` (hamburger 44×44px) · `Footer` · `SocialSidebar` (`lg:w-44`, nav `lg+`) · skip link · `navigation.ts` · body `lg:pr-44`
 
-**UI / design system executado:** `Section` · `SectionHeader` · `.type-label` · `.type-section-eyebrow` · `.text-section-title` · tokens `--space-section`, `--fs-section-title-*`, `--fs-label`
+**UI / design system executado:** `Section` · `SectionHeader` · `EditorialImage` · `.type-label` · `.type-section-eyebrow` · `.text-section-title` · tokens `--space-section`, `--fs-section-title-*`, `--fs-label`
 
 **Projetos (Etapa 2):** 3 cases — Outfit AI, Site Monique Ranauro (`producao`), Advoc.AI (`desenvolvimento`, `/projeto-advoc-ai.webp`, sem links)
 
@@ -40,10 +40,10 @@ src/
   components/
     layout/     Header, Footer, FooterMonogram, SocialSidebar
     sections/   Hero, Sobre, Stack, Projetos, Servicos, Processo, Diferenciais, Contato
-    ui/         Section, SectionHeader, JsonLd, Logo, CursorGlow, FadeInView
+    ui/         Section, SectionHeader, EditorialImage, JsonLd, Logo, CursorGlow, FadeInView
   data/         navigation, projetos, servicos, stack
   lib/          AccentContext, utils, hooks
-public/         og-image.png, projeto-*.webp, sobre/*.webp
+public/         og-image.png, projeto-*.webp, sobre/*.webp (920×1150, ~78% quality)
 ```
 
 ## 5. Tokens principais (globals.css)
@@ -55,9 +55,19 @@ public/         og-image.png, projeto-*.webp, sobre/*.webp
 | `--fs-section-title-sm/md/lg` | 2.25 / 3 / 3.75rem | títulos h2 de seção |
 | `--fs-label` | `0.6875rem` (11px) | micro-labels mono |
 
-Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title`
+Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title` · `.hero-grid` (linhas neutras, sem tint accent)
 
-## 6. Pendências abertas
+## 6. Polish final (2026-06-14)
+
+**Hero — parcimônia do lime:** grid e glow convertidos para neutros; scroll indicator em `muted`; mantidos ponto `Available 2026` e CTA "Ver projetos" (seta + underline hover). Demais seções inalteradas.
+
+**Sobre — imagens:** redimensionadas para 920×1150 (2× do maior slot ~455px), WebP quality ~78. Peso total ~224KB (antes ~408KB).
+
+**Sobre — `EditorialImage`:** componente extraído com hover/scale/brightness idênticos; 6 ocorrências (mobile + desktop).
+
+**Docs:** proporção visual unificada 90/10 em `CLAUDE.md`, `docs/product/*` e alinhada com `docs/design-system.md`. Stack documentada como Next.js 16.
+
+## 7. Pendências abertas
 
 - CSP — fase dedicada
 - PWA / manifest
@@ -65,7 +75,7 @@ Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title`
 - Regenerar `og-image.png` com copy freelance
 - Button/Card genéricos (design system fase futura)
 
-## 7. Histórico de etapas
+## 8. Histórico de etapas
 
 **Etapa 1:** Hero SSR, copy freelance, nav lg+, reduced motion, stats Sobre.
 
@@ -73,7 +83,9 @@ Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title`
 
 **Etapa 3 (2026-06-14):** Section/SectionHeader, tokens calibrados, JSON-LD, skip link, labels a11y, touch targets, Logo #hero.
 
-## 8. O que não mexer sem cuidado
+**Polish final (2026-06-14):** lime Hero, imagens Sobre, EditorialImage, docs 90/10.
+
+## 9. O que não mexer sem cuidado
 
 - `SocialSidebar` + `useScrollSpy`
 - `AccentContext` + `@property --color-accent`

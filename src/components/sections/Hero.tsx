@@ -42,8 +42,8 @@ export function Hero() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       />
 
-      {/* Glow deslocado para o canto superior direito — assimétrico */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-accent opacity-[0.04] blur-[120px]" />
+      {/* Glow deslocado — neutro, sem tint accent */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-foreground opacity-[0.012] blur-[120px]" />
 
       <div className="relative z-10 flex min-h-screen flex-col px-6 pt-16 pb-10 sm:px-10 lg:pl-28 lg:pr-24 xl:pl-36 xl:pr-24">
 

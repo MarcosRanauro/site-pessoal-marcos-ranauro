@@ -22,10 +22,10 @@ Não implemente código sem entender o escopo atual.
 
 ## Stack prevista
 
-- Next.js
+- Next.js 16 (App Router)
 - TypeScript
-- Tailwind CSS
-- App Router
+- Tailwind CSS v4
+- Framer Motion
 - Vercel
 - Git/GitHub
 
@@ -67,8 +67,8 @@ Premium editorial tech com interatividade futurista controlada.
 
 Proporção visual:
 
-- 70% editorial premium / black & white tech
-- 30% futurista / tech interativo
+- 90% editorial monocromático / black & white premium
+- 10% tech interativo (acento lime com parcimônia extrema — máx. 1–2 ocorrências simultâneas por viewport)
 
 O site deve parecer premium primeiro e tecnológico depois.
 
