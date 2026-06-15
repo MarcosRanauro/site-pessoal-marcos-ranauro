@@ -6,13 +6,15 @@ Estado atual do projeto. Decisões em `DECISOES.md`. Escopo em `/docs`.
 
 | Item | Valor |
 |------|-------|
-| Status | V1 em produção — polish final aplicado |
-| Branch ativa | `feat/polish-real` |
+| Status | V1 completa — acabamento OG/metadata aplicado |
+| Branch ativa | `feat/og-metadata-acabamento` (merge pendente → `main`) |
 | Deploy | [marcosranauro.com.br](https://marcosranauro.com.br) — Vercel |
 | Build | Passando (`npm run build`) |
 | Lint | 0 erros (`npm run lint`) |
 
 Site one-page estático. Conteúdo em `src/data/`. Sem backend, banco ou env vars obrigatórias.
+
+**Plano pós-auditoria:** 4 etapas (Hero/copy/nav, Projetos, Section/a11y, polish) + acabamento OG/metadata — **completo** após merge desta branch na `main`.
 
 ## 2. O que está funcionando
 
@@ -24,9 +26,9 @@ Site one-page estático. Conteúdo em `src/data/`. Sem backend, banco ou env var
 
 **Seções:** todas migradas para `Section` + `SectionHeader` (exceto Hero)
 
-**A11y:** skip link → `#conteudo` · micro-labels ≥11px em muted (#A1A1A1) · Logo `href="#hero"` · JSON-LD Person + WebSite
+**A11y:** skip link → `#conteudo` · micro-labels ≥11px via `.type-label` / `.type-section-eyebrow` · Logo `href="#hero"` · JSON-LD Person + WebSite
 
-**SEO / infra:** metadata · OG/Twitter · `sitemap.ts` · `robots.ts` · `JsonLd` · security headers
+**SEO / infra:** metadata freelance alinhada ao Hero · OG dinâmica (`opengraph-image.tsx`) · OG/Twitter · `sitemap.ts` · `robots.ts` · `JsonLd` · security headers
 
 ## 3. Stack
 
@@ -36,14 +38,14 @@ Next.js 16.2.6 · React 19 · TypeScript strict · Tailwind CSS v4 · Framer Mot
 
 ```
 src/
-  app/          layout, page, globals.css, sitemap, robots
+  app/          layout, page, opengraph-image, globals.css, sitemap, robots
   components/
     layout/     Header, Footer, FooterMonogram, SocialSidebar
     sections/   Hero, Sobre, Stack, Projetos, Servicos, Processo, Diferenciais, Contato
     ui/         Section, SectionHeader, EditorialImage, JsonLd, Logo, CursorGlow, FadeInView
   data/         navigation, projetos, servicos, stack
   lib/          AccentContext, utils, hooks
-public/         og-image.png, projeto-*.webp, sobre/*.webp (920×1150, ~78% quality)
+public/         projeto-*.webp, sobre/*.webp (920×1150, ~78% quality)
 ```
 
 ## 5. Tokens principais (globals.css)
@@ -57,22 +59,19 @@ public/         og-image.png, projeto-*.webp, sobre/*.webp (920×1150, ~78% qual
 
 Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title` · `.hero-grid` (linhas neutras, sem tint accent)
 
-## 6. Polish final (2026-06-14)
+## 6. Acabamento OG/metadata (2026-06-15)
 
-**Hero — parcimônia do lime:** grid e glow convertidos para neutros; scroll indicator em `muted`; mantidos ponto `Available 2026` e CTA "Ver projetos" (seta + underline hover). Demais seções inalteradas.
+**Metadata:** description/OG/Twitter alinhados ao posicionamento freelance end-to-end ("Do zero ao no ar", sob medida, deploy).
 
-**Sobre — imagens:** redimensionadas para 920×1150 (2× do maior slot ~455px), WebP quality ~78. Peso total ~224KB (antes ~408KB).
+**OG dinâmica:** `src/app/opengraph-image.tsx` — ImageResponse 1200×630, fundo `#0A0A0A`, Space Grotesk + Inter via Google Fonts no build. Removido `public/og-image.png` estático.
 
-**Sobre — `EditorialImage`:** componente extraído com hover/scale/brightness idênticos; 6 ocorrências (mobile + desktop).
-
-**Docs:** proporção visual unificada 90/10 em `CLAUDE.md`, `docs/product/*` e alinhada com `docs/design-system.md`. Stack documentada como Next.js 16.
+**Labels:** microtextos remanescentes em 9–10px migrados para `.type-label` / `.type-section-eyebrow`.
 
 ## 7. Pendências abertas
 
 - CSP — fase dedicada
 - PWA / manifest
 - Testes e CI
-- Regenerar `og-image.png` com copy freelance
 - Button/Card genéricos (design system fase futura)
 
 ## 8. Histórico de etapas
@@ -84,6 +83,8 @@ Classes: `.type-label` · `.type-section-eyebrow` · `.text-section-title` · `.
 **Etapa 3 (2026-06-14):** Section/SectionHeader, tokens calibrados, JSON-LD, skip link, labels a11y, touch targets, Logo #hero.
 
 **Polish final (2026-06-14):** lime Hero, imagens Sobre, EditorialImage, docs 90/10.
+
+**Acabamento (2026-06-15):** metadata freelance, OG dinâmica, labels 11px residuais.
 
 ## 9. O que não mexer sem cuidado
 

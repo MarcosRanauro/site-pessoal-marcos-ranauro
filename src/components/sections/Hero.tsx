@@ -177,7 +177,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ ...FADE_IN, delay: 0.15 }}
         >
-          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted">
+          <span className="type-label tracking-[0.3em]">
             Scroll
           </span>
           <div className="relative h-10 w-px overflow-hidden bg-border">

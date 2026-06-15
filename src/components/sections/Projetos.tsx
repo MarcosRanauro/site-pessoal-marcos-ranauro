@@ -131,15 +131,15 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
             )}
             <span
               className={cn(
-                "font-mono text-[10px] uppercase tracking-[0.2em]",
-                isProducao ? "text-muted" : "text-muted-foreground",
+                "type-label tracking-[0.2em]",
+                !isProducao && "text-muted-foreground",
               )}
             >
               {STATUS_LABEL[projeto.status]}
             </span>
           </div>
 
-          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+          <p className="type-label mb-4 tracking-[0.2em]">
             {projeto.contexto}
           </p>
 
@@ -171,7 +171,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
             {projeto.stack.map((item) => (
               <span
                 key={item}
-                className="rounded-sm border border-border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted"
+                className="type-label rounded-sm border border-border px-2.5 py-1 tracking-[0.12em]"
               >
                 {item}
               </span>
@@ -186,7 +186,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground",
+                    "group/link type-label inline-flex items-center gap-2 tracking-[0.15em] transition-colors hover:text-foreground",
                     focusRing,
                   )}
                 >
@@ -206,7 +206,7 @@ function ProjetoBloco({ projeto, index }: { projeto: Projeto; index: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "group/link inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground",
+                    "group/link type-label inline-flex items-center gap-2 tracking-[0.15em] transition-colors hover:text-foreground",
                     focusRing,
                   )}
                 >
