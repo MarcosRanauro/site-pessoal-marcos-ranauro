@@ -25,14 +25,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_DESCRIPTION =
+  "Desenvolvedor fullstack freelance. Sites e produtos digitais sob medida — design, código e deploy. Do zero ao no ar, entregue pronto pro cliente usar.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://marcosranauro.com.br"),
   title: "Marcos Ranauro — Fullstack Developer",
-  description:
-    "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Marcos Ranauro",
     "Fullstack Developer",
+    "Desenvolvedor Freelance",
     "Desenvolvedor Web",
     "Next.js",
     "React",
@@ -50,23 +53,12 @@ export const metadata: Metadata = {
     url: "https://marcosranauro.com.br",
     siteName: "Marcos Ranauro",
     title: "Marcos Ranauro — Fullstack Developer",
-    description:
-      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Marcos Ranauro — Fullstack Developer",
-      },
-    ],
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Marcos Ranauro — Fullstack Developer",
-    description:
-      "Desenvolvedor fullstack criando experiências digitais modernas, performáticas e bem estruturadas — do planejamento ao deploy.",
-    images: ["/og-image.png"],
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
