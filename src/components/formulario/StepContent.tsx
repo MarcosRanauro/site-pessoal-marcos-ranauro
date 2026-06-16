@@ -14,7 +14,7 @@ import {
   TOM_COMUNICACAO_OPTIONS,
 } from "@/lib/formulario/constants";
 import type { StepErrors } from "@/lib/formulario/validate-step";
-import { maskWhatsApp } from "@/lib/formulario/masks";
+import { maskPhoneBR } from "@/lib/formulario/masks";
 import {
   CheckboxGroup,
   ConditionalField,
@@ -30,9 +30,10 @@ type StepContentProps = {
   values: BriefingFormValues;
   update: FormUpdater;
   errors: StepErrors;
+  onFieldBlur: (field: keyof BriefingFormValues) => void;
 };
 
-export function StepContent({ step, values, update, errors }: StepContentProps) {
+export function StepContent({ step, values, update, errors, onFieldBlur }: StepContentProps) {
   switch (step) {
     case 1:
       return (
@@ -325,8 +326,11 @@ export function StepContent({ step, values, update, errors }: StepContentProps) 
             <TextInput
               id="whatsapp"
               value={values.whatsapp}
-              onChange={(v) => update("whatsapp", maskWhatsApp(v))}
+              onChange={(v) => update("whatsapp", maskPhoneBR(v))}
+              onBlur={() => onFieldBlur("whatsapp")}
               placeholder="(21) 99999-9999"
+              type="tel"
+              inputMode="numeric"
               error={!!errors.whatsapp}
               autoComplete="tel"
             />
@@ -340,8 +344,10 @@ export function StepContent({ step, values, update, errors }: StepContentProps) 
             <TextInput
               id="email_formulario"
               type="email"
+              inputMode="email"
               value={values.email_formulario}
               onChange={(v) => update("email_formulario", v)}
+              onBlur={() => onFieldBlur("email_formulario")}
               placeholder="seu@email.com"
               error={!!errors.email_formulario}
               autoComplete="email"
@@ -450,9 +456,13 @@ export function StepContent({ step, values, update, errors }: StepContentProps) 
             <TextInput
               id="telefone_recuperacao"
               value={values.telefone_recuperacao}
-              onChange={(v) => update("telefone_recuperacao", v)}
-              placeholder="Celular para recuperação de contas"
+              onChange={(v) => update("telefone_recuperacao", maskPhoneBR(v))}
+              onBlur={() => onFieldBlur("telefone_recuperacao")}
+              placeholder="(21) 99999-9999"
+              type="tel"
+              inputMode="numeric"
               error={!!errors.telefone_recuperacao}
+              autoComplete="tel"
             />
           </FieldWrapper>
         </div>

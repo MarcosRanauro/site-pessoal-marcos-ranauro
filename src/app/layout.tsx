@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CursorGlow } from "@/components/ui/CursorGlow";
-import { SocialSidebar } from "@/components/layout/SocialSidebar";
 import { AccentProvider } from "@/lib/AccentContext";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
-import { cn, focusRing } from "@/lib/utils";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -76,22 +73,9 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${spaceGrotesk.variable} ${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans lg:pr-44">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <JsonLd />
         <AccentProvider>
-          <a
-            href="#conteudo"
-            className={cn(
-              "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]",
-              "rounded-sm border border-border bg-background px-4 py-2.5",
-              "text-sm font-medium text-foreground",
-              focusRing,
-            )}
-          >
-            Pular para conteúdo
-          </a>
-          <CursorGlow />
-          <SocialSidebar />
           {children}
           <Analytics />
         </AccentProvider>

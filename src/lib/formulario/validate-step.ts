@@ -1,5 +1,7 @@
 import type { BriefingFormValues } from "./constants";
+import { isValidPhoneBR } from "./masks";
 import { briefingSchema } from "./schema";
+import { isValidEmailSimple } from "./validators";
 
 type StepField = keyof BriefingFormValues;
 
@@ -34,28 +36,12 @@ const STEP_FIELDS: Record<number, StepField[]> = {
   8: ["prazo", "prazo_data", "observacoes_finais", "website"],
 };
 
+const PHONE_ERROR = "Informe um telefone válido com DDD";
+const EMAIL_ERROR = "Informe um e-mail válido";
+
 export type StepErrors = Partial<Record<StepField, string>>;
 
-/** Valida apenas os campos da etapa atual */
-export function validateStep(
-  step: number,
-  values: BriefingFormValues,
-): { valid: boolean; errors: StepErrors } {
-  const result = briefingSchema.safeParse(values);
-  if (result.success) {
-    return { valid: true, errors: {} };
-  }
-
-  const stepFields = new Set(STEP_FIELDS[step] ?? []);
-  const errors: StepErrors = {};
-
-  for (const issue of result.error.issues) {
-    const field = issue.path[0] as StepField | undefined;
-    if (field && stepFields.has(field) && !errors[field]) {
-      errors[field] = issue.message;
-    }
-  }
-
+function applyConditionalErrors(step: number, values: BriefingFormValues, errors: StepErrors) {
   if (step === 1 && values.objetivo_site.includes("Outro") && !values.objetivo_outro.trim()) {
     errors.objetivo_outro = errors.objetivo_outro ?? "Descreva o outro objetivo";
   }
@@ -75,6 +61,74 @@ export function validateStep(
   if (step === 8 && values.prazo === "Sim" && !values.prazo_data.trim()) {
     errors.prazo_data = errors.prazo_data ?? "Informe a data desejada";
   }
+}
+
+function applyPhoneAndEmailErrors(step: number, values: BriefingFormValues, errors: StepErrors) {
+  if (step === 5) {
+    if (!values.whatsapp.trim()) {
+      errors.whatsapp = errors.whatsapp ?? PHONE_ERROR;
+    } else if (!isValidPhoneBR(values.whatsapp)) {
+      errors.whatsapp = PHONE_ERROR;
+    }
+
+    if (!values.email_formulario.trim()) {
+      errors.email_formulario = errors.email_formulario ?? EMAIL_ERROR;
+    } else if (!isValidEmailSimple(values.email_formulario)) {
+      errors.email_formulario = EMAIL_ERROR;
+    }
+  }
+
+  if (step === 6) {
+    if (!values.telefone_recuperacao.trim()) {
+      errors.telefone_recuperacao =
+        errors.telefone_recuperacao ?? "Informe o telefone de recuperação";
+    } else if (!isValidPhoneBR(values.telefone_recuperacao)) {
+      errors.telefone_recuperacao = PHONE_ERROR;
+    }
+  }
+}
+
+/** Valida um campo isolado (ex.: onBlur) */
+export function validateFieldOnBlur(
+  field: StepField,
+  values: BriefingFormValues,
+): string | undefined {
+  if (field === "whatsapp" || field === "telefone_recuperacao") {
+    const value = values[field];
+    if (!value.trim()) {
+      return field === "whatsapp" ? PHONE_ERROR : "Informe o telefone de recuperação";
+    }
+    if (!isValidPhoneBR(value)) return PHONE_ERROR;
+  }
+
+  if (field === "email_formulario") {
+    if (!values.email_formulario.trim()) return EMAIL_ERROR;
+    if (!isValidEmailSimple(values.email_formulario)) return EMAIL_ERROR;
+  }
+
+  return undefined;
+}
+
+/** Valida apenas os campos da etapa atual */
+export function validateStep(
+  step: number,
+  values: BriefingFormValues,
+): { valid: boolean; errors: StepErrors } {
+  const result = briefingSchema.safeParse(values);
+  const stepFields = new Set(STEP_FIELDS[step] ?? []);
+  const errors: StepErrors = {};
+
+  if (!result.success) {
+    for (const issue of result.error.issues) {
+      const field = issue.path[0] as StepField | undefined;
+      if (field && stepFields.has(field) && !errors[field]) {
+        errors[field] = issue.message;
+      }
+    }
+  }
+
+  applyConditionalErrors(step, values, errors);
+  applyPhoneAndEmailErrors(step, values, errors);
 
   return { valid: Object.keys(errors).length === 0, errors };
 }
