@@ -61,9 +61,11 @@ type TextInputProps = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  type?: "text" | "email";
+  type?: "text" | "email" | "tel";
+  inputMode?: "text" | "email" | "numeric" | "tel";
   error?: boolean;
   autoComplete?: string;
+  onBlur?: () => void;
 };
 
 export function TextInput({
@@ -72,15 +74,19 @@ export function TextInput({
   onChange,
   placeholder,
   type = "text",
+  inputMode,
   error,
   autoComplete,
+  onBlur,
 }: TextInputProps) {
   return (
     <input
       id={id}
       type={type}
+      inputMode={inputMode}
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      onBlur={onBlur}
       placeholder={placeholder}
       autoComplete={autoComplete}
       aria-invalid={error || undefined}

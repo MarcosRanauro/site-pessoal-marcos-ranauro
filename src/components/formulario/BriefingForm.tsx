@@ -16,7 +16,7 @@ import {
   saveFormDraft,
   saveFormStep,
 } from "@/lib/formulario/storage";
-import { validateAll, validateStep, type StepErrors } from "@/lib/formulario/validate-step";
+import { validateAll, validateFieldOnBlur, validateStep, type StepErrors } from "@/lib/formulario/validate-step";
 import { cn, focusRing } from "@/lib/utils";
 import { ErrorScreen } from "./ErrorScreen";
 import { FormProgress } from "./FormProgress";
@@ -82,6 +82,16 @@ export function BriefingForm() {
       });
     },
     [],
+  );
+
+  const onFieldBlur = useCallback(
+    (field: keyof BriefingFormValues) => {
+      const message = validateFieldOnBlur(field, values);
+      if (message) {
+        setErrors((prev) => ({ ...prev, [field]: message }));
+      }
+    },
+    [values],
   );
 
   const goToStep = useCallback((nextStep: number, dir: number) => {
@@ -225,7 +235,13 @@ export function BriefingForm() {
               exit="exit"
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <StepContent step={step} values={values} update={update} errors={errors} />
+              <StepContent
+                step={step}
+                values={values}
+                update={update}
+                errors={errors}
+                onFieldBlur={onFieldBlur}
+              />
             </motion.div>
           </AnimatePresence>
         </div>
